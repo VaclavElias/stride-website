@@ -75,6 +75,8 @@
                 return '🔧';
             case 'ReleaseNotes':
                 return '📝';
+            case 'contributors':
+                return '🌟';
             default:
                 return '';
         }
