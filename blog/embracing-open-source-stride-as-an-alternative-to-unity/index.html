@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8"><script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9CVGC9YV1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());gtag('config', 'G-Y9CVGC9YV1');
+</script><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Unity's Licensing Changes: Discovering Stride, a Community-Driven Open Source Engine - Stride Game Engine</title>
+    <meta name="description" content="Explore the key differences between Unity and Stride, a C#-based, open-source game engine powered by .NET 6 (soon .NET 8). Learn how Stride's flexibility and...">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="canonical" href="https://www.stride3d.net/blog/embracing-open-source-stride-as-an-alternative-to-unity/">
+    <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.29">
+    <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
+    <meta property="og:site_name" content="Stride Game Engine">
+    <meta property="og:title" content="Unity's Licensing Changes: Discovering Stride, a Community-Driven Open Source Engine">
+    <meta property="og:description" content="Explore the key differences between Unity and Stride, a C#-based, open-source game engine powered by .NET 6 (soon .NET 8). Learn how Stride's flexibility and...">
+    <meta property="og:url" content="https://www.stride3d.net/blog/embracing-open-source-stride-as-an-alternative-to-unity/">
+    <meta property="og:image" content="https://www.stride3d.net/images/blog/2023-09-14-embracing-open-source/stride-vs-unity-opening-image-2.webp"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@stridedotnet">
+    <meta name="twitter:creator" content="@stridedotnet">
+    <meta name="twitter:title" content="Unity's Licensing Changes: Discovering Stride, a Community-Driven Open Source Engine">
+    <meta name="twitter:description" content="Explore the key differences between Unity and Stride, a C#-based, open-source game engine powered by .NET 6 (soon .NET 8). Learn how Stride's flexibility and...">
+    <meta name="twitter:image" content="https://www.stride3d.net/images/blog/2023-09-14-embracing-open-source/stride-vs-unity-opening-image-2.webp"><script src="/scripts/theme-selector.js?site-version=2.0.0.29"></script></head>
+<body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
+    <div class="container-xxl">
+        <a class="navbar-brand" href="/">
+            <img id="logo" height="37" width="124" src="/images/svg/stride-logo-light.svg" alt="Stride logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain"><ul class="navbar-nav navbar-nav--text me-auto mb-2 mb-lg-0 ms-sm-2">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/features/">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-stride" href="/blog/">Blog</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Learn</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/manual/" target="_blank" rel="noopener">📚 Manual (EN)</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/jp/manual/" target="_blank" rel="noopener">📚 Manual (JP)</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/tutorials/" target="_blank" rel="noopener">🎓 Tutorials</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/releasenotes/" target="_blank" rel="noopener">📝 Release Notes</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/contributors/index.html" target="_blank" rel="noopener">🌟 Contributing</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/api/" target="_blank" rel="noopener">🔧 API</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/community-resources/index.html" target="_blank" rel="noopener">🏋🏽 Community Resources</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/community/">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download/">
+                        Download
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/sponsor/">
+                        <i class="fa-solid fa-heart text-decoration-none"></i> Sponsor
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-row flex-wrap ms-sm-2 navbar-icons">
+                <li class="nav-item col-12 col-lg-auto dropdown">
+                    <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="document.getElementById('search-input').focus()" aria-label="Search button" title="Search"><i class="fa-solid fa-magnifying-glass text-decoration-none"></i></a>
+                    <div class="dropdown-menu dropdown-menu-end p-3" style="width: 280px;">
+<form action="/search/" method="get">
+    <div class="mb-3">
+        <input class="form-control" id="search-input" name="query" type="text" value="" autofocus tabindex="0" aria-label="Search">
+    </div>
+    <button class="btn btn-stride" name="submit" type="submit" value="Search">Search</button>
+</form></div>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://github.com/stride3d/stride" target="_blank" rel="noopener" aria-label="GitHub link" title="GitHub">
+                        <i class="fa-brands fa-github text-decoration-none"></i>
+                        <small class="d-lg-none">GitHub</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://twitter.com/stridedotnet" target="_blank" rel="noopener" aria-label="Twitter link" title="Twitter">
+                        <i class="fa-brands fa-twitter text-decoration-none"></i>
+                        <small class="d-lg-none">Twitter</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener" aria-label="Discord link" title="Discord">
+                        <i class="fa-brands fa-discord text-decoration-none"></i>
+                        <small class="d-lg-none">Discord</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://www.youtube.com/@Stride3D" target="_blank" rel="noopener" aria-label="YouTube link" title="YouTube">
+                        <i class="fa-brands fa-youtube text-decoration-none"></i>
+                        <small class="d-lg-none">YouTube</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link px-0 px-lg-2" href="https://opencollective.com/stride3d" target="_blank" rel="noopener" aria-label="Open Collective link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" fill-rule="evenodd" class="navbar-nav-svg" viewBox="0 0 40 41" role="img" style="margin-top:-6px"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"></path><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"></path></svg>
+                        <small class="d-lg-none">Open Collective</small>
+                    </a>
+                </li>
+                <li class="nav-item dropdown d-lg-flex align-items-center">
+                    <button title="Change theme" class="btn btn-link nav-link dropdown-toggle d-flex align-items-center" id="themeDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeDropdown">
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="lightTheme">
+                                <svg data-theme="light" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Light</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="darkTheme">
+                                <svg data-theme="dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars" viewBox="0 0 16 16">
+                                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z" />
+                                    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Dark</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="autoTheme">
+                                <svg data-theme="auto" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Auto</span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row postcontent">
+        <div class="col-12">
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h1 itemprop="name">Unity's Licensing Changes: Discovering Stride, a Community-Driven Open Source Engine</h1>
+                <div class="text-center mb-3 pt-2"><div><div class="mt-4 mb-2">
+                            <img class="rounded-circle me-1" width="58" height="58" alt="author" src="https://avatars.githubusercontent.com/VaclavElias?size=87">
+                        </div>Vaclav Elias
+                    </div><p style="border-top: 2px solid #979593;" class="x-hidden-focus mt-4 pt-1 small text-secondary date d-inline-block">
+                        <small><i class="fa-solid fa-calendar-days"></i> <time datetime="2023-09-14T00:00:00+0000" itemprop="datePublished"> September 14, 2023</time></small>
+                    </p>
+                </div><div itemprop="articleBody">
+                    <p>Explore the key differences between Unity and Stride, a C#-based, open-source game engine powered by .NET 6 (soon .NET 8). Learn how Stride's flexibility and native .NET support offer a unique development experience.</p>
+<p>Table of Contents:</p>
+<div class="table-of-contents"><ul><li><a href="#introduction-to-stride">Introduction to Stride </a></li><li><a href="#difference-between-unity-and-stride">Difference Between Unity and Stride </a></li><li><a href="#licensing">Licensing </a></li><li><a href="#what-games-were-made-using-stride%3F">What games were made using Stride? </a></li><li><a href="#operating-system-support">Operating System Support </a></li><li><a href="#ide-support">IDE Support </a></li><li><a href="#.net-hot-reload-support">.NET Hot Reload Support </a></li><li><a href="#multiplayer-support">Multiplayer Support </a></li><li><a href="#unity-assets">Unity Assets </a></li><li><a href="#screen-capture">Screen Capture </a></li><li><a href="#shaders-available">Shaders Available </a></li><li><a href="#build-automation">Build Automation </a></li><li><a href="#add-ons-and-extensions">Add-ons and Extensions </a></li><li><a href="#transformations">Transformations </a></li><li><a href="#rendering">Rendering </a></li><li><a href="#gamepads">Gamepads </a></li><li><a href="#other-q%26a">Other Q&amp;A </a><ul><li><a href="#what-is-the-equivalent-of-a-coroutine-in-stride%3F">What is the Equivalent of a Coroutine in Stride? </a></li><li><a href="#what-is-a-startupscript%3F">What is a StartupScript? </a></li><li><a href="#using-other-assemblies%2Fprojects-in-stride">Using Other Assemblies/Projects in Stride </a></li><li><a href="#is-there-an-asset-store-for-stride%3F">Is There an Asset Store for Stride? </a></li><li><a href="#null-checking-in-stride-vs-unity">Null Checking in Stride vs Unity </a></li></ul></li><li><a href="#where-to-start">Where to Start </a></li><li><a href="#how-to-find-answers">How to Find Answers </a></li><li><a href="#%F0%9F%A4%9D-join-us%3A-stride-bug-bounties-and-feature-funding-%F0%9F%9B%A0%EF%B8%8F">🤝 Join Us: Stride Bug Bounties and Feature Funding 🛠️ </a></li><li><a href="#flappy-bird---stride-engine-demo">Flappy Bird - Stride Engine Demo </a></li><li><a href="#closing-thoughts-%F0%9F%99%82">Closing Thoughts 🙂 </a></li></ul></div>
+<h2 id="introduction-to-stride" tabindex="-1">Introduction to Stride <a class="direct-link" href="#introduction-to-stride">🔗</a></h2>
+<p>Stride is not just another game engine; it's written entirely in C# and serves as a powerful platform in the .NET ecosystem. This unique focus on C# offers developers the native .NET tooling and functionalities they are already comfortable with. What sets Stride apart is its project structure; Stride projects are standard <code>csproj</code> files, allowing them to integrate effortlessly into your existing .NET solutions.</p>
+<h2 id="difference-between-unity-and-stride" tabindex="-1">Difference Between Unity and Stride <a class="direct-link" href="#difference-between-unity-and-stride">🔗</a></h2>
+<p>Unity is developed by a large team and offers a feature-rich experience. On the other hand, <a href="https://github.com/stride3d">Stride</a> is open-source and built by community contributors.</p>
+<p>This means that Stride might not have all the features that Unity has, simply because there aren't as many people working on it. However, the open-source nature of Stride allows you to customize it according to your needs and provides a solid foundation for any rendering project.</p>
+<p>Additionally, Stride allows you to utilize any <a href="https://www.nuget.org/profiles/Stride">NuGet</a> package and even provides access to the <code>Main</code> function of your game. You can also find useful resources such as documentation, community toolkits, and guides for migrating from Unity to Stride.</p>
+<ul>
+<li><a href="https://doc.stride3d.net/latest/en/manual/stride-for-unity-developers/index.html">Stride for Unity Developers</a></li>
+</ul>
+<h2 id="licensing" tabindex="-1">Licensing <a class="direct-link" href="#licensing">🔗</a></h2>
+<p>Stride is released under the <strong>MIT</strong> license, which is important because it grants you significant freedoms to use, modify, and distribute the engine.</p>
+<h2 id="what-games-were-made-using-stride%3F" tabindex="-1">What games were made using Stride? <a class="direct-link" href="#what-games-were-made-using-stride%3F">🔗</a></h2>
+<p>For examples of games developed using Stride, check out <a href="https://github.com/Doprez/Awesome-Stride#made-with-stride">Made with Stride</a> section.</p>
+<h2 id="operating-system-support" tabindex="-1">Operating System Support <a class="direct-link" href="#operating-system-support">🔗</a></h2>
+<ul>
+<li>Editor: Windows</li>
+<li>Runtime: Windows, Linux, <span class="text-warning">macOS</span>, Android, iOS</li>
+</ul>
+<h2 id="ide-support" tabindex="-1">IDE Support <a class="direct-link" href="#ide-support">🔗</a></h2>
+<p>Stride games are &quot;standard&quot; C# projects, meaning you can use a variety of IDEs:</p>
+<ul>
+<li>VS Code</li>
+<li>Visual Studio 2022</li>
+<li>Rider</li>
+<li>Blocknote + MsBuild</li>
+<li>VVVV</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> There's a Visual Studio extension for syntax highlighting, shader build keys and error checking.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong> Another extension offers syntax highlighting only.</p>
+</blockquote>
+<h2 id=".net-hot-reload-support" tabindex="-1">.NET Hot Reload Support <a class="direct-link" href="#.net-hot-reload-support">🔗</a></h2>
+<p>Stride has the capability of using <a href="https://learn.microsoft.com/en-us/visualstudio/debugger/hot-reload?view=vs-2022">.NET Hot Reload</a> for C# scripts, allowing real-time code modifications as your game runs. Importantly, this feature is also available when editing the engine side, giving you even more flexibility. Standard .NET hot reload rules are in effect.</p>
+<p>This feature streamlines development by minimizing the delay between coding and observing results, enhancing both efficiency and ease of use. If you're familiar with .NET and C#, you'll find that Hot Reload in Stride feels intuitively familiar.</p>
+<div class="ratio ratio-16x9 mb-3"><iframe src="https://www.youtube.com/embed/NG773m0SxyM" title="YouTube video" allowfullscreen></iframe></div>
+<h2 id="multiplayer-support" tabindex="-1">Multiplayer Support <a class="direct-link" href="#multiplayer-support">🔗</a></h2>
+<p>Stride does not offer built-in multiplayer or Server/Client architecture. However, you can easily integrate any .NET networking library to implement these features. You have the freedom to choose from a variety of libraries and resources. For a curated list, you can check out <a href="https://github.com/Doprez/Awesome-Stride#networking">Awesome-Stride's Networking section</a>.</p>
+<h2 id="unity-assets" tabindex="-1">Unity Assets <a class="direct-link" href="#unity-assets">🔗</a></h2>
+<p>You can import some 3D models from the Unity store into Stride. However, scripts will need modification since the two engines differ.</p>
+<p>These are the basic <a href="https://doc.stride3d.net/latest/en/manual/stride-for-unity-developers/index.html#event-functions-start-update-execute-etc">Scripting Differences</a>:</p>
+<ul>
+<li><code>StartupScript</code> is a MonoBehaviour without the Update method</li>
+<li><code>SyncScript</code> is a MonoBehaviour with an Update method that runs every frame</li>
+<li><code>AsyncScript</code> is unique and runs asynchronously</li>
+</ul>
+<h2 id="screen-capture" tabindex="-1">Screen Capture <a class="direct-link" href="#screen-capture">🔗</a></h2>
+<p>To capture a frame, you can use the following code snippet:</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="token class-name"><span class="token keyword">var</span></span> commandList <span class="token operator">=</span> GraphicsContext<span class="token punctuation">.</span>CommandList<span class="token punctuation">;</span>
+
+commandList<span class="token punctuation">.</span>RenderTarget<span class="token punctuation">.</span><span class="token function">Save</span><span class="token punctuation">(</span>commandList<span class="token punctuation">,</span> stream<span class="token punctuation">,</span> ImageFileType<span class="token punctuation">.</span>Png<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="shaders-available" tabindex="-1">Shaders Available <a class="direct-link" href="#shaders-available">🔗</a></h2>
+<p>SDSL is a shader language written on top of HLSL.</p>
+<ul>
+<li><a href="https://doc.stride3d.net/latest/en/manual/graphics/effects-and-shaders/shading-language/index.html">Shading language</a></li>
+<li><a href="https://github.com/tebjan/Stride.ShaderExplorer">ShaderExplorer</a></li>
+</ul>
+<h2 id="build-automation" tabindex="-1">Build Automation <a class="direct-link" href="#build-automation">🔗</a></h2>
+<p>Yes, since Stride uses .NET, automating the build process works out-of-the-box.</p>
+<h2 id="add-ons-and-extensions" tabindex="-1">Add-ons and Extensions <a class="direct-link" href="#add-ons-and-extensions">🔗</a></h2>
+<p>You cannot extend the editor in the same way as Unity, but you can create custom code extensions as seen in the following:</p>
+<ul>
+<li><a href="https://github.com/johang88/TR.Stride">Terrain add-on</a></li>
+<li><a href="https://github.com/Basewq/XenkoProofOfConcepts/tree/master/LevelEditorExtensionExample">Level editor add-on</a></li>
+</ul>
+<h2 id="transformations" tabindex="-1">Transformations <a class="direct-link" href="#transformations">🔗</a></h2>
+<p>The <a href="https://doc.stride3d.net/latest/en/api/Stride.Engine.TransformComponent.html"><code>TransformComponent</code></a> class in Stride is a fundamental component for representing an entity's position, rotation, and scale within a 3D scene.</p>
+<p><strong>Important Features:</strong></p>
+<ul>
+<li><strong><code>LocalMatrix</code> and <code>WorldMatrix</code></strong>: These matrices manage the transformations of the entity.</li>
+<li><strong><code>Position</code>, <code>Rotation</code>, and <code>Scale</code></strong>: These properties represent the entity's position, rotation, and scale in the local coordinate system. The <code>Position</code> property is a <a href="https://doc.stride3d.net/latest/en/api/Stride.Core.Mathematics.Vector3.html"><code>Vector3</code></a>, defining the entity's position. The <code>Rotation</code> property uses a <code>Quaternion</code> to represent the entity's rotation, and the <code>Scale</code> property is a <code>Vector3</code> that sets the scale. You can modify these properties to transform the entity.</li>
+<li><strong><code>UpdateLocalMatrix()</code> and <code>UpdateWorldMatrix()</code></strong>: These methods update the local and world matrices, respectively.</li>
+<li><strong><code>Parent</code> and <code>Children</code></strong>: These properties allow you to establish parent-child relationships between entities, affecting their transformations accordingly.</li>
+</ul>
+<h2 id="rendering" tabindex="-1">Rendering <a class="direct-link" href="#rendering">🔗</a></h2>
+<p>Stride primarily uses <strong>clustered</strong> forward rendering, with some additional features. Read more in the docs.</p>
+<ul>
+<li><a href="https://doc.stride3d.net/latest/en/manual/graphics/rendering-pipeline/index.html">Stride Rendering Pipeline</a></li>
+<li><a href="https://doc.stride3d.net/latest/en/manual/graphics/graphics-compositor/index.html">Stride Graphics Compositor</a></li>
+</ul>
+<h2 id="gamepads" tabindex="-1">Gamepads <a class="direct-link" href="#gamepads">🔗</a></h2>
+<ul>
+<li><a href="https://doc.stride3d.net/latest/en/manual/input/gamepads.html">Gamepads</a></li>
+</ul>
+<h2 id="other-q%26a" tabindex="-1">Other Q&amp;A <a class="direct-link" href="#other-q%26a">🔗</a></h2>
+<h3 id="what-is-the-equivalent-of-a-coroutine-in-stride%3F" tabindex="-1">What is the Equivalent of a Coroutine in Stride? <a class="direct-link" href="#what-is-the-equivalent-of-a-coroutine-in-stride%3F">🔗</a></h3>
+<p>Unlike Unity, which uses <code>IEnumerator</code> for asynchronous code execution, Stride leverages C#'s built-in <code>await</code> and <code>async</code> features. This can be accomplished using <code>AsyncScript</code>, which essentially acts as a <code>SyncScript</code> (the Stride equivalent of Unity's MonoBehaviour) but with asynchronous methods. You can use async methods within sync scripts, the same as standard C#.</p>
+<h3 id="what-is-a-startupscript%3F" tabindex="-1">What is a StartupScript? <a class="direct-link" href="#what-is-a-startupscript%3F">🔗</a></h3>
+<p>A <code>StartupScript</code> in Stride includes a <code>Start</code> method that is invoked when it's added to the scene tree. This is similar to Unity's <code>Start</code> or <code>Awake</code> methods. However, <code>StartupScript</code> does not contain <code>Update</code> methods and therefore doesn't execute code every frame.</p>
+<h3 id="using-other-assemblies%2Fprojects-in-stride" tabindex="-1">Using Other Assemblies/Projects in Stride <a class="direct-link" href="#using-other-assemblies%2Fprojects-in-stride">🔗</a></h3>
+<p>In Unity, the packaging system is built on top of a <code>csproj</code> file, which allows Unity to protect its proprietary source code. Stride, however, grants you full access to your <code>csproj</code> and <code>sln</code> (Solution) files. This enables you to include any NuGet packages or other C# projects in the usual way, by adding project references. If you add a new subproject to your main project through the Stride editor, it will be correctly configured by default, including folder location and references to the Stride engine.</p>
+<h3 id="is-there-an-asset-store-for-stride%3F" tabindex="-1">Is There an Asset Store for Stride? <a class="direct-link" href="#is-there-an-asset-store-for-stride%3F">🔗</a></h3>
+<p>No, Stride does not have a dedicated Asset Store. However, most additional libraries specially designed for Stride can be found on GitHub or NuGet. For easier discovery, a summary has been made available at <a href="https://github.com/Doprez/Awesome-Stride">Awesome-Stride</a>.</p>
+<h3 id="null-checking-in-stride-vs-unity" tabindex="-1">Null Checking in Stride vs Unity <a class="direct-link" href="#null-checking-in-stride-vs-unity">🔗</a></h3>
+<p>Does <code>is null</code> and <code>== null</code> work? Unlike Unity, which has overridden the <code>Equals</code> operator to be compatible with its C++ engine, Stride allows you to use <code>is null</code> and <code>== null</code> to compare the existence of an Entity or Component directly.</p>
+<h2 id="where-to-start" tabindex="-1">Where to Start <a class="direct-link" href="#where-to-start">🔗</a></h2>
+<p>Getting started with Stride is easy, thanks to a wealth of resources available. Here are some you shouldn't miss:</p>
+<ul>
+<li><a href="https://doc.stride3d.net/latest/en/manual/">Stride's Manual</a>: A comprehensive guide that covers everything from basic setup to advanced features.</li>
+<li><a href="https://doc.stride3d.net/latest/en/tutorials/">Stride's Tutorials</a>: Step-by-step tutorials to help you get your first project off the ground.</li>
+<li><a href="https://discord.gg/f6aerfE">Discord</a>: Join the community on Discord for real-time discussions and the latest updates.</li>
+</ul>
+<h2 id="how-to-find-answers" tabindex="-1">How to Find Answers <a class="direct-link" href="#how-to-find-answers">🔗</a></h2>
+<p>Consider checking these platforms where your query may have already been addressed or where you can gain more context:</p>
+<ul>
+<li><a href="https://discord.gg/f6aerfE">Discord</a>: Use the search functionality in our Discord channel to see if your topic has been discussed before.</li>
+<li>GitHub Issues: Navigate to <a href="https://github.com/stride3d/stride/issues">Stride's GitHub Issues</a> to see if your question is related to a known issue or feature request.</li>
+<li>GitHub Discussion: Participate in <a href="https://github.com/stride3d/stride/discussions">Stride's GitHub Discussions</a> to engage with the community and explore various topics.</li>
+</ul>
+<p>This proactive approach not only helps you get immediate answers but also makes it easier for the community to focus on unresolved or unique queries.</p>
+<h2 id="%F0%9F%A4%9D-join-us%3A-stride-bug-bounties-and-feature-funding-%F0%9F%9B%A0%EF%B8%8F" tabindex="-1">🤝 Join Us: Stride Bug Bounties and Feature Funding 🛠️ <a class="direct-link" href="#%F0%9F%A4%9D-join-us%3A-stride-bug-bounties-and-feature-funding-%F0%9F%9B%A0%EF%B8%8F">🔗</a></h2>
+<p>We invite talented developers to collaborate with us through our <a href="https://opencollective.com/stride3d/projects">Bug and Feature Bounties</a>. With tasks ranging from Vulkan support to decals and morph targets, there's something for everyone! Reach out via the specific <a href="https://github.com/stride3d/stride/labels/bounty">GitHub Bounty tickets</a> to get involved.</p>
+<p>📬 For suggestions on new bounties, don't hesitate to connect with us on our Discord server or directly through GitHub.</p>
+<p>Participating in our bug bounties is a win-win! Not only will you be able to hone your skills, but you'll also contribute to the expansion and enrichment of the Stride community—and get <strong>compensated</strong> for your efforts! 💰</p>
+<p><a href="https://opencollective.com/stride3d/projects">Stride's Open Collective Projects</a></p>
+<h2 id="flappy-bird---stride-engine-demo" tabindex="-1">Flappy Bird - Stride Engine Demo <a class="direct-link" href="#flappy-bird---stride-engine-demo">🔗</a></h2>
+<p><a href="https://nedreid.itch.io/">Ned Reid</a>, a new member of the Stride community, has created a  <a href="https://nedreid.itch.io/flappy-bird-stride">Flappy Bird demo</a>, while exploring Stride as an alternative to Unity. He shared the following thoughts on his experience:</p>
+<p class="border-start border-5 ps-3"> I decided a couple of days ago that I would explore engines outside of Unity (for obvious reasons), and wanted to start with something simple. Over a fairly relaxed weekend, I've managed to put together a neat little Flappy Bird clone!</p>
+<img alt="Flappy Bird Stride Demo" src="/images/blog/2023-09-14-embracing-open-source/flappy-bird-demo.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2023-09-14-embracing-open-source/flappy-bird-demo.webp">
+<p><em>A screenshot of the Flappy Bird demo created by Ned Reid</em></p>
+<h2 id="closing-thoughts-%F0%9F%99%82" tabindex="-1">Closing Thoughts 🙂 <a class="direct-link" href="#closing-thoughts-%F0%9F%99%82">🔗</a></h2>
+<p>If you've made it this far, congratulations 🎉! You now have a comprehensive understanding of Stride, its capabilities, and how it compares to Unity. The world of game development is vast and ever-changing 🌍, but the emergence of community-driven, open-source engines like Stride showcases the exciting directions the industry is taking. With its C# focus 🎯, extensive .NET support 💻, and flexible licensing 📜, Stride is a formidable option for both new and experienced developers.</p>
+<p>As the saying goes, the best way to learn is by doing 🛠️. So dive in 🏊, start a project 🚀, and don't hesitate to participate in the community discussions on Discord or GitHub 👨‍💻👩‍💻. Your journey with Stride is what you make of it, and the resources and community are here to support you every step of the way 🤗.</p>
+<p>Thank you for reading 📖, and happy coding 💻👩‍💻👨‍💻!</p>
+
+                </div>
+                <hr>
+                <p>
+<span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">.NET</span></p>
+                <p>
+                    Any comments? You can start 🗨 at <i class="fa-brands fa-github text-decoration-none"></i> <a href="https://github.com/stride3d/stride/discussions" target="_blank" rel="noreferrer">GitHub Discussions</a> or <i class="fa-brands fa-discord text-decoration-none"></i> <a class="" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener">Discord</a>.
+                </p>
+                <p>
+                    <a href="https://github.com/stride3d/stride-website/blob/master/./posts/2023-09-14-embracing-open-source-stride-as-an-alternative-to-unity.md" target="_blank" rel="noreferrer">Edit</a> this page on
+                    <i class="fa-brands fa-github text-decoration-none"></i>.
+                </p>
+            </article>
+        </div>
+    </div>
+    <div class="row mb-4"><div class="col-md-6 mb-4">
+            
+            <div class="card px-3">
+                <div class="card-body p-4">
+                    <h5>Previous Post</h5>
+                    <a class="prev stretched-link" href="/blog/game-development-in-stride/">Taking .NET Game Development in Stride</a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-6 text-md-end">
+            
+            <div class="card px-3">
+                <div class="card-body p-4">
+                    <h5>Next Post</h5>
+                    <a class="next stretched-link" href="/blog/closer-look-private-members/">A closer look: Setting private members in the editor</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="bg-footer mt-auto">
+    <div class="container">
+        <footer class="pt-5 px-2">
+            <div class="row">
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Links</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="/features/" class="nav-link p-0 link-danger">Features</a></li>
+                        <li class="nav-item mb-2"><a href="/blog/" class="nav-link p-0 link-danger">Blog</a></li>
+                        <li class="nav-item mb-2"><a href="/download/" class="nav-link p-0 link-danger">Download</a></li>
+                        <li class="nav-item mb-2"><a href="/legal/" class="nav-link p-0 link-danger">Legal</a></li>
+                        <li class="nav-item mb-2"><a href="/contact/" class="nav-link p-0 link-danger">Contact us</a></li>
+                        <li class="nav-item mb-2"><a href="/legal/privacy-policy/" class="nav-link p-0 link-danger">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Docs</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/manual/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Manual</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/tutorials/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Tutorials</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/releasenotes/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Release notes</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/api/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Stride API</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/contributors/index.html" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Contributing</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/community-resources/index.html" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Community Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Community</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://opencollective.com/stride3d" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Open Collective</a></li>
+                        <li class="nav-item mb-2"><a href="https://discord.gg/f6aerfE" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Discord</a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/stride3d/stride" class="nav-link p-0 link-danger" target="_blank" rel="noopener">GitHub</a></li>
+                        <li class="nav-item mb-2"><a href="https://twitter.com/stridedotnet" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Twitter</a></li>
+                        <li class="nav-item mb-2"><a href="/faq/" class="nav-link p-0 link-danger">FAQ</a></li>
+                        <li class="nav-item mb-2"><a href="/sponsor/" class="nav-link p-0 link-danger">Sponsor</a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/stride3d/stride/discussions" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Discussions</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Blog</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="/blog/" class="nav-link p-0 link-danger">Posts</a></li>
+                        <li class="nav-item mb-2"><a href="/tags/" class="nav-link p-0 link-danger">Tags</a></li>
+                        <li class="nav-item mb-2"><a href="/archive/" class="nav-link p-0 link-danger">Archive</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 col-lg-4 mb-3 mt-4 text-center text-lg-end">
+                    <a class="link-danger me-2 text-decoration-none mb-3 d-inline-block" href="https://github.com/stride3d/stride" target="_blank" rel="noopener" aria-label="GitHub link" title="GitHub">
+                        <i class="fa-brands fa-xl fa-github text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener" aria-label="Discord link" title="Discord">
+                        <i class="fa-brands fa-xl fa-discord text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://twitter.com/stridedotnet" target="_blank" rel="noopener" aria-label="Twitter link" title="Twitter">
+                        <i class="fa-brands fa-xl fa-twitter text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://opencollective.com/stride3d" target="_blank" rel="noopener" aria-label="Open Collective link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" fill-rule="evenodd" class="navbar-nav-svg" viewBox="0 0 40 41" role="img" style="margin-top:-5px"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"></path><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"></path></svg>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://www.facebook.com/stride3d" target="_blank" rel="noopener" aria-label="Facebook link" title="Facebook">
+                        <i class="fa-brands fa-xl fa-facebook text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://www.youtube.com/@Stride3D" target="_blank" rel="noopener" aria-label="YouTube link" title="YouTube">
+                        <i class="fa-brands fa-xl fa-youtube text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="/feed.xml" aria-label="RSS feed link" title="RSS feed">
+                        <i class="fa-solid fa-rss fa-xl text-decoration-none"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
+                <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
+                <p class="text-light">Website v.2.0.0.29</p>
+                <p class="text-light">© .NET Foundation and Contributors</p>
+            </div>
+        </footer>
+    </div>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.29"></script>
+</body>
+</html>

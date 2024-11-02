@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8"><script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9CVGC9YV1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());gtag('config', 'G-Y9CVGC9YV1');
+</script><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open Worlds: An Introduction to Free and Open-Source Game Engines - Stride Game Engine</title>
+    <meta name="description" content="With so many free and open-source game engines out there, where do you even start?">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="canonical" href="https://www.stride3d.net/blog/open-worlds-intro-to-foss-game-engines/">
+    <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.29">
+    <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
+    <meta property="og:site_name" content="Stride Game Engine">
+    <meta property="og:title" content="Open Worlds: An Introduction to Free and Open-Source Game Engines">
+    <meta property="og:description" content="With so many free and open-source game engines out there, where do you even start?">
+    <meta property="og:url" content="https://www.stride3d.net/blog/open-worlds-intro-to-foss-game-engines/">
+    <meta property="og:image" content="https://www.stride3d.net/images/blog/2024-03/foss-engine-girl.webp"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@stridedotnet">
+    <meta name="twitter:creator" content="@stridedotnet">
+    <meta name="twitter:title" content="Open Worlds: An Introduction to Free and Open-Source Game Engines">
+    <meta name="twitter:description" content="With so many free and open-source game engines out there, where do you even start?">
+    <meta name="twitter:image" content="https://www.stride3d.net/images/blog/2024-03/foss-engine-girl.webp"><script src="/scripts/theme-selector.js?site-version=2.0.0.29"></script></head>
+<body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
+    <div class="container-xxl">
+        <a class="navbar-brand" href="/">
+            <img id="logo" height="37" width="124" src="/images/svg/stride-logo-light.svg" alt="Stride logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain"><ul class="navbar-nav navbar-nav--text me-auto mb-2 mb-lg-0 ms-sm-2">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/features/">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-stride" href="/blog/">Blog</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Learn</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/manual/" target="_blank" rel="noopener">📚 Manual (EN)</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/jp/manual/" target="_blank" rel="noopener">📚 Manual (JP)</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/tutorials/" target="_blank" rel="noopener">🎓 Tutorials</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/releasenotes/" target="_blank" rel="noopener">📝 Release Notes</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/contributors/index.html" target="_blank" rel="noopener">🌟 Contributing</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/api/" target="_blank" rel="noopener">🔧 API</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/community-resources/index.html" target="_blank" rel="noopener">🏋🏽 Community Resources</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/community/">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download/">
+                        Download
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/sponsor/">
+                        <i class="fa-solid fa-heart text-decoration-none"></i> Sponsor
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-row flex-wrap ms-sm-2 navbar-icons">
+                <li class="nav-item col-12 col-lg-auto dropdown">
+                    <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="document.getElementById('search-input').focus()" aria-label="Search button" title="Search"><i class="fa-solid fa-magnifying-glass text-decoration-none"></i></a>
+                    <div class="dropdown-menu dropdown-menu-end p-3" style="width: 280px;">
+<form action="/search/" method="get">
+    <div class="mb-3">
+        <input class="form-control" id="search-input" name="query" type="text" value="" autofocus tabindex="0" aria-label="Search">
+    </div>
+    <button class="btn btn-stride" name="submit" type="submit" value="Search">Search</button>
+</form></div>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://github.com/stride3d/stride" target="_blank" rel="noopener" aria-label="GitHub link" title="GitHub">
+                        <i class="fa-brands fa-github text-decoration-none"></i>
+                        <small class="d-lg-none">GitHub</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://twitter.com/stridedotnet" target="_blank" rel="noopener" aria-label="Twitter link" title="Twitter">
+                        <i class="fa-brands fa-twitter text-decoration-none"></i>
+                        <small class="d-lg-none">Twitter</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener" aria-label="Discord link" title="Discord">
+                        <i class="fa-brands fa-discord text-decoration-none"></i>
+                        <small class="d-lg-none">Discord</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://www.youtube.com/@Stride3D" target="_blank" rel="noopener" aria-label="YouTube link" title="YouTube">
+                        <i class="fa-brands fa-youtube text-decoration-none"></i>
+                        <small class="d-lg-none">YouTube</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link px-0 px-lg-2" href="https://opencollective.com/stride3d" target="_blank" rel="noopener" aria-label="Open Collective link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" fill-rule="evenodd" class="navbar-nav-svg" viewBox="0 0 40 41" role="img" style="margin-top:-6px"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"></path><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"></path></svg>
+                        <small class="d-lg-none">Open Collective</small>
+                    </a>
+                </li>
+                <li class="nav-item dropdown d-lg-flex align-items-center">
+                    <button title="Change theme" class="btn btn-link nav-link dropdown-toggle d-flex align-items-center" id="themeDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeDropdown">
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="lightTheme">
+                                <svg data-theme="light" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Light</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="darkTheme">
+                                <svg data-theme="dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars" viewBox="0 0 16 16">
+                                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z" />
+                                    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Dark</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="autoTheme">
+                                <svg data-theme="auto" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Auto</span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row postcontent">
+        <div class="col-12">
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h1 itemprop="name">Open Worlds: An Introduction to Free and Open-Source Game Engines</h1>
+                <div class="text-center mb-3 pt-2"><div><div class="mt-4 mb-2">
+                            <img class="rounded-circle me-1" width="58" height="58" alt="author" src="https://avatars.githubusercontent.com/parhamgholami?size=87">
+                        </div>Parham Gholami
+                    </div><p style="border-top: 2px solid #979593;" class="x-hidden-focus mt-4 pt-1 small text-secondary date d-inline-block">
+                        <small><i class="fa-solid fa-calendar-days"></i> <time datetime="2024-03-14T00:00:00+0000" itemprop="datePublished"> March 14, 2024</time></small>
+                    </p>
+                </div><div itemprop="articleBody">
+                    <p>With so many free and open-source game engines out there, where do you even start?</p>
+<div align="center">
+    <img alt="Girl thinking about game development" src="/images/blog/2024-03/foss-engine-girl-banner.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2024-03/foss-engine-girl-banner.webp">
+</div>
+<p>Table of Contents:</p>
+<div class="table-of-contents"><ul><li><a href="#introduction">Introduction </a></li><li><a href="#before-we-dive-in">Before we dive in </a></li><li><a href="#what-is-foss-and-why-should-i-use-a-foss-game-engine%3F">What is FOSS and why should I use a FOSS game engine? </a></li><li><a href="#what-foss-game-engines-are-available-today%3F">What FOSS game engines are available today? </a><ul><li><a href="#bevy">Bevy </a></li><li><a href="#godot">Godot </a></li><li><a href="#open-3d-engine">Open 3D Engine </a></li><li><a href="#stride">Stride </a></li></ul></li><li><a href="#what-engine-should-you-pick%3F-and-other-closing-thoughts">What engine should you pick? And other closing thoughts </a></li><li><a href="#acknowledgments">Acknowledgments </a></li></ul></div>
+<h2 id="introduction" tabindex="-1">Introduction <a class="direct-link" href="#introduction">🔗</a></h2>
+<p>The party is over. The era of companies offering their products and services at unsustainably low prices is coming to a close. Growing pressure from shareholders to transition from maximizing growth to maximizing revenue has pushed many commercial software companies to reevaluate their business models. In other words, introduce price increases and new fees. Those dependent on their software must now decide between accepting the increased financial burden or switching to alternatives. The video game industry is no exception to this changing tide as major game engine developers explore new ways to monetize their users. It raises a lot of questions for the community. How will we, as developers, manage these rising costs? Just as importantly, considering the immense impact licensing changes can have on developers, should Epic and Unity continue having a disproportionate influence on the game development landscape? While there is never a good time to wrestle with these questions, the rise of free and open-source game engines over the past decade gives independent game developers an opportunity to evaluate where free and open-source software can have a role in their next project.</p>
+<h2 id="before-we-dive-in" tabindex="-1">Before we dive in <a class="direct-link" href="#before-we-dive-in">🔗</a></h2>
+<p>I want to make this clear from the start: I will not be doing a head-to-head comparison of free and open-source game engines. The summaries of each engine discussed will not be exhaustive nor specifically highlight exclusive features. This is a celebration of the hard work of the game development community. I want to use this as a platform to get you excited about free and open-source game development and consider options beyond proprietary engines like Unity, Unreal, and GameMaker.</p>
+<p>If I tried to cover every feature of every modern free and open-source engine, this wouldn’t be a single article but an entire book series. For that reason, I identified notable features and characteristics of some handpicked engines I thought would be worth sharing. While reading this, keep in mind that no engine is one-size-fits-all, and, as I’ll explain later, picking an engine is about choosing the right tool for <em>you</em>. With that out of the way, let’s start!</p>
+<h2 id="what-is-foss-and-why-should-i-use-a-foss-game-engine%3F" tabindex="-1">What is FOSS and why should I use a FOSS game engine? <a class="direct-link" href="#what-is-foss-and-why-should-i-use-a-foss-game-engine%3F">🔗</a></h2>
+<p>As the name suggests, free and open-source software (FOSS) includes two notable characteristics: it is free (libre) and its source code is available. You can use free (or libre) software for any purpose at your sole discretion. You will most commonly hear something like: “free as in speech, not free as in beer.” It may be available at no cost, but even more importantly, the user has complete control over the software. The open-source aspect of FOSS describes how everyone has access to the code that makes up the software.</p>
+<p>Using a FOSS game engine provides several advantages. First, no licensing fees. While contributors always appreciate donations, none of the notable FOSS game engines expect or require upfront payment, subscriptions, or ongoing royalties. FOSS engines also provide independence from a single organization. If changes to a FOSS engine’s terms upset the community, the engine’s license allows developers to stick to the version with the most favorable terms and even <a href="https://en.wikipedia.org/wiki/Fork_(software_development)">fork off the project</a> if they choose.</p>
+<p>The community guides the development and growth of their FOSS game engine of choice. Many FOSS game engines have active and passionate communities that share their knowledge, advocate for their engine, and help newcomers. These vibrant and dedicated communities serve as a potent learning resource when working solo or as a small team. Some community members even contribute to their engine, improving it for everyone.</p>
+<p>FOSS game engines allow anyone to modify the engine to fit their needs. For example, if the engine lacks a specific feature, has a persistent bug, or needs quality-of-life improvements, anyone can update it as necessary. They can even take the additional step of contributing the changes to the project for everyone’s benefit. One of the greatest strengths of FOSS game engines lies in their communities and a willingness for everyone to work towards a collective good.</p>
+<h2 id="what-foss-game-engines-are-available-today%3F" tabindex="-1">What FOSS game engines are available today? <a class="direct-link" href="#what-foss-game-engines-are-available-today%3F">🔗</a></h2>
+<p>Although FOSS game engines have existed for decades, the past several years have seen an explosion in the number of game engines available, as well as contributors, money, and resources dedicated to them. It would be impossible to cover all the FOSS game engines available now. In fact, if you have a passion for a particular language or framework, more likely than not, someone built a game engine with it.</p>
+<p>This post will focus on some of the more notable modern FOSS game engines: Bevy, Godot, Open 3D Engine, and (of course) Stride. However, this is not an exhaustive list. As I mentioned before, <a href="https://enginesdatabase.com/?software_license=1">there are more engines out there than I could ever cover in a single blog post</a>. Many skilled and dedicated folks have put serious time and effort into making game engines and shared them with the world. I encourage you to use this post as a starting point and look at what each community offers.</p>
+<br>
+<div align="center">
+<img alt="Bevy Logo" src="/images/blog/2024-03/bevy-logo.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2024-03/bevy-logo.webp">
+</div>
+<h3 id="bevy" tabindex="-1">Bevy <a class="direct-link" href="#bevy">🔗</a></h3>
+<ul>
+<li>Written in Rust, Supported Languages: Rust</li>
+<li>Platforms:
+<ul>
+<li>Development (Code Only): Windows, Mac, Linux</li>
+<li>Build Targets: Windows, Mac, Linux, iOS, Android, Web</li>
+</ul>
+</li>
+</ul>
+<p>As the most popular Rust-based game engine, <a href="https://bevyengine.org/">Bevy</a> offers a rich code-only development environment (an editor is coming in the future) capable of running on all major operating systems (Windows, Mac, and Linux). At the heart of Bevy’s vision for game development lies the <a href="https://bevyengine.org/learn/quick-start/getting-started/ecs/">Entity Component System (ECS)</a> paradigm. While there are other resources available that can explain the benefits of ECS better, in a nutshell, ECS breaks down the code into three core pillars: entities, components, and systems. Entities are composed of components that can interact with each other using systems. For example, the player character could be an entity with a health component that tracks the player character’s health bar. An enemy character could also use that health component for the same purpose. ECS encourages modularity and reusability by enabling developers to create components applicable to distinct entities. While other game engines can approximate a similar system, Bevy makes this part of its core design ethos.</p>
+<p>As established with Bevy’s use of ECS, the engine’s developers care deeply about modularity. <a href="https://bevyengine.org/learn/quick-start/getting-started/plugins/">The engine’s plugin system</a> accentuates their commitment to that principle in every part of Bevy. Developers can organize the game’s systems into discrete plugins. An example of this is organizing all the UI code into a UI plugin. From there, developers can slot the plugin into the game’s initialization step. The plugin system helps organize the code and encourages modularity by allowing developers to add or remove the plugin based on their needs. This paradigm even applies to the engine’s core features, as they are all organized into plugins. It becomes trivial to activate or deactivate any part of the engine—including rendering, audio playback, and event loops—as the developer sees fit.</p>
+<p>Asset libraries provide a wealth of resources that empower developers to learn the tools quickly and get their game to a playable state. <a href="https://bevyengine.org/assets/">The community assembled a library of assets available on the official website for everyone to use and share</a>. Bevy’s library includes tutorials, plugins, and templates that address subjects like physics, networking, and input management. Even entire games and applications are available in the asset library to either build on or use as a reference while learning the engine. Bevy’s structure encourages developers to use any of the resources from this library freely as part of the building blocks that will make up their game. In conjunction with Rust’s package manager, there is a strong emphasis on modularity at every level of the engine.</p>
+<br>
+<div align="center">
+<img alt="Godot Logo" src="/images/blog/2024-03/godot-logo.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2024-03/godot-logo.webp">
+</div>
+<h3 id="godot" tabindex="-1">Godot <a class="direct-link" href="#godot">🔗</a></h3>
+<ul>
+<li>Written in C++, Supported Languages: GDScript, C#</li>
+<li>Platforms:
+<ul>
+<li>Development: Windows, Mac, Linux, Android (Experimental), Web</li>
+<li>Target: Windows, Mac, Linux, iOS, Android, Web</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://godotengine.org/">Godot</a> has the largest and most active community among all the modern FOSS game engines available to date. As the drama around Unity has unfolded, you have likely heard mentions of Godot on more than a few occasions. It is not without merit, as Godot encourages developers to shape the engine around their needs. Coming in at only 40 MB, the engine includes a lightweight, multi-platform editor capable of running on any major operating system (Windows, Mac, and Linux). In fact, <a href="https://editor.godotengine.org/releases/latest/">you can even use a web-based</a> or <a href="https://godotengine.org/download/android/">Android version</a> of the editor, albeit with some constraints. Godot can meet developers on whatever platform works best for them.</p>
+<p>GDScript is Godot’s primary programming language. While the prospect of learning an engine-specific language may turn you off at first, don’t fret! It shares a lot of commonalities with Python and Godot provides detailed documentation on how to use the language. Assuming you already have some experience with object-oriented programming, it won’t take long to get going with GDScript. You can even use C# for scripting if that is more up your alley, as it’s the other language officially supported by Godot. That said, if you would still like to write some code in another language entirely, Godot provides the means to use alternative programming languages by way of GDExtension.</p>
+<p>Theoretically, GDExtension supports any programming language that can interact with its C-based API. While Godot officially supports scripting in GDScript and C#, GDExtension allows the community to introduce new language bindings to Godot’s development ecosystem, including <a href="https://godot-rust.github.io/">Rust</a>, <a href="https://github.com/grow-graphics/gd">Go</a>, <a href="https://github.com/migueldeicaza/SwiftGodot">Swift</a>, and <a href="https://hxgodot.github.io/">Haxe</a>. Not all language bindings are feature-complete, but many are in active development. With that in mind, committing to one language for an entire project is unnecessary, as GDExtension languages can work alongside GDScript. This means developers can, for example, even use GDScript with other languages like Rust in the same project.</p>
+<p>Work in an editor long enough and you will probably want to tinker with it. For those interested in creating utilities and tools, as is common practice when using Unity or Unreal Engine, <a href="https://docs.godotengine.org/en/stable/tutorials/plugins/editor/making_plugins.html">Godot provides the option to customize the editor to your liking</a>. You don’t need to write in C++ and re-compile Godot to create plugins. Because the editor runs on Godot itself, it is possible to tune or extend the editor with GDScript, Godot’s scripting language, by simply appending @tool to the top of the file. Writing a plugin becomes as easy as writing code for your game.</p>
+<br>
+<div align="center">
+<img alt="Open 3D Engine Logo" src="/images/blog/2024-03/o3de-logo.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2024-03/o3de-logo.webp">
+</div>
+<h3 id="open-3d-engine" tabindex="-1">Open 3D Engine <a class="direct-link" href="#open-3d-engine">🔗</a></h3>
+<ul>
+<li>Written in C++, Supported Languages: C++, Lua</li>
+<li>Platforms:
+<ul>
+<li>Development: Windows, Linux</li>
+<li>Target: Windows, Mac, Linux, iOS, Android</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://o3de.org/">Open 3D Engine</a>’s origins trace back to Amazon’s foray into game development. Amazon licensed Crytek’s CryEngine 3 and then used it as the foundation for their own game engine: Amazon Lumberyard. In the following years, Amazon offered Lumberyard for free to the community with specific terms requiring games built with Lumberyard use Amazon Web Services for their online features. By 2021, Amazon overhauled Lumberyard, rewrote 95% of the code, rebranded it as Open 3D Engine (O3DE), and placed it under the supervision of The Linux Foundation. Now, O3DE is available as a free and open-source engine under dual Apache and MIT Licenses for everyone, with no strings attached.</p>
+<p>Only a few game engines offer visual scripting out of the box, and O3DE is one of them. O3DE supports both C++ and Lua for scripting, but for folks less inclined to write code, there is also <a href="https://docs.o3de.org/docs/user-guide/scripting/script-canvas/">Script Canvas</a>, OD3E’s visual scripting environment. Visual scripting provides a way to write game logic without needing to write code in C++ or Lua. It presents programming concepts like functions, variables, and events as nodes that can be strung together in a graph. Script Canvas also allows developers to write custom nodes either in C++ or within Script Canvas itself to better fit their workflow. Fortunately, anything written using O3DE’s visual scripting system will not incur any serious performance hits, as the engine ultimately converts the graphs into Lua scripts.</p>
+<p>O3DE modularizes its engine by breaking down major components into plugins called <a href="https://www.docs.o3de.org/docs/user-guide/gems/">Gems</a>. This is the paradigm through which O3DE manages all its features and plugins. For example, it is possible to swap out features like the physics engine, allowing developers to choose between PhysX 4, PhysX 5, or another solution entirely, custom or commercial. The modularity afforded by O3DE through Gems allows developers to add and remove components of the engine with relative ease–using as many or as few of the features as they want and in whatever combination best fits their needs.</p>
+<p>With the <a href="https://www.docs.o3de.org/docs/atom-guide/">Atom Renderer</a>, the engine’s rendering system, O3DE strives to provide an advanced renderer that is also exceptionally customizable. The Render Pipeline Interface (RPI) and Rendering Hardware Interface (RHI) constitute the primary channels for working with Atom. The RPI provides the tools necessary for customizing the rendering pipeline and implementing higher-level graphical features, such as split screen or additional rendering passes. Meanwhile, the RHI abstracts access to the GPU’s functionality, allowing developers to write lower-level graphics logic without needing to target specific graphics APIs like DirectX or Vulkan. In short, the rendering stack provides incredible flexibility to developers.</p>
+<br>
+<div align="center">
+    <img alt="Stride Logo" src="/images/blog/2024-03/stride-logo.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2024-03/stride-logo.webp">
+</div>
+<h3 id="stride" tabindex="-1">Stride <a class="direct-link" href="#stride">🔗</a></h3>
+<ul>
+<li>Written in C#, Supported Languages: C#, F#, Visual Basic</li>
+<li>Platforms:
+<ul>
+<li>Development: Windows</li>
+<li>Target: Windows, Mac, Linux, iOS, Android</li>
+</ul>
+</li>
+</ul>
+<p>Stride began life as Xenko (and before that, Paradox): Silicon Studio’s premium game engine. After several years of providing Stride to the public through a subscription-based model, Silicon Studio released the engine’s source code and editor freely to the community under the MIT license. Among the higher profile FOSS game engines available, it is unique because Silicon Studio completely wrote it in C# from top to bottom. There is no delineation between the language used for the core engine and the language you would write with day-to-day while working on the game. It becomes much easier to override or change any inherent engine behavior when coding in the same language. No need to develop an interop system to interface with the engine’s core logic. With that said, <a href="https://stride3d.github.io/stride-community-toolkit/manual/code-only/index.html">the code-only version of Stride</a> supports any language that is part of the .NET family (C#, F#, and Visual Basic), providing some flexibility in language choice.</p>
+<p>The engine offers a pure .NET experience that includes many of the advantages inherent to the framework, like hot reloading. At the time of writing, Stride runs on .NET 8 (the latest version of the framework) and supports C# 12. Because the engine closely follows the .NET update schedule, you often get the most modern and up-to-date implementation of C#. You can seamlessly incorporate almost any C#-based library or tool available through NuGet, GitHub, and other platforms into Stride, enhancing your workflow. Stride is modular enough that <a href="https://www.nuget.org/profiles/Stride">sections of Stride are available as standalone NuGet packages</a>. The engine provides the ability to tailor-make your game development experience.</p>
+<p>The engine does its best to ensure it does not become a technical bottleneck for your game. A lot of processing within Stride is multithreaded. This means it allows logic to run on multiple threads of execution concurrently. The engine even implements a custom thread pool to maximize engine performance. As a result, Stride takes full advantage of the hardware it is running on, providing players with faster and smoother experiences. All the tools Stride uses to support multi-threading under the hood are also accessible to developers. Nothing is out of reach. An entire library exists within the engine focused on multi-threading that anyone can leverage in their projects. Used with features like the <a href="https://github.com/stride3d/stride/pull/2131">upcoming Bepu physics integration</a>, it becomes possible to have tens of thousands of physics-based objects concurrently in a scene with little effort. Stride provides the space to explore multi-threading and have fun with it.</p>
+<h2 id="what-engine-should-you-pick%3F-and-other-closing-thoughts" tabindex="-1">What engine should you pick? And other closing thoughts <a class="direct-link" href="#what-engine-should-you-pick%3F-and-other-closing-thoughts">🔗</a></h2>
+<p>There is no one right answer. Don’t trust anyone claiming otherwise. Here is the truth: the answer lies in whichever you enjoy using the most. Game development is a process. It requires a healthy level of commitment and discipline. Anyone can do it, but you need to put in the effort. The better your tools fit with your way of working and thinking, the more likely you’ll commit to your project and put in your full effort.</p>
+<p>All these engines are free and include active communities ready to help new folks. Pick whichever engines strike your fancy and try them. Maybe one of them has that one specific feature that hits just right. Maybe another has a community you love hanging out with or the engine integrates well with a tool you’re using already. Whatever the case, it’s a matter of taste and what works best for you.</p>
+<p>Wanting to know if an engine can make a specific type of game is asking the wrong question. <a href="https://www.youtube.com/watch?v=ENoCsY9a10o">People make games in Excel</a>. You can make just about any game in any engine. It’s not always a trivial task, but you can do it. Instead, ask yourself which tools you enjoy using the most.</p>
+<p>When you settle on an engine, remember this: your engine is not your identity. Your tools are a means to creating something, not a core pillar of your very being. I cannot stress this enough. Your tools do not define you. This may sound obvious, but I have seen many, many folks make their engine of choice a centerpiece of who they are and become unnecessarily hostile toward other engine communities. Please don’t do that.</p>
+<p>You are not simply a Bevy developer, Godot developer, O3DE developer, Stride developer, or whatever else. You are a game developer. So don’t get hung up on which engine you should pick. Choose the engine that resonates with you the most, and you’ll quickly learn skills you can apply anywhere. Make creating something rewarding in and of itself. If you enjoy working in your environment, you will enjoy the act of development. Once you manage that, creating anything, game or otherwise, will feel immensely satisfying in its own right. Be curious and have fun.</p>
+<h2 id="acknowledgments" tabindex="-1">Acknowledgments <a class="direct-link" href="#acknowledgments">🔗</a></h2>
+<p>This article was only possible with the input of contributors and users involved in these game engines. I appreciate all the folks who were kind and patient enough to fact-check me and provide their feedback, including <a href="https://github.com/VaclavElias">Vaclav Elias</a>, <a href="https://github.com/IXLLEGACYIXL">Joreyk</a>, <a href="https://github.com/Doprez/">Doprez</a>, <a href="https://www.inconsistent.software/">Judah Perez</a>, <a href="https://github.com/clayjohn">Clay John</a>, <a href="https://github.com/adamscott">Adam Scott</a>, <a href="https://github.com/m4gr3d">Fredia Huya-Kouadio</a>, <a href="https://github.com/bruvzg">Pāvels Nadtočajevs</a>, as well as <a href="https://o3d.foundation/">the Open 3D Foundation and Open 3D Engine contributors</a>.</p>
+<p>Last but not least, thank you to <a href="https://twitter.com/meltt_ed">Ed (Meltted)</a> for creating the featured image.</p>
+
+                </div>
+                <hr>
+                <p>
+<span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">Education</span></p>
+                <p>
+                    Any comments? You can start 🗨 at <i class="fa-brands fa-github text-decoration-none"></i> <a href="https://github.com/stride3d/stride/discussions" target="_blank" rel="noreferrer">GitHub Discussions</a> or <i class="fa-brands fa-discord text-decoration-none"></i> <a class="" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener">Discord</a>.
+                </p>
+                <p>
+                    <a href="https://github.com/stride3d/stride-website/blob/master/./posts/2024-03-14-open-worlds-intro-to-foss-game-engines.md" target="_blank" rel="noreferrer">Edit</a> this page on
+                    <i class="fa-brands fa-github text-decoration-none"></i>.
+                </p>
+            </article>
+        </div>
+    </div>
+    <div class="row mb-4"><div class="col-md-6 mb-4">
+            
+            <div class="card px-3">
+                <div class="card-body p-4">
+                    <h5>Previous Post</h5>
+                    <a class="prev stretched-link" href="/blog/announcing-stride-4-2-in-dotnet-8/">Announcing Stride 4.2</a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-6 text-md-end">
+            
+            <div class="card px-3">
+                <div class="card-body p-4">
+                    <h5>Next Post</h5>
+                    <a class="next stretched-link" href="/blog/tower-age-developer-diary/">Behind the scenes: Building Tower Age with Stride</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="bg-footer mt-auto">
+    <div class="container">
+        <footer class="pt-5 px-2">
+            <div class="row">
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Links</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="/features/" class="nav-link p-0 link-danger">Features</a></li>
+                        <li class="nav-item mb-2"><a href="/blog/" class="nav-link p-0 link-danger">Blog</a></li>
+                        <li class="nav-item mb-2"><a href="/download/" class="nav-link p-0 link-danger">Download</a></li>
+                        <li class="nav-item mb-2"><a href="/legal/" class="nav-link p-0 link-danger">Legal</a></li>
+                        <li class="nav-item mb-2"><a href="/contact/" class="nav-link p-0 link-danger">Contact us</a></li>
+                        <li class="nav-item mb-2"><a href="/legal/privacy-policy/" class="nav-link p-0 link-danger">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Docs</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/manual/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Manual</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/tutorials/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Tutorials</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/releasenotes/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Release notes</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/api/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Stride API</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/contributors/index.html" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Contributing</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/community-resources/index.html" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Community Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Community</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://opencollective.com/stride3d" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Open Collective</a></li>
+                        <li class="nav-item mb-2"><a href="https://discord.gg/f6aerfE" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Discord</a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/stride3d/stride" class="nav-link p-0 link-danger" target="_blank" rel="noopener">GitHub</a></li>
+                        <li class="nav-item mb-2"><a href="https://twitter.com/stridedotnet" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Twitter</a></li>
+                        <li class="nav-item mb-2"><a href="/faq/" class="nav-link p-0 link-danger">FAQ</a></li>
+                        <li class="nav-item mb-2"><a href="/sponsor/" class="nav-link p-0 link-danger">Sponsor</a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/stride3d/stride/discussions" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Discussions</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Blog</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="/blog/" class="nav-link p-0 link-danger">Posts</a></li>
+                        <li class="nav-item mb-2"><a href="/tags/" class="nav-link p-0 link-danger">Tags</a></li>
+                        <li class="nav-item mb-2"><a href="/archive/" class="nav-link p-0 link-danger">Archive</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 col-lg-4 mb-3 mt-4 text-center text-lg-end">
+                    <a class="link-danger me-2 text-decoration-none mb-3 d-inline-block" href="https://github.com/stride3d/stride" target="_blank" rel="noopener" aria-label="GitHub link" title="GitHub">
+                        <i class="fa-brands fa-xl fa-github text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener" aria-label="Discord link" title="Discord">
+                        <i class="fa-brands fa-xl fa-discord text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://twitter.com/stridedotnet" target="_blank" rel="noopener" aria-label="Twitter link" title="Twitter">
+                        <i class="fa-brands fa-xl fa-twitter text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://opencollective.com/stride3d" target="_blank" rel="noopener" aria-label="Open Collective link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" fill-rule="evenodd" class="navbar-nav-svg" viewBox="0 0 40 41" role="img" style="margin-top:-5px"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"></path><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"></path></svg>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://www.facebook.com/stride3d" target="_blank" rel="noopener" aria-label="Facebook link" title="Facebook">
+                        <i class="fa-brands fa-xl fa-facebook text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://www.youtube.com/@Stride3D" target="_blank" rel="noopener" aria-label="YouTube link" title="YouTube">
+                        <i class="fa-brands fa-xl fa-youtube text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="/feed.xml" aria-label="RSS feed link" title="RSS feed">
+                        <i class="fa-solid fa-rss fa-xl text-decoration-none"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
+                <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
+                <p class="text-light">Website v.2.0.0.29</p>
+                <p class="text-light">© .NET Foundation and Contributors</p>
+            </div>
+        </footer>
+    </div>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.29"></script>
+</body>
+</html>
