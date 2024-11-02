@@ -2,7 +2,7 @@
 title: "Behind the scenes: Building Tower Age with Stride"
 author: mmujic2
 popular: false
-image: /images/spir.png
+image: /images/Spir.png
 tags: ['Game', 'Multiplayer', 'Education', 'Prefabs']
 ---
 
