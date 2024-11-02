@@ -102,7 +102,7 @@
       <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
       <link>https://www.stride3d.net/blog/tower-age-developer-diary/</link>
       <guid isPermaLink="true">https://www.stride3d.net/blog/tower-age-developer-diary/</guid>
-      <enclosure url="https://www.stride3d.net/images/spir.png" type="image/png" length="0" /></item>
+      <enclosure url="https://www.stride3d.net/images/Spir.png" type="image/png" length="0" /></item>
     <item>
       <title>Open Worlds: An Introduction to Free and Open-Source Game Engines</title>
       <description>&lt;p&gt;With so many free and open-source game engines out there, where do you even start?&lt;/p&gt;
@@ -474,7 +474,7 @@
       <pubDate>Fri, 10 Nov 2023 00:00:00 +0000</pubDate>
       <link>https://www.stride3d.net/blog/investigating-spirv-for-the-shader-system/</link>
       <guid isPermaLink="true">https://www.stride3d.net/blog/investigating-spirv-for-the-shader-system/</guid>
-      <enclosure url="https://www.stride3d.net/images/spir.png" type="image/png" length="0" /></item>
+      <enclosure url="https://www.stride3d.net/images/Spir.png" type="image/png" length="0" /></item>
     <item>
       <title>A closer look: Diagnostic Analyzers with Roslyn</title>
       <description>&lt;p&gt;Let&#39;s take a closer look at the &lt;code&gt;DiagnosticAnalyzer&lt;/code&gt; feature added in &lt;code&gt;Stride.Core.CompilerServices&lt;/code&gt;. This feature offers real-time code analysis in your IDE, enhancing your workflow.&lt;/p&gt;
