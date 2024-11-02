@@ -1,6 +1,6 @@
 ---
 title: "Behind the scenes: Building Tower Age with Stride"
-author: PidzamStudios
+author: mmujic2
 popular: false 
 image: /images/blog/2024-11-10-building-tower-age-with-stride/towerage-main-art.png
 tags: ['Game', 'Multiplayer', 'Education', 'Prefabs']
@@ -163,7 +163,6 @@ Sandboxie is free for personal use and paid for commercial use. Probably the bes
 
 - Steam page: https://store.steampowered.com/app/3192610/Tower_Age/
 - Discord: https://discord.gg/rKmpHXP3KX
-
 
 ## Acknowledgment to the game engine
 
