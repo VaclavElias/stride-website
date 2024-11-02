@@ -16,7 +16,7 @@ Table of Contents:
 
 ## About the game
 
-Tower Age is a tower defense game with resource management mechanics where the goal is to defend your base from enemies while keeping balance between resource gathering and defense capabilities. Upgrading existing and unlocking new buildings and towers is a crucial part of the game which will allow you to keep up with the ever growing strength and tactics of the enemy.
+[Tower Age](https://store.steampowered.com/app/3192610/Tower_Age/) is a tower defense game with resource management mechanics where the goal is to defend your base from enemies while keeping balance between resource gathering and defense capabilities. Upgrading existing and unlocking new buildings and towers is a crucial part of the game which will allow you to keep up with the ever growing strength and tactics of the enemy.
 
 The tower defense logic itself is very simple and works pretty much like every tower defense game out there, however compared to the other tower defense games, Tower Age has quite a few unique mechanics and systems that make it stand out. The most notable ones are the tile hunter and maze builder game modes, as well as it's 16 PvP multiplayer. So instead of going into details of the tower defense logic for which there are plenty posts and tutorials online, this blog post will mainly focus on the implementation and challenges of the unique elements of Tower Age.
 
@@ -83,27 +83,33 @@ The most basic form of optimizing that was done was decreasing the amount of dat
 
 To cut the size of the enemy data transmission, besides decreasing the amount of data per enemy, the intervals at which the transmissions occurred was also changed so that it doesn't happen every frame but every set amount of time. This was actually done for most transmissions but it was especially challenging for the enemies since they move. If no additional redesign was done, the enemies would just teleport from position to position and that would ruin the UX significantly. 
 
-Fixing this can be quite tricky and one way to do it is to use extrapolation. What this means is that the enemy position is predicted until a new packet is received after which the position is refreshed with the actual data. Luckly, the game already used a custom pathing and movement algorithm, so also applying this algorithm to other player's enemies works very good. This does mean that if the enemy was for example slowed or stunned, it would stutter due to it being next to  impossible to predict whether the enemy is going to get slowed or stunned until the next packet. This effect however can be minimized by also transmitting the true speed of the enemy as well, as this would allow the extrapolation to predict the positioning better. To additionally decrease stutter effect, the frequency of transmissions can also be tuned. In the case of Tower Age, this is set to 0.5s, which cuts the transmission size by a factor of 30 when compared to transmitting every frame and minimizes the stutter effect to a point where it's barely visible.
+Fixing this can be quite tricky and one way to do it is to use extrapolation. What this means is that the enemy position is predicted until a new packet is received after which the position is refreshed with the actual data. Luckily, the game already used a custom pathing and movement algorithm, so also applying this algorithm to other player's enemies works very good. This does mean that if the enemy was for example slowed or stunned, it would stutter due to it being next to  impossible to predict whether the enemy is going to get slowed or stunned until the next packet. This effect however can be minimized by also transmitting the true speed of the enemy as well, as this would allow the extrapolation to predict the positioning better. To additionally decrease stutter effect, the frequency of transmissions can also be tuned. In the case of Tower Age, this is set to 0.5s, which cuts the transmission size by a factor of 30 when compared to transmitting every frame and minimizes the stutter effect to a point where it's barely visible.
 
-Testing multiplayer alone
-Since Steam SDK is used for multiplayer, the problem is that multiple instances of the same game cannot be run at once due to one person being able to join only one lobby, and just creating new steam accounts and sharing beta keys isn't enough because only one Steam instance can be run at once per computer.
+### Testing multiplayer alone
+
+Since [Steam SDK](https://partner.steamgames.com/doc/features/multiplayer) is used for multiplayer, the problem is that multiple instances of the same game cannot be run at once due to one person being able to join only one lobby, and just creating new steam accounts and sharing beta keys isn't enough because only one Steam instance can be run at once per computer.
 
 Even though the game isn't fully made by a single person, being able to test multiplayer alone is still very crucial because this isn't our full time job and times where multiple people are free aren't common. Developing the multiplayer alone took a whole month and if we didn't find a way to test it this way, it would have probably taken a lot longer. Though multiple ways to test multiplayer alone were found, some of them are better than others. Here's a list of testing methods that we came across (next to the type it's also indicated whether it's free or it needed to be paid):
 
-- Virtual machines (VirtualBox, VMware workstation, HyperV, QEMU ...) - some are free and some are paid
+#### Virtual machines
+
+Virtual machines (VirtualBox, VMware workstation, HyperV, QEMU ...), some are free and some are paid.
+
 This was the first idea - install a virtual machine and run steam with the game there. Initially VirtualBox was tried and used for a while, however due to no GPU passthrough (meaning you can't use the GPU directly and all work has to be done on the CPU) only the menu options were testable, and even that would run on 3-4 FPS and was extremely tedious.
 
-For the setup a new git repository was created (bitbucket or gitlab are recommended since they offer a lot more space) where the game files were kept. The build was also configured with an additional post build event:
+For the setup a new git repository was created (Bitbucket or GitLab are recommended since they offer a lot more space) where the game files were kept. The build was also configured with an additional post build event:
 
-xcopy "$(TargetDir)*" "Path_To_Local_Repository" /D /Y /I /E
+`xcopy "$(TargetDir)*" "Path_To_Local_Repository" /D /Y /I /E`
 
 which copied only files that were changed by the build, and this worked very well with git. On the VM, the repository was simply cloned and the game could be run without problems.
 
 VMware and HyperV would probably work a lot better since they have support for GPU passthrough, but what's also problematic with this method is the amount of resources each VM takes which would allow only 2 maybe 3 instances to run at the same time which was not good enough.
 
-- Windows sandbox - requires windows pro 
-This was the most used method to test initial implementations. This is meant to be the same as HyperV, however it seems to have better performance and doesn't require going through a windows installation. All that needs to be done is create a simple config file where all the required resources are mapped (for Tower Age it was the game itself, steam, and vcredist). Here is an example config used for testing tower age:
+#### Windows sandbox
 
+Windows sandbox requires Microsoft Windows Pro. This was the most used method to test initial implementations. This is meant to be the same as HyperV, however it seems to have better performance and doesn't require going through a windows installation. All that needs to be done is create a simple config file where all the required resources are mapped (for Tower Age it was the game itself, Steam, and `vcredist`). Here is an example config used for testing tower age:
+
+```xml
 <Configuration>
     <Networking>Default</Networking>
     <VGpu>Enable</VGpu>
@@ -121,14 +127,17 @@ This was the most used method to test initial implementations. This is meant to 
         </MappedFolder>
     </MappedFolders>
 </Configuration>
+```
 
-Though this method does have it's down sides, with the biggest one being that only one instance can be run at the same time. Another smaller problem is the need to go through the whole process of setting up the VM over again since all data gets wiped after exiting sandbox, but luckly for Tower Age, the only requirement was installing vcredist. Lastly, even with GPU passthrough, the performance is not perfect and in the case of Tower Age, the game runs stable at about 30 FPS which was good enough for testing. All in all, this is the best method of testing if only 2 players are required since it's the fastest to setup. 
+Though this method does have it's down sides, with the biggest one being that only one instance can be run at the same time. Another smaller problem is the need to go through the whole process of setting up the VM over again since all data gets wiped after exiting sandbox, but luckily for Tower Age, the only requirement was installing `vcredist`. Lastly, even with GPU passthrough, the performance is not perfect and in the case of Tower Age, the game runs stable at about 30 FPS which was good enough for testing. All in all, this is the best method of testing if only 2 players are required since it's the fastest to setup. 
 
-- Docker - free for non enterprise companies (though I'm not 100% sure on this)
-We haven't tested this for Tower Age due to the amount of setting up required which is why we were sceptical that it would even work. Basically a docker container with all the game requirements and steam would need to be setup together with GPU passthrough and remote access. Considering how docker works, multipe instances should work and performance shouldn't be a problem since it works differently from the way VM's do, but as we don't have that much experience with this and because we found a better way, we decided not to dive deeper into this method.
+#### Docker
 
-- Sandboxie - free for personal use, paid for commercial use
-Probably the best way to do it. This one works more similarly to docker, meaning it doesn't run VM's like previous methods do which further means that it has minimal system requirements. The performance of the game in our case was the same as the one that ran outside the isolated instance and it allows multiple game and steam instances to run at once. Using sandboxie is very simple since it has documentation explaining everything and doesn't have problems with GPU passthrough or anything of that nature. Only down side for us was that it only has a yearly plan for the commercial licence, but we only needed it for 1-2 months, but even so it's pretty afordable.
+Docker is free for non enterprise companies (though I'm not 100% sure on this). We haven't tested this for Tower Age due to the amount of setting up required which is why we were sceptical that it would even work. Basically a docker container with all the game requirements and Steam would need to be setup together with GPU passthrough and remote access. Considering how docker works, multiple instances should work and performance shouldn't be a problem since it works differently from the way VM's do, but as we don't have that much experience with this and because we found a better way, we decided not to dive deeper into this method.
+
+#### Sandboxie
+
+Sandboxie is free for personal use, paid for commercial use. Probably the best way to do it. This one works more similarly to docker, meaning it doesn't run VM's like previous methods do which further means that it has minimal system requirements. The performance of the game in our case was the same as the one that ran outside the isolated instance and it allows multiple game and steam instances to run at once. Using Sandboxie is very simple since it has documentation explaining everything and doesn't have problems with GPU passthrough or anything of that nature. Only down side for us was that it only has a yearly plan for the commercial licence, but we only needed it for 1-2 months, but even so it's pretty affordable.
 
 ## Links
 
