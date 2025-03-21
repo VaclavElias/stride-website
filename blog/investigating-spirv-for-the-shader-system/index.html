@@ -9,22 +9,24 @@
 </script><meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Investigating SPIR-V for the shader system - Part 1 - Stride Game Engine</title>
     <meta name="description" content="In this first part of a new series of blog posts, we will learn more about Stride's shader system, its limitations and how to make it better thanks to a very...">
+    <meta name="generator" content="Eleventy v3.0.0">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="canonical" href="https://www.stride3d.net/blog/investigating-spirv-for-the-shader-system/">
     <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
-    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.29">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.30">
     <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
+    <meta property="og:type" content="website">
     <meta property="og:site_name" content="Stride Game Engine">
     <meta property="og:title" content="Investigating SPIR-V for the shader system - Part 1">
     <meta property="og:description" content="In this first part of a new series of blog posts, we will learn more about Stride's shader system, its limitations and how to make it better thanks to a very...">
     <meta property="og:url" content="https://www.stride3d.net/blog/investigating-spirv-for-the-shader-system/">
-    <meta property="og:image" content="https://www.stride3d.net/images/Spir.png"><meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://www.stride3d.net/images/spir.png"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@stridedotnet">
     <meta name="twitter:creator" content="@stridedotnet">
     <meta name="twitter:title" content="Investigating SPIR-V for the shader system - Part 1">
     <meta name="twitter:description" content="In this first part of a new series of blog posts, we will learn more about Stride's shader system, its limitations and how to make it better thanks to a very...">
-    <meta name="twitter:image" content="https://www.stride3d.net/images/Spir.png"><script src="/scripts/theme-selector.js?site-version=2.0.0.29"></script></head>
+    <meta name="twitter:image" content="https://www.stride3d.net/images/spir.png"><script src="/scripts/theme-selector.js?site-version=2.0.0.30"></script></head>
 <body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
     <div class="container-xxl">
         <a class="navbar-brand" href="/">
@@ -154,6 +156,7 @@
                     </p>
                 </div><div itemprop="articleBody">
                     <p>In this first part of a new series of blog posts, we will learn more about Stride's shader system, its limitations and how to make it better thanks to a very useful shader language called SPIR-V. This will be the first step in implementing a new and better shader system.</p>
+<p>Don't forget to checkout <a href="/blog/investigating-spirv-for-the-shader-system-part-2/">part 2</a>!</p>
 <p>Table of Contents:</p>
 <div class="table-of-contents"><ul><li><a href="#what-are-shaders%3F">What are shaders? </a></li><li><a href="#rendering-in-game-engines">Rendering in game engines </a></li><li><a href="#how-does-it-work-in-stride%3F">How does it work in Stride? </a></li><li><a href="#the-many-problems-shader-systems-are-facing">The many problems shader systems are facing </a><ul><li><a href="#gpus-are-all-different">GPUs are all different </a></li><li><a href="#drivers-are-not-all-the-same">Drivers are not all the same </a></li><li><a href="#performance-cost">Performance Cost </a></li></ul></li><li><a href="#why-investigating-spir-v%3F">Why investigating SPIR-V? </a></li><li><a href="#summary">Summary </a></li></ul></div>
 <p>The Stride engine has a powerful shader system, helping users build very complex shaders thanks to its language features like composition and inheritance, and its C# integration through the very powerful material system.</p>
@@ -377,11 +380,11 @@
             </div>
             <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
                 <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
-                <p class="text-light">Website v.2.0.0.29</p>
+                <p class="text-light">Website v.2.0.0.30</p>
                 <p class="text-light">© .NET Foundation and Contributors</p>
             </div>
         </footer>
     </div>
-</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.29"></script>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.30"></script>
 </body>
 </html>

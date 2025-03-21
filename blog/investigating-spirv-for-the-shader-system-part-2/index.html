@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8"><script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9CVGC9YV1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());gtag('config', 'G-Y9CVGC9YV1');
+</script><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Investigating SPIR-V for the shader system - Part 2 - Stride Game Engine</title>
+    <meta name="description" content="In this second part we're going to dive deeper in how the current SDSL compiler works and how we are improving on it for the SPIR-V compiler. This will be a ...">
+    <meta name="generator" content="Eleventy v3.0.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="canonical" href="https://www.stride3d.net/blog/investigating-spirv-for-the-shader-system-part-2/">
+    <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.30">
+    <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Stride Game Engine">
+    <meta property="og:title" content="Investigating SPIR-V for the shader system - Part 2">
+    <meta property="og:description" content="In this second part we're going to dive deeper in how the current SDSL compiler works and how we are improving on it for the SPIR-V compiler. This will be a ...">
+    <meta property="og:url" content="https://www.stride3d.net/blog/investigating-spirv-for-the-shader-system-part-2/">
+    <meta property="og:image" content="https://www.stride3d.net/images/spir.png"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@stridedotnet">
+    <meta name="twitter:creator" content="@stridedotnet">
+    <meta name="twitter:title" content="Investigating SPIR-V for the shader system - Part 2">
+    <meta name="twitter:description" content="In this second part we're going to dive deeper in how the current SDSL compiler works and how we are improving on it for the SPIR-V compiler. This will be a ...">
+    <meta name="twitter:image" content="https://www.stride3d.net/images/spir.png"><script src="/scripts/theme-selector.js?site-version=2.0.0.30"></script></head>
+<body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
+    <div class="container-xxl">
+        <a class="navbar-brand" href="/">
+            <img id="logo" height="37" width="124" src="/images/svg/stride-logo-light.svg" alt="Stride logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain"><ul class="navbar-nav navbar-nav--text me-auto mb-2 mb-lg-0 ms-sm-2">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/features/">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-stride" href="/blog/">Blog</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Learn</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/manual/" target="_blank" rel="noopener">📚 Manual (EN)</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/jp/manual/" target="_blank" rel="noopener">📚 Manual (JP)</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/tutorials/" target="_blank" rel="noopener">🎓 Tutorials</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/releasenotes/" target="_blank" rel="noopener">📝 Release Notes</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/contributors/index.html" target="_blank" rel="noopener">🌟 Contributing</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/api/" target="_blank" rel="noopener">🔧 API</a></li>
+                        <li><a class="dropdown-item" href="https://doc.stride3d.net/latest/en/community-resources/index.html" target="_blank" rel="noopener">🏋🏽 Community Resources</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/community/">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download/">
+                        Download
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/sponsor/">
+                        <i class="fa-solid fa-heart text-decoration-none"></i> Sponsor
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-row flex-wrap ms-sm-2 navbar-icons">
+                <li class="nav-item col-12 col-lg-auto dropdown">
+                    <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="document.getElementById('search-input').focus()" aria-label="Search button" title="Search"><i class="fa-solid fa-magnifying-glass text-decoration-none"></i></a>
+                    <div class="dropdown-menu dropdown-menu-end p-3" style="width: 280px;">
+<form action="/search/" method="get">
+    <div class="mb-3">
+        <input class="form-control" id="search-input" name="query" type="text" value="" autofocus tabindex="0" aria-label="Search">
+    </div>
+    <button class="btn btn-stride" name="submit" type="submit" value="Search">Search</button>
+</form></div>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://github.com/stride3d/stride" target="_blank" rel="noopener" aria-label="GitHub link" title="GitHub">
+                        <i class="fa-brands fa-github text-decoration-none"></i>
+                        <small class="d-lg-none">GitHub</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://twitter.com/stridedotnet" target="_blank" rel="noopener" aria-label="Twitter link" title="Twitter">
+                        <i class="fa-brands fa-twitter text-decoration-none"></i>
+                        <small class="d-lg-none">Twitter</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener" aria-label="Discord link" title="Discord">
+                        <i class="fa-brands fa-discord text-decoration-none"></i>
+                        <small class="d-lg-none">Discord</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link py-2 px-0 px-lg-2" href="https://www.youtube.com/@Stride3D" target="_blank" rel="noopener" aria-label="YouTube link" title="YouTube">
+                        <i class="fa-brands fa-youtube text-decoration-none"></i>
+                        <small class="d-lg-none">YouTube</small>
+                    </a>
+                </li>
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link px-0 px-lg-2" href="https://opencollective.com/stride3d" target="_blank" rel="noopener" aria-label="Open Collective link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" fill-rule="evenodd" class="navbar-nav-svg" viewBox="0 0 40 41" role="img" style="margin-top:-6px"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"></path><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"></path></svg>
+                        <small class="d-lg-none">Open Collective</small>
+                    </a>
+                </li>
+                <li class="nav-item dropdown d-lg-flex align-items-center">
+                    <button title="Change theme" class="btn btn-link nav-link dropdown-toggle d-flex align-items-center" id="themeDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeDropdown">
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="lightTheme">
+                                <svg data-theme="light" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Light</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="darkTheme">
+                                <svg data-theme="dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars" viewBox="0 0 16 16">
+                                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z" />
+                                    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Dark</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item dropdown-item-theme" id="autoTheme">
+                                <svg data-theme="auto" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+                                </svg>
+                                <span class="ms-2 text-decoration-none">Auto</span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row postcontent">
+        <div class="col-12">
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h1 itemprop="name">Investigating SPIR-V for the shader system - Part 2</h1>
+                <div class="text-center mb-3 pt-2"><div><div class="mt-4 mb-2">
+                            <img class="rounded-circle me-1" width="58" height="58" alt="author" src="https://avatars.githubusercontent.com/ykafia?size=87">
+                        </div>Youness KAFIA
+                    </div><p style="border-top: 2px solid #979593;" class="x-hidden-focus mt-4 pt-1 small text-secondary date d-inline-block">
+                        <small><i class="fa-solid fa-calendar-days"></i> <time datetime="2024-11-20T00:00:00+0000" itemprop="datePublished"> November 20, 2024</time></small>
+                    </p>
+                </div><div itemprop="articleBody">
+                    <p>In this second part we're going to dive deeper in how the current SDSL compiler works and how we are improving on it for the SPIR-V compiler. This will be a sort of personal log book of my research on the subject.</p>
+<style>
+    .stride-quote {
+        padding : 1rem;
+        border-radius : 0.25rem;
+        border-left : 0.25rem solid lightgray;
+        font-style : italic;
+        opacity: 0.75;
+    }
+    img[alt=thinking] {
+        max-width: 50dvw;
+        max-height: 24rem;
+        display: block;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    img[alt=creeping2] {
+        max-width: 50dvw;
+        max-height: 12rem;
+        display: block;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        opacity : 50%;
+    }
+    img[alt=onfire] {
+        max-width: 50dvw;
+        display: block;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<p>Table of Contents:</p>
+<div class="table-of-contents"><ul><li><a href="#preface">Preface </a></li><li><a href="#how-it-works-currently">How it works currently </a></li><li><a href="#the-idea-for-spir-v">The idea for SPIR-V </a></li><li><a href="#implementation">Implementation </a><ul><li><a href="#the-easy-way">The easy way </a></li><li><a href="#%22i-should-rewrite-it-from-scratch...%22">&quot;I should rewrite it from scratch...&quot; </a></li><li><a href="#buffers-and-instructions">Buffers and instructions </a></li><li><a href="#generation">Generation </a></li><li><a href="#extending-spir-v">Extending SPIR-V </a></li></ul></li><li><a href="#the-irony">The Irony </a></li><li><a href="#conclusions">Conclusions </a></li></ul></div>
+<p><a href="/blog/investigating-spirv-for-the-shader-system/">In the last blog post</a>, we briefly saw why SPIR-V was an interesting shader format for our new shader compiler. After a year of research on this subject I'm coming back with ideas and implementations!</p>
+<h2 id="preface" tabindex="-1">Preface <a class="direct-link" href="#preface">🔗</a></h2>
+<p>Rewriting the shader system is a complicated task in itself. As you may already know, Stride was initially a commercial product that was open-sourced not long ago, and some of the original devs left. This has led to a difficulty gathering information on the inner working of the engine.</p>
+<p>Fortunately we still have some of the original team members helping and answering questions, and the source code is well written and easy to understand, this has helped a lot of contributors to be able to fix issues quite fast.</p>
+<p>As for me, I started this project with no prior knowledge of how compilers worked and a very faint idea of how shaders works. I've learned some things and am trying my best, so if you have any ideas, improvements and criticism, I'll be happy to discuss it on our Discord server or in a GitHub discussion. 😊</p>
+<p>The code related should be available in the <a href="https://github.com/stride3D/SDSL">SDSL repository of Stride</a>. Hopefully it'll be merged in the Stride repository itself in the future!</p>
+<p>Also credit to Felicia Salomone/<a href="https://www.instagram.com/phaelicis/">@phaelicis</a> for the art!</p>
+<h2 id="how-it-works-currently" tabindex="-1">How it works currently <a class="direct-link" href="#how-it-works-currently">🔗</a></h2>
+<p>There are two components to SDSL :</p>
+<ol>
+<li>The effect system</li>
+<li>The shader mixin system</li>
+</ol>
+<p>The effect system sits at a higher level than the shader mixins. It drives the creation of shader permutations through mixin operations of shader mixins.</p>
+<p>A shader mixin is a building block for shaders in Stride, they are mixed and merged together to produce one final shader that will be used in rendering pipelines. Mixins is another way to reuse code without going through an inheritance hierarchy, there are many ways to go about it and SDSL has very specific kind of rules.</p>
+<p>A quick example for this :</p>
+<pre class="language-hlsl"><code class="language-hlsl"><span class="token comment">// Let's define two shader mixins with different fields and simple method</span>
+shader MixinA
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> bar <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+shader MixinB
+<span class="token punctuation">{</span>
+    <span class="token keyword">float</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">float</span> bar2 <span class="token operator">=</span> b <span class="token operator">*</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// And one that is going to inherit our two first shaders</span>
+shader MixinC <span class="token operator">:</span> MixinA<span class="token punctuation">,</span> MixinB
+<span class="token punctuation">{</span>
+    <span class="token keyword">float</span> c<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>The inheritance is going to reuse the code present in the mixins and mix them together using a set of rules.</p>
+<p>In this case the MixinC will internally look like :</p>
+<pre class="language-hlsl"><code class="language-hlsl">shader MixinC <span class="token operator">:</span> MixinA<span class="token punctuation">,</span> MixinB
+<span class="token punctuation">{</span>
+    <span class="token comment">// MixinC fields from MixinA and MixinB are copied as is</span>
+    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> c<span class="token punctuation">;</span>
+  
+    <span class="token comment">// Methods are merged together, statements appear in order of apparition of mixins.</span>
+    <span class="token keyword">void</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> bar <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">;</span>
+        <span class="token keyword">float</span> bar2 <span class="token operator">=</span> b <span class="token operator">*</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This system makes it surprisingly easy to add shaders to material parts, say you want to add a shader to compute the emissive component of a material, just create a <code>CustomAwesomeEmissiveMixin</code>, inherit <code>Texturing, ComputeColor</code>, implement the <code>float4 ComputeColor()</code> method, ✨<em>woopdeedoo</em>✨ Stride will automatically generate a new permutation of our material shader by adding in the emissive mixin!</p>
+<p>The way it's implemented comes from a very simple idea :</p>
+<ol>
+<li>Generate syntax trees representing the SDSL code</li>
+<li>Mix syntax trees together</li>
+<li>Convert tree into HLSL code</li>
+<li>If GLSL is needed, convert HLSL to GLSL</li>
+</ol>
+<p>But this has some issues regarding performance :</p>
+<ul>
+<li>Mixing tree structures together to generate new permutations involves a lot of deep cloning/defensive copies.</li>
+<li>Extracting information from text is slower than extracting it from compact binary data</li>
+<li>The garbage collector is going to be stressed and have some stutters due to allocations needed by cloning/defensive copies and parsing data.</li>
+</ul>
+<p>It's important to note that these issues are only about shader permutation generation so far.</p>
+<h2 id="the-idea-for-spir-v" tabindex="-1">The idea for SPIR-V <a class="direct-link" href="#the-idea-for-spir-v">🔗</a></h2>
+<p>Dealing with tree structure is very rarely the fastest option, especially when using programming languages with managed memory. That's why we want to rewrite Stride's shader system, remove the need to process trees and instead focus on dealing with buffers since computers are faster at processing them.</p>
+<p>What is SPIR-V? How could it help? 🤔</p>
+<p>Let's check the official specification as of today, to understand what it is :</p>
+<blockquote class="stride-quote">
+<p>SPIR-V is a simple binary intermediate language for graphical shaders and compute kernels. A SPIR-V module contains multiple entry points with potentially shared functions in the entry point’s call trees. Each function contains a control-flow graph (CFG) of basic blocks, with optional instructions to express structured control flow. Load/store instructions are used to access declared variables, which includes all input/output (IO). Intermediate results bypassing load/store use static single-assignment (SSA) representation. Data objects are represented logically, with hierarchical type information: There is no flattening of aggregates or assignment to physical register banks, etc. Selectable addressing models establish whether general pointer operations may be used, or if memory access is purely logical.</p>
+</blockquote>
+<p>Okay great, what about the goals for it :</p>
+<blockquote class="stride-quote">
+<blockquote>
+<p>SPIR-V has the following goals:</p>
+<ul>
+<li>Provide a simple binary intermediate language for all functionality appearing in Khronos shaders/kernels.</li>
+<li>Have a concise, transparent, self-contained specification (sections <a href="https://registry.khronos.org/SPIR-V/specs/unified1/SPIRV.html#Specification">Specification</a> and <a href="https://registry.khronos.org/SPIR-V/specs/unified1/SPIRV.html#Binary">Binary Form</a>).</li>
+<li>Map easily to other intermediate languages.</li>
+<li>Be the form passed by a client API into a driver to set shaders/kernels.</li>
+<li>Support multiple execution environments, specified by client APIs.</li>
+<li>Can be targeted by new front ends for novel high-level languages.</li>
+<li>Allow the first steps of compilation and reflection to be done offline.</li>
+<li>Be low-level enough to require a reverse-engineering step to reconstruct source code.</li>
+<li>Improve portability by enabling shared tools to generate or operate on it.</li>
+<li>Reduce compile time during application run time. (Eliminating most of the compile time during application run time is not a goal of this intermediate language. Target-specific register allocation and scheduling are still expected to take significant time.)</li>
+<li>Allow some optimizations to be done offline.</li>
+</ul>
+</blockquote>
+</blockquote>
+<p>WAIT! But, what if... we could extend the spec...</p>
+<p><img src="/images/blog/2024-11-10-spirv2/thumbnail_Youness3.png" alt="thinking"></p>
+<blockquote class="stride-quote">
+<blockquote>
+<p>SPIR-V can be extended by multiple vendors or parties simultaneously:</p>
+<ul>
+<li>Using the <a href="https://registry.khronos.org/SPIR-V/specs/unified1/SPIRV.html#OpExtension"><strong>OpExtension</strong></a> instruction to add semantics, which are described in an extension specification.</li>
+<li>Reserving (registering) ranges of the token values, as described further below.</li>
+<li>Aided by instruction skipping, also further described below.</li>
+</ul>
+</blockquote>
+</blockquote class="stride-quote">
+<p>WOW! Now we're cooking! 🍽️</p>
+<p>Here's the main idea :</p>
+<ol>
+<li>We extend the SPIR-V specification with our own instruction set, telling Stride how to mix SPIR-V files together</li>
+<li>We produce partial SPIR-V bytecode for those mixins, since mixins only contain partial code</li>
+<li>We mix-in together those partial SPIR-V files at runtime, or offline</li>
+</ol>
+<p>Using SPIR-V is not going to be any faster than using GLSL or HLSL, those languages already have very performant compilers, but for SDSL, it would be a <em>game changer</em>. The tree structure manipulation we have is suboptimal and .NET is faster at manipulating buffers anyway, but using SPIR-V would make sure we process only binary buffers. Additionally, it allow us to potentially make all shader front-end processing offline, we would effectively skip the whole front-end written in C# at runtime, huge win for us. Now we just need an...</p>
+<h2 id="implementation" tabindex="-1">Implementation <a class="direct-link" href="#implementation">🔗</a></h2>
+<h3 id="the-easy-way" tabindex="-1">The easy way <a class="direct-link" href="#the-easy-way">🔗</a></h3>
+<p>The first instinct I had was to lookup for some libraries to generate SPIR-V bytecode with some constraints :</p>
+<ul>
+<li>It should give us the ability to extend SPIR-V to support our mixin system</li>
+<li>It should be easy to integrate in the engine and easy to package with games, the new shader compiler should not add more complexity to the engine</li>
+<li>The libraries should be a native, with which we can easily generate bindings, or written in C#</li>
+<li>If written in C# it should be AOT compatible, for potential future console support.</li>
+<li>It should also run fast, or use the recommended practices for high performance</li>
+</ul>
+<p>The first solution I've considered was LLVM, there was an ongoing work to add SPIR-V generation, this seemed like a neat idea but was nowhere near read and not sure if LLVM is fast enough to be used at runtime without creating stutters.</p>
+<p>Shaderc and SPIR-V Tools have some SPIR-V generation capabilities to some degrees but from C# it would be hard to extend the SPIR-V specification. It has great support nonetheless, and our friends over at <a href="https://github.com/dotnet/Silk.NET">Silk.NET</a> have some bindings for these tools.</p>
+<p>Another one was the Nintendo Switch emulator Ryujinx, written in C#, it can generate SPIR-V on the fly to translate/compile the console's shaders. They have generated C# code based on the SPIR-V headers and specification and are using it to assemble some SPIR-V modules.</p>
+<p>I decided to start from this Ryujinx code and made a little proof of concept by writing a little tool that takes the output of Stride's parser and convert it into shader modules. It only supported a very tiny subset of SDSL but it was enough to prove the compiler can be made, and to remind me that I do not know SDSL nor SPIR-V that well, and the Ryujinx code was not exactly suited for Stride. But then, the most intrusive thought a dev can have just crept in my mind...</p>
+<img alt="creeping" src="/images/blog/2024-11-10-spirv2/thumbnail_Youness1.png" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2024-11-10-spirv2/thumbnail_Youness1.png">
+<h3 id="%22i-should-rewrite-it-from-scratch...%22" tabindex="-1">&quot;I should rewrite it from scratch...&quot; <a class="direct-link" href="#%22i-should-rewrite-it-from-scratch...%22">🔗</a></h3>
+<p>And make sure it fits our needs, the constraints i've listed in the previous section.</p>
+<p>I decided to follow some core tenets and make sure I don't over-engineer anything for the sake of winning a few microseconds. First, as we're going to read, write and copy a lot, data should then be stored in a compact way using buffers and value types. This would improve enumeration of instructions and possibly garbage collection. We are also going to deal with a lot of small buffers, so  pooling those buffers is going to be important to avoid stressing the garbage collector. Finally we should make sure SPIR-V data is arranged in ways that would benefit the compiler's performance.</p>
+<p>But most importantly, keep it as simple as possible.</p>
+<h3 id="buffers-and-instructions" tabindex="-1">Buffers and instructions <a class="direct-link" href="#buffers-and-instructions">🔗</a></h3>
+<p>According to the specification, instructions are made out of words/integers, they have a variable size and the size of the instruction is written in the high 16 bits of the first word.</p>
+<p>Instructions would be represented as slices of this buffer and to access those instructions we would need to iterate through this buffer.</p>
+<p>IT'S CODING TIME!</p>
+<p><img src="/images/blog/2024-11-10-spirv2/thumbnail_Youness2.png" alt="onfire"></p>
+<pre class="language-csharp"><code class="language-csharp"><span class="token comment">// A RefInstruction will hold a Span and some cool methods and tools to extract information from this instruction. </span>
+<span class="token comment">// We could also create an Instruction struct containing a Memory&lt;int> and doing the same...</span>
+<span class="token keyword">public</span> <span class="token keyword">ref</span> <span class="token keyword">struct</span> <span class="token class-name">RefInstruction</span><span class="token punctuation">(</span><span class="token class-name">Span<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">></span></span> words<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name">Span<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">></span></span> Words <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token operator">=</span> words<span class="token punctuation">;</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// A buffer class to represent our SPIR-V buffer, disposable because we're using MemoryOwner from the high performance community toolkit</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpirvBuffer</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IDisposable</span></span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// This will represent words and we'll extract instructions from it by taking Span&lt;int> slices</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name">MemoryOwner<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">></span></span> Words <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+  
+    <span class="token keyword">public</span> <span class="token return-type class-name">Enumerator</span> <span class="token function">GetEnumerator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">new</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// An enumerator for our instructions</span>
+    <span class="token keyword">public</span> <span class="token keyword">ref</span> <span class="token keyword">struct</span> <span class="token class-name">Enumerator</span><span class="token punctuation">(</span><span class="token class-name">SpirvBuffer</span> buffer<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> position <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token return-type class-name">RefInstruction</span> Current <span class="token operator">=></span> <span class="token keyword">new</span><span class="token punctuation">(</span>buffer<span class="token punctuation">.</span>Words<span class="token punctuation">.</span>Span<span class="token punctuation">.</span><span class="token function">Slice</span><span class="token punctuation">(</span>position<span class="token punctuation">,</span> buffer<span class="token punctuation">.</span>Words<span class="token punctuation">.</span>Span<span class="token punctuation">[</span>position<span class="token punctuation">]</span> <span class="token operator">>></span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">MoveNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// A simple advance, we read the size in the high bits, and just skip words based on this size.</span>
+            position <span class="token operator">+=</span> buffer<span class="token punctuation">.</span>Words<span class="token punctuation">.</span>Span<span class="token punctuation">[</span>position<span class="token punctuation">]</span> <span class="token operator">>></span> <span class="token number">16</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> position <span class="token operator">&lt;</span> buffer<span class="token punctuation">.</span>Words<span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> Words<span class="token punctuation">.</span><span class="token function">Dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Instructions can have a variable number of operands and each operands can be one or multiple words. The simplest way to extract operand information from this slice is to generate C# source code with information on how to parse each instructions based on its type and size.</p>
+<p>And with just that, we can parse SPIR-V and even write our own SPIR-V disassembly tool!</p>
+<h3 id="generation" tabindex="-1">Generation <a class="direct-link" href="#generation">🔗</a></h3>
+<p>Now that we can load SPIR-V and parse it, the next step is to be able to write instructions. Fortunately for us, the SPIR-V headers repository provide a C# file containing all the enums and constants needed for instructions operands and some JSON files describing instructions and their operands as well as if the operands are optional or have to be passed as an array of values. With a few more, we can generate methods to add or insert instruction in a buffer!</p>
+<p>Here's an excerpt from the current unified core grammar of SPIR-V and its corresponding generated C# code :</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+      <span class="token property">"opname"</span> <span class="token operator">:</span> <span class="token string">"OpFAdd"</span><span class="token punctuation">,</span>
+      <span class="token property">"class"</span>  <span class="token operator">:</span> <span class="token string">"Arithmetic"</span><span class="token punctuation">,</span>
+      <span class="token property">"opcode"</span> <span class="token operator">:</span> <span class="token number">129</span><span class="token punctuation">,</span>
+      <span class="token property">"operands"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> <span class="token property">"kind"</span> <span class="token operator">:</span> <span class="token string">"IdResultType"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> <span class="token property">"kind"</span> <span class="token operator">:</span> <span class="token string">"IdResult"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> <span class="token property">"kind"</span> <span class="token operator">:</span> <span class="token string">"IdRef"</span><span class="token punctuation">,</span>        <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"'Operand 1'"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> <span class="token property">"kind"</span> <span class="token operator">:</span> <span class="token string">"IdRef"</span><span class="token punctuation">,</span>        <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"'Operand 2'"</span> <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>And here's a function we can generate from it :</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name">Instruction</span> <span class="token function">AddOpFAdd</span><span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token class-name">SpirvBuffer</span> buffer<span class="token punctuation">,</span> <span class="token class-name">IdResultType</span> resultType<span class="token punctuation">,</span> <span class="token class-name">IdRef</span> operand1<span class="token punctuation">,</span> <span class="token class-name">IdRef</span> operand2<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Extend the buffer and put the data needed</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> size <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> ComputeSize<span class="token return-type class-name"><span class="token punctuation">(</span>resultType<span class="token punctuation">,</span> operand1<span class="token punctuation">,</span> operand2<span class="token punctuation">)</span></span>
+    buffer<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>size <span class="token operator">&lt;&lt;</span> <span class="token number">16</span> <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>Op<span class="token punctuation">.</span>OpFAdd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>resultType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>operand1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>operand2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>After going through the core and the glsl grammar, we end up with a library that can both parse and assembler SPIR-V.</p>
+<h3 id="extending-spir-v" tabindex="-1">Extending SPIR-V <a class="direct-link" href="#extending-spir-v">🔗</a></h3>
+<p>This one was the easiest step as we've already made a source generator that generates the necessary C# code from json files, we just need an additional JSON grammar file made for SDSL and the generator will generate code to add custom instructions, there's really nothing else to it!</p>
+<p>What was left is creating a little tool that can read those extensions and pre-process many SPIR-V together to generate a valid SPIR-V module that can be consumed by Vulkan, OpenGL, WGPU and soon DirectX 12. I have made a prototype that works quite well but can be improved in the future, it's not a complicated task, it just takes time and efforts.</p>
+<p>Finally we can make sure we can generate SPIR-V mixins from the AST generated by the current Stride shader system. This should be easy, right? RIGHT?</p>
+<h2 id="the-irony" tabindex="-1">The Irony <a class="direct-link" href="#the-irony">🔗</a></h2>
+<p>The current shader parser was made for the specific use case of mixin abstract trees. Modifying the code would be a huge endeavor as I would have to dive into what's existing and try my best to understand what i can change without breaking anything, worse than that, the parser was written with <a href="https://github.com/IronyProject/Irony">Irony</a>, a very good C# library to help anyone parse things in an LALR fashion, but with a lacking documentation and, in my personal opinion, has an &quot;easy to write, hard to read&quot; kind of API.</p>
+<p><a href="https://github.com/xtravar/CppNet">CppNet</a> is another library that Stride uses to preprocess SDSL code. It works like a C/C++ preprocessor, depending values given to the compiler, it will enable or disable some parts of the code. It's quite useful when you need target specific code, but it defeats the purpose of having a whole mixin system and would invalidate already compiled SPIR-V mixins.</p>
+<p>While it might be smarter and easier to continue using those libraries and just patch our new shiny SPIR-V assembler, rewriting the front-end seems like a necessary step if we want to embrace the newer .NET APIs for better performance. We just need to know how much performance we could squeeze from it... 🤔</p>
+<p><img src="/images/blog/2024-11-10-spirv2/thumbnail_Youness1.png" alt="creeping2"></p>
+<p>But that's for another blog post, so much happened since last year and this blog post is getting long. 😀</p>
+<h2 id="conclusions" tabindex="-1">Conclusions <a class="direct-link" href="#conclusions">🔗</a></h2>
+<p>Writing this SPIR-V library was very fun, I've learned a lot about SPIR-V and some of the possible use cases for it in the context of Stride. As you might have imagined, this was the easy part of this shader system rewrite. In the next installment we'll see the little adventure I went through to make the most of our shader front-end!</p>
+<p>Thank you for reading!</p>
+
+                </div>
+                <hr>
+                <p>
+<span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">.NET</span><span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">Shaders</span></p>
+                <p>
+                    Any comments? You can start 🗨 at <i class="fa-brands fa-github text-decoration-none"></i> <a href="https://github.com/stride3d/stride/discussions" target="_blank" rel="noreferrer">GitHub Discussions</a> or <i class="fa-brands fa-discord text-decoration-none"></i> <a class="" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener">Discord</a>.
+                </p>
+                <p>
+                    <a href="https://github.com/stride3d/stride-website/blob/master/./posts/2024-11-20-investigating-spirv-for-the-shader-system-part-2.md" target="_blank" rel="noreferrer">Edit</a> this page on
+                    <i class="fa-brands fa-github text-decoration-none"></i>.
+                </p>
+            </article>
+        </div>
+    </div>
+    <div class="row mb-4"><div class="col-md-6 mb-4">
+            
+            <div class="card px-3">
+                <div class="card-body p-4">
+                    <h5>Previous Post</h5>
+                    <a class="prev stretched-link" href="/blog/open-worlds-intro-to-foss-game-engines/">Open Worlds: An Introduction to Free and Open-Source Game Engines</a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-6 text-md-end">
+            
+            <div class="card px-3">
+                <div class="card-body p-4">
+                    <h5>Next Post</h5>
+                    <a class="next stretched-link" href="/blog/distant-worlds-2-development-with-stride/">A Look Inside Distant Worlds 2: Developing with the Stride Engine</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="bg-footer mt-auto">
+    <div class="container">
+        <footer class="pt-5 px-2">
+            <div class="row">
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Links</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="/features/" class="nav-link p-0 link-danger">Features</a></li>
+                        <li class="nav-item mb-2"><a href="/blog/" class="nav-link p-0 link-danger">Blog</a></li>
+                        <li class="nav-item mb-2"><a href="/download/" class="nav-link p-0 link-danger">Download</a></li>
+                        <li class="nav-item mb-2"><a href="/legal/" class="nav-link p-0 link-danger">Legal</a></li>
+                        <li class="nav-item mb-2"><a href="/contact/" class="nav-link p-0 link-danger">Contact us</a></li>
+                        <li class="nav-item mb-2"><a href="/legal/privacy-policy/" class="nav-link p-0 link-danger">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Docs</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/manual/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Manual</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/tutorials/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Tutorials</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/releasenotes/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Release notes</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/api/" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Stride API</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/contributors/index.html" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Contributing</a></li>
+                        <li class="nav-item mb-2"><a href="https://doc.stride3d.net/latest/en/community-resources/index.html" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Community Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Community</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://opencollective.com/stride3d" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Open Collective</a></li>
+                        <li class="nav-item mb-2"><a href="https://discord.gg/f6aerfE" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Discord</a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/stride3d/stride" class="nav-link p-0 link-danger" target="_blank" rel="noopener">GitHub</a></li>
+                        <li class="nav-item mb-2"><a href="https://twitter.com/stridedotnet" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Twitter</a></li>
+                        <li class="nav-item mb-2"><a href="/faq/" class="nav-link p-0 link-danger">FAQ</a></li>
+                        <li class="nav-item mb-2"><a href="/sponsor/" class="nav-link p-0 link-danger">Sponsor</a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/stride3d/stride/discussions" class="nav-link p-0 link-danger" target="_blank" rel="noopener">Discussions</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h3 class="text-light h5" style="--bs-text-opacity: 0.85;">Blog</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="/blog/" class="nav-link p-0 link-danger">Posts</a></li>
+                        <li class="nav-item mb-2"><a href="/tags/" class="nav-link p-0 link-danger">Tags</a></li>
+                        <li class="nav-item mb-2"><a href="/archive/" class="nav-link p-0 link-danger">Archive</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 col-lg-4 mb-3 mt-4 text-center text-lg-end">
+                    <a class="link-danger me-2 text-decoration-none mb-3 d-inline-block" href="https://github.com/stride3d/stride" target="_blank" rel="noopener" aria-label="GitHub link" title="GitHub">
+                        <i class="fa-brands fa-xl fa-github text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener" aria-label="Discord link" title="Discord">
+                        <i class="fa-brands fa-xl fa-discord text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://twitter.com/stridedotnet" target="_blank" rel="noopener" aria-label="Twitter link" title="Twitter">
+                        <i class="fa-brands fa-xl fa-twitter text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://opencollective.com/stride3d" target="_blank" rel="noopener" aria-label="Open Collective link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" fill-rule="evenodd" class="navbar-nav-svg" viewBox="0 0 40 41" role="img" style="margin-top:-5px"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"></path><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"></path></svg>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://www.facebook.com/stride3d" target="_blank" rel="noopener" aria-label="Facebook link" title="Facebook">
+                        <i class="fa-brands fa-xl fa-facebook text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="https://www.youtube.com/@Stride3D" target="_blank" rel="noopener" aria-label="YouTube link" title="YouTube">
+                        <i class="fa-brands fa-xl fa-youtube text-decoration-none"></i>
+                    </a>
+                    <a class="link-danger me-2 text-decoration-none" href="/feed.xml" aria-label="RSS feed link" title="RSS feed">
+                        <i class="fa-solid fa-rss fa-xl text-decoration-none"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
+                <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
+                <p class="text-light">Website v.2.0.0.30</p>
+                <p class="text-light">© .NET Foundation and Contributors</p>
+            </div>
+        </footer>
+    </div>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.30"></script>
+</body>
+</html>
