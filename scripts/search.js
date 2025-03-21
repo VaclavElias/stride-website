@@ -139,7 +139,7 @@
         var docs = Promise.resolve();
 
         if(true) {
-            docs = fetch(`https://doc.stride3d.net/latest/en/index.json?version=2.0.0.30`).then(success);
+            docs = fetch(`https://doc.stride3d.net/latest/en/index.json?version=2.0.0.31`).then(success);
         }
 
         Promise.all([web, docs])

@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="canonical" href="https://www.stride3d.net/blog/distant-worlds-2-development-with-stride/">
     <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
-    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.30">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.31">
     <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
     <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
     <meta name="twitter:creator" content="@stridedotnet">
     <meta name="twitter:title" content="A Look Inside Distant Worlds 2: Developing with the Stride Engine">
     <meta name="twitter:description" content="Distant Worlds 2, the sequel to the acclaimed 4X strategy game Distant Worlds: Universe, was developed by Code Force and published by Slitherine. In this blo...">
-    <meta name="twitter:image" content="https://www.stride3d.net/images/blog/2025/distant-worlds-image.webp"><script src="/scripts/theme-selector.js?site-version=2.0.0.30"></script></head>
+    <meta name="twitter:image" content="https://www.stride3d.net/images/blog/2025/distant-worlds-image.webp"><script src="/scripts/theme-selector.js?site-version=2.0.0.31"></script></head>
 <body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
     <div class="container-xxl">
         <a class="navbar-brand" href="/">
@@ -164,6 +164,7 @@
 <h2 id="intro" tabindex="-1">Intro <a class="direct-link" href="#intro">🔗</a></h2>
 <p>Our Stride community has been eager to learn more about the development of <a href="https://store.steampowered.com/app/1531540/Distant_Worlds_2/">Distant Worlds 2</a>. We reached out to the developers at Code Force to hear about their experience using the Stride engine to create this ambitious 4X strategy game.</p>
 <p>We're incredibly grateful to the team for their generosity with both time and expertise. The depth and breadth of information they've shared, spanning everything from engine selection to performance optimization is impressive. Their willingness to provide such comprehensive insights is truly appreciated by the Stride community.</p>
+<p>Some questions were answered by the team collectively, while others were addressed individually by team members: Elliot, the Lead Developer; Kevin, the Lead Artist; and Alex, the 3D Artist.</p>
 <p>Buckle up and enjoy the ride, you're about to dive into a rich technical deep-dive and maybe learn something new along the way!</p>
 <h2 id="engine-and-general-development" tabindex="-1">Engine and General Development <a class="direct-link" href="#engine-and-general-development">🔗</a></h2>
 <h4 id="why-did-you-choose-xenko%2Fstride-over-other-alternatives-for-distant-worlds-2%3F" tabindex="-1">Why did you choose Xenko/Stride over other alternatives for Distant Worlds 2? <a class="direct-link" href="#why-did-you-choose-xenko%2Fstride-over-other-alternatives-for-distant-worlds-2%3F">🔗</a></h4>
@@ -210,6 +211,8 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
     <img alt="Distnat Worlds 2 UI" src="/images/blog/2025/distant-worlds-2-ui.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-ui.webp">
 </div>
 <h4 id="which-library-did-you-use-for-ui-elements-in-distant-worlds-2%3F" tabindex="-1">Which library did you use for UI elements in Distant Worlds 2? <a class="direct-link" href="#which-library-did-you-use-for-ui-elements-in-distant-worlds-2%3F">🔗</a></h4>
+<h5 id="what-led-you-to-choose-the-current-ui-solution-over-others%3F" tabindex="-1">What led you to choose the current UI solution over others? <a class="direct-link" href="#what-led-you-to-choose-the-current-ui-solution-over-others%3F">🔗</a></h5>
+<h5 id="were-there-any-features-you-found-lacking-in-stride-for-ui%2C-and-how-did-you-address-these-gaps%3F" tabindex="-1">Were there any features you found lacking in Stride for UI, and how did you address these gaps? <a class="direct-link" href="#were-there-any-features-you-found-lacking-in-stride-for-ui%2C-and-how-did-you-address-these-gaps%3F">🔗</a></h5>
 <p>We initially tried out the built-in user interface elements of Xenko. But for various reasons we decided to instead build our own user interface system.</p>
 <p>So for UI rendering we took the <code>SpriteBatch</code> class and built some basic controls: buttons, panels, textboxes, etc.</p>
 <p>The input side is just reading keypresses and mouse actions from the <code>InputManager</code> class.</p>
@@ -218,10 +221,6 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>I think this happens quite frequently in games, because they often have very unique and specific UI requirements. So it’s important to have full control over how the UI works, which might mean writing it yourself.</p>
 <p>For DW2 we also had a requirement that the user interface be completely scalable. This was a major weakness of DW1, where the UI was fixed-size. So in DW1, as screen resolution increased, all the text became smaller and harder to read.</p>
 <p>With DW2, building our own UI system allowed us to bake scaling into everything. So you can change UI scale in DW2 from the game settings and everything just automatically resizes and repositions, regardless of resolution.</p>
-<h4 id="what-led-you-to-choose-the-current-ui-solution-over-others%3F" tabindex="-1">What led you to choose the current UI solution over others? <a class="direct-link" href="#what-led-you-to-choose-the-current-ui-solution-over-others%3F">🔗</a></h4>
-<p>See above.</p>
-<h4 id="were-there-any-features-you-found-lacking-in-stride-for-ui%2C-and-how-did-you-address-these-gaps%3F" tabindex="-1">Were there any features you found lacking in Stride for UI, and how did you address these gaps? <a class="direct-link" href="#were-there-any-features-you-found-lacking-in-stride-for-ui%2C-and-how-did-you-address-these-gaps%3F">🔗</a></h4>
-<p>See above.</p>
 <h4 id="how-is-the-research-screen-(e.g.%2C-item-order%2C-dependencies)-created%3F-are-these-elements-procedurally-generated%2C-or-are-they-manually-crafted%3F" tabindex="-1">How is the research screen (e.g., item order, dependencies) created? Are these elements procedurally generated, or are they manually crafted? <a class="direct-link" href="#how-is-the-research-screen-(e.g.%2C-item-order%2C-dependencies)-created%3F-are-these-elements-procedurally-generated%2C-or-are-they-manually-crafted%3F">🔗</a></h4>
 <p>How did you create the research graph, including arrows and other visual elements?</p>
 <p>The Research screen is custom-rendered. Most of the data in DW2 is heavily moddable, and the tech trees are a big part of this. So the rendering for research projects has to be data-driven.</p>
@@ -258,6 +257,9 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>DW2 is probably not a typical game, so we only use the scene/entity system inside the game code itself, dynamically creating and updating scenes as needed.</p>
 <p>Stride Game Studio is really just an asset bundling tool for us.</p>
 <h2 id="dlc-and-content-expansion" tabindex="-1">DLC and Content Expansion <a class="direct-link" href="#dlc-and-content-expansion">🔗</a></h2>
+<div align="center">
+    <img alt="Distnat Worlds 2 UI" src="/images/blog/2025/distant-worlds-2-dlc.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-dlc.webp">
+</div>
 <h4 id="could-you-briefly-outline-the-steps-involved-in-creating-a-dlc-for-distant-worlds-2%3F" tabindex="-1">Could you briefly outline the steps involved in creating a DLC for Distant Worlds 2? <a class="direct-link" href="#could-you-briefly-outline-the-steps-involved-in-creating-a-dlc-for-distant-worlds-2%3F">🔗</a></h4>
 <p>DW2 DLCs typically involve adding one or more new alien factions into the game.</p>
 <p>Each faction has new game features unique to them. They likely also have their own unique government type, which also has new features. So there is a lot of code to support this.</p>
@@ -269,6 +271,10 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <h4 id="how-do-you-detect-whether-a-dlc-is-installed-or-not-for-a-player%3F" tabindex="-1">How do you detect whether a DLC is installed or not for a player? <a class="direct-link" href="#how-do-you-detect-whether-a-dlc-is-installed-or-not-for-a-player%3F">🔗</a></h4>
 <p>Each distribution platform has their own mechanism for this. So whether it’s Steam, GOG or something else, we use their inbuilt features to check this. Then we can load the appropriate bundle files with all of the models and textures for that DLC.</p>
 <h2 id="performance-and-optimization" tabindex="-1">Performance and Optimization <a class="direct-link" href="#performance-and-optimization">🔗</a></h2>
+<div align="center">
+    <img alt="Distnat Worlds 2 UI" src="/images/blog/2025/distant-worlds-2-map.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-map.webp">
+    <small>Source: Steam - Distant Worlds 2 - <a rel="noopener" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3421104197" target="_blank">Screenshots by Shrikebe</a></small>
+</div>
 <h4 id="the-game-achieves-impressive-performance%2C-especially-during-large-scale-fleet-battles.-how-did-you-manage-to-optimize-for-several-simultaneous-battles%2C-each-with-many-ships-and-fighters%3F" tabindex="-1">The game achieves impressive performance, especially during large-scale fleet battles. How did you manage to optimize for several simultaneous battles, each with many ships and fighters? <a class="direct-link" href="#the-game-achieves-impressive-performance%2C-especially-during-large-scale-fleet-battles.-how-did-you-manage-to-optimize-for-several-simultaneous-battles%2C-each-with-many-ships-and-fighters%3F">🔗</a></h4>
 <p>Performance optimization has been an ongoing consideration throughout development. As we add new game features we periodically need to profile and improve performance in slow areas.</p>
 <p>Large galaxies can have a huge number of individual units and factions, all of which can have extensive logic that needs processing at some minimum level of frequency. We have test games that have more than 250,000 ships, fighters and bases. Individual locations/scenes might have over 3000 units in a single battle.</p>
@@ -326,9 +332,11 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>That may sound fairly simple, but it can still be an extra hurdle for modders. Having bundle-renaming built into the Game Studio would make this much easier.</p>
 <h2 id="links" tabindex="-1">Links <a class="direct-link" href="#links">🔗</a></h2>
 <ul>
-<li>Steam: <a href="https://store.steampowered.com/app/1531540/Distant_Worlds_2/">https://store.steampowered.com/app/1531540/Distant_Worlds_2/</a></li>
-<li>Forum: <a href="https://www.matrixgames.com/forums/viewforum.php?f=10151">https://www.matrixgames.com/forums/viewforum.php?f=10151</a></li>
-<li>YouTube: <a href="https://www.youtube.com/@SlitherineGames/videos">https://www.youtube.com/@SlitherineGames/videos</a></li>
+<li>Steam: <a href="https://store.steampowered.com/app/1531540/Distant_Worlds_2/">Distant Worlds 2 on Steam</a></li>
+<li>DW2 Forum: <a href="https://www.matrixgames.com/forums/viewforum.php?f=10151">Matrix Games Forum</a></li>
+<li>YouTube: <a href="https://www.youtube.com/@SlitherineGames/videos">Slitherine Games on YouTube</a></li>
+<li>GitHub Stride DW2 Discussion: <a href="https://github.com/stride3d/stride/discussions/2484">GitHub Discussions</a></li>
+<li>Kevin: You can find him on our <a href="https://discord.gg/f6aerfE">Stride Discord</a> server as @KevinC</li>
 </ul>
 
                 </div>
@@ -434,11 +442,11 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
             </div>
             <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
                 <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
-                <p class="text-light">Website v.2.0.0.30</p>
+                <p class="text-light">Website v.2.0.0.31</p>
                 <p class="text-light">© .NET Foundation and Contributors</p>
             </div>
         </footer>
     </div>
-</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.30"></script>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.31"></script>
 </body>
 </html>
