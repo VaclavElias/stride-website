@@ -152,15 +152,15 @@
                             <img class="rounded-circle me-1" width="58" height="58" alt="author" src="https://avatars.githubusercontent.com/VaclavElias?size=87">
                         </div>Vaclav Elias
                     </div><p style="border-top: 2px solid #979593;" class="x-hidden-focus mt-4 pt-1 small text-secondary date d-inline-block">
-                        <small><i class="fa-solid fa-calendar-days"></i> <time datetime="2025-03-25T00:00:00+0000" itemprop="datePublished"> March 25, 2025</time></small>
+                        <small><i class="fa-solid fa-calendar-days"></i> <time datetime="2025-04-07T00:00:00+0000" itemprop="datePublished"> April 07, 2025</time></small>
                     </p>
                 </div><div itemprop="articleBody">
                     <p>Distant Worlds 2, the sequel to the acclaimed 4X strategy game Distant Worlds: Universe, was developed by Code Force and published by Slitherine. In this blog post, the developers answer key questions from the Stride community, offering insights into their experience using the Stride engine to bring their ambitious galaxy-spanning strategy game to life.</p>
-<div align="center">
+<div class="text-center">
     <img alt="Distnat Worlds 2 Intro Image" src="/images/blog/2025/distant-worlds-2-intro-image.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-intro-image.webp">
 </div>
 <p>Table of Contents:</p>
-<div class="table-of-contents"><ul><li><a href="#intro">Intro </a></li><li><a href="#engine-and-general-development">Engine and General Development </a></li><li><a href="#user-interface">User Interface </a></li><li><a href="#artists-and-asset-creation">Artists and Asset Creation </a></li><li><a href="#level-design-and-prefabs">Level Design and Prefabs </a></li><li><a href="#dlc-and-content-expansion">DLC and Content Expansion </a></li><li><a href="#performance-and-optimization">Performance and Optimization </a></li><li><a href="#ai-and-game-systems">AI and Game Systems </a></li><li><a href="#future-use-and-recommendations">Future Use and Recommendations </a></li><li><a href="#links">Links </a></li></ul></div>
+<div class="table-of-contents"><ul><li><a href="#intro">Intro </a></li><li><a href="#engine-and-general-development">Engine and General Development </a></li><li><a href="#user-interface">User Interface </a></li><li><a href="#artists-and-asset-creation">Artists and Asset Creation </a></li><li><a href="#level-design-and-prefabs">Level Design and Prefabs </a></li><li><a href="#dlc-and-content-expansion">DLC and Content Expansion </a></li><li><a href="#performance-and-optimization">Performance and Optimization </a></li><li><a href="#ai-and-game-systems">AI and Game Systems </a></li><li><a href="#future-use-and-recommendations">Future Use and Recommendations </a></li><li><a href="#conclusion">Conclusion </a></li><li><a href="#links">Links </a></li></ul></div>
 <h2 id="intro" tabindex="-1">Intro <a class="direct-link" href="#intro">🔗</a></h2>
 <p>Our Stride community has been eager to learn more about the development of <a href="https://store.steampowered.com/app/1531540/Distant_Worlds_2/">Distant Worlds 2</a>. We reached out to the developers at Code Force to hear about their experience using the Stride engine to create this ambitious 4X strategy game.</p>
 <p>We're incredibly grateful to the team for their generosity with both time and expertise. The depth and breadth of information they've shared, spanning everything from engine selection to performance optimization is impressive. Their willingness to provide such comprehensive insights is truly appreciated by the Stride community.</p>
@@ -207,7 +207,7 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>Early on, the lack of documentation made progress slower. But this has improved a lot over time.</p>
 <p>We worked quite a bit on getting Stride to handle heavily multi-threaded scenarios. We had to make some areas more robust and defensive, particularly around null-checking and iteration of lists.</p>
 <h2 id="user-interface" tabindex="-1">User Interface <a class="direct-link" href="#user-interface">🔗</a></h2>
-<div align="center">
+<div class="text-center">
     <img alt="Distnat Worlds 2 UI" src="/images/blog/2025/distant-worlds-2-ui.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-ui.webp">
 </div>
 <h4 id="which-library-did-you-use-for-ui-elements-in-distant-worlds-2%3F" tabindex="-1">Which library did you use for UI elements in Distant Worlds 2? <a class="direct-link" href="#which-library-did-you-use-for-ui-elements-in-distant-worlds-2%3F">🔗</a></h4>
@@ -226,7 +226,7 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>The Research screen is custom-rendered. Most of the data in DW2 is heavily moddable, and the tech trees are a big part of this. So the rendering for research projects has to be data-driven.</p>
 <p>We use some <code>SpriteBatch</code> helper classes to draw the lines and arrows between projects. The projects themselves use some basic textures for the main body.</p>
 <h2 id="artists-and-asset-creation" tabindex="-1">Artists and Asset Creation <a class="direct-link" href="#artists-and-asset-creation">🔗</a></h2>
-<div align="center">
+<div class="text-center">
     <img alt="Distnat Worlds 2" src="/images/blog/2025/distant-worlds-image-2.gif" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-image-2.gif">
 </div>
 <h4 id="how-did-the-artists-find-the-asset-creation-process-when-working-with-stride%3F" tabindex="-1">How did the artists find the asset creation process when working with Stride? <a class="direct-link" href="#how-did-the-artists-find-the-asset-creation-process-when-working-with-stride%3F">🔗</a></h4>
@@ -244,7 +244,7 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p><strong>Kevin:</strong> Plenty. Some of it was learning a new engine and some of it was a lack of certain features. A huge bonus for artists would be to be able to have a node-based editor for shader effects. Right now (at least on our current version) things like animated UVs has to be done manually.</p>
 <p><strong>Alex:</strong> When it comes to challenges or limitations with shaders in Stride, I’d say we didn’t run into much. The default shaders were solid and covered all our project needs so far. We haven’t tried adding custom ones yet though. I did give it a shot once using an example shader but it didn’t go well. The editor crashed and I was left scratching my head. I might revisit it later and hope for better luck. From that one try, it felt like adding a custom shader would take way more effort than you’d expect. Maybe I missed something simple but I wish it was less frustrating to bring a custom one into the project.</p>
 <h2 id="level-design-and-prefabs" tabindex="-1">Level Design and Prefabs <a class="direct-link" href="#level-design-and-prefabs">🔗</a></h2>
-<div align="center">
+<div class="text-center">
     <img alt="Distnat Worlds 2 UI" src="/images/blog/2025/distant-worlds-2-prefabs.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-prefabs.webp">
 </div>
 <h4 id="how-was-the-level-creation-process-using-stride-for-your-team%3F" tabindex="-1">How was the level creation process using Stride for your team? <a class="direct-link" href="#how-was-the-level-creation-process-using-stride-for-your-team%3F">🔗</a></h4>
@@ -257,7 +257,7 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>DW2 is probably not a typical game, so we only use the scene/entity system inside the game code itself, dynamically creating and updating scenes as needed.</p>
 <p>Stride Game Studio is really just an asset bundling tool for us.</p>
 <h2 id="dlc-and-content-expansion" tabindex="-1">DLC and Content Expansion <a class="direct-link" href="#dlc-and-content-expansion">🔗</a></h2>
-<div align="center">
+<div class="text-center">
     <img alt="Distnat Worlds 2 UI" src="/images/blog/2025/distant-worlds-2-dlc.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-dlc.webp">
 </div>
 <h4 id="could-you-briefly-outline-the-steps-involved-in-creating-a-dlc-for-distant-worlds-2%3F" tabindex="-1">Could you briefly outline the steps involved in creating a DLC for Distant Worlds 2? <a class="direct-link" href="#could-you-briefly-outline-the-steps-involved-in-creating-a-dlc-for-distant-worlds-2%3F">🔗</a></h4>
@@ -271,7 +271,7 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <h4 id="how-do-you-detect-whether-a-dlc-is-installed-or-not-for-a-player%3F" tabindex="-1">How do you detect whether a DLC is installed or not for a player? <a class="direct-link" href="#how-do-you-detect-whether-a-dlc-is-installed-or-not-for-a-player%3F">🔗</a></h4>
 <p>Each distribution platform has their own mechanism for this. So whether it’s Steam, GOG or something else, we use their inbuilt features to check this. Then we can load the appropriate bundle files with all of the models and textures for that DLC.</p>
 <h2 id="performance-and-optimization" tabindex="-1">Performance and Optimization <a class="direct-link" href="#performance-and-optimization">🔗</a></h2>
-<div align="center">
+<div class="text-center mb-3">
     <img alt="Distnat Worlds 2 UI" src="/images/blog/2025/distant-worlds-2-map.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-map.webp">
     <small>Source: Steam - Distant Worlds 2 - <a rel="noopener" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3421104197" target="_blank">Screenshots by Shrikebe</a></small>
 </div>
@@ -295,6 +295,10 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>This places some definite constraints on what we can render. We can’t just go crazy with expensive particle effects. But it has huge benefits for performance.</p>
 <p>Weapon trails are handled in a similar way, where a single vertex buffer contains all of the trail particles, and is rendered with a single draw call per frame.</p>
 <h2 id="ai-and-game-systems" tabindex="-1">AI and Game Systems <a class="direct-link" href="#ai-and-game-systems">🔗</a></h2>
+<div class="text-center mb-3">
+    <img alt="Distnat Worlds 2 UI" src="/images/blog/2025/distant-worlds-2-settings.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-2-settings.webp">
+    <small>Source: Steam - Distant Worlds 2 - <a rel="noopener" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3359322910" target="_blank">Screenshots by VoiD</a></small>
+</div>
 <h4 id="did-you-require-any-kind-of-editor-extensions%3F-how-did-you-implement-them%3F" tabindex="-1">Did you require any kind of editor extensions? How did you implement them? <a class="direct-link" href="#did-you-require-any-kind-of-editor-extensions%3F-how-did-you-implement-them%3F">🔗</a></h4>
 <p>Our use of the Stride Game Studio is really just as a tool to bundle assets into the game. So we didn’t need this.</p>
 <h4 id="which-serialization-method-did-you-use-for-saving-games%3F-was-it-a-database%2C-yaml%2C-or-a-mix%3F" tabindex="-1">Which serialization method did you use for saving games? Was it a database, YAML, or a mix? <a class="direct-link" href="#which-serialization-method-did-you-use-for-saving-games%3F-was-it-a-database%2C-yaml%2C-or-a-mix%3F">🔗</a></h4>
@@ -318,6 +322,9 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>You can fine-tune how each area of game logic works, even when it is fully-automated. These policy settings tweak precisely how the automated decisions are made, allowing you better control over things. This ‘intelligent automation’ is a key feature of Distant Worlds that allows it to scale very large while still being manageable for the player.</p>
 <p>The game logic (including the advisors) is constantly being developed and improved. With the very open game style of Distant Worlds, there are endless unexpected situations that can prove challenging for the game logic to handle. So we are always extending the game logic to handle new things.</p>
 <h2 id="future-use-and-recommendations" tabindex="-1">Future Use and Recommendations <a class="direct-link" href="#future-use-and-recommendations">🔗</a></h2>
+<div align="center">
+    <img alt="Distnat Worlds Future" src="/images/blog/2025/distant-worlds-future.webp" class="img-fluid mb-3" loading="lazy" data-src="/images/blog/2025/distant-worlds-future.webp">
+</div>
 <h4 id="what-types-of-projects-do-you-think-the-stride-engine-is-perfectly-suited-for%3F" tabindex="-1">What types of projects do you think the Stride engine is perfectly suited for? <a class="direct-link" href="#what-types-of-projects-do-you-think-the-stride-engine-is-perfectly-suited-for%3F">🔗</a></h4>
 <p>For us, the key strength of Stride is it’s deep integration with the .NET ecosystem, providing easy access to all of its tools and features. This has meant that we can build a standard .NET executable that simply uses Stride for rendering. That flexibility is great.</p>
 <h4 id="are-you-planning-to-use-stride-in-the-future%2C-beyond-maintaining-distant-worlds-2%3F" tabindex="-1">Are you planning to use Stride in the future, beyond maintaining Distant Worlds 2? <a class="direct-link" href="#are-you-planning-to-use-stride-in-the-future%2C-beyond-maintaining-distant-worlds-2%3F">🔗</a></h4>
@@ -330,6 +337,12 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
 <p>In Distant Worlds we load many different bundles. The models for each faction are contained in their own bundle. We currently have 14 factions, so that means 14 different bundles. We also have other bundles for other parts of the game. Each of these bundles must have different names.</p>
 <p>There is currently no way to change the bundle name directly from within Game Studio (that I know of). Instead you have to hand-edit the YAML in the *.sdpkg files, changing the bundle name and adding the appropriate Selectors.</p>
 <p>That may sound fairly simple, but it can still be an extra hurdle for modders. Having bundle-renaming built into the Game Studio would make this much easier.</p>
+<h2 id="conclusion" tabindex="-1">Conclusion <a class="direct-link" href="#conclusion">🔗</a></h2>
+<p>The journey through Distant Worlds 2's development offers valuable insights into what's possible with the Stride engine. Code Force's experience demonstrates how Stride's deep integration with .NET creates a flexible foundation for ambitious projects, allowing developers to focus on crafting unique gameplay experiences rather than wrestling with engine limitations.</p>
+<p>What stands out most is how the team leveraged Stride's strengths—particularly its rendering capabilities and open-source nature—while developing custom solutions where needed. Their approach to performance optimization, particularly for large-scale battles involving thousands of units, provides practical lessons for developers working on similarly complex simulations.</p>
+<p>We'd like to extend our sincere thanks to the Code Force team for sharing their expertise and experiences so candidly. Their willingness to detail both successes and challenges offers invaluable knowledge to the Stride community and game developers at large.</p>
+<p>For those inspired by what you've seen here, we encourage you to explore Stride for your own projects. Whether you're developing strategy games like Distant Worlds 2 or something entirely different, Stride's combination of powerful rendering, C# integration, and flexible architecture provides a solid foundation for bringing your vision to life.</p>
+<p>If you're already using Stride for your projects, we'd love to hear about your experiences in our <a href="https://github.com/stride3d/stride/discussions">GitHub discussion</a> or on our <a href="https://discord.gg/f6aerfE">Discord server</a>. Your stories and insights help strengthen our growing community of developers.</p>
 <h2 id="links" tabindex="-1">Links <a class="direct-link" href="#links">🔗</a></h2>
 <ul>
 <li>Steam: <a href="https://store.steampowered.com/app/1531540/Distant_Worlds_2/">Distant Worlds 2 on Steam</a></li>
@@ -347,7 +360,7 @@ Stride’s approach to .NET has been a big plus. It’s quite amazing that we co
                     Any comments? You can start 🗨 at <i class="fa-brands fa-github text-decoration-none"></i> <a href="https://github.com/stride3d/stride/discussions" target="_blank" rel="noreferrer">GitHub Discussions</a> or <i class="fa-brands fa-discord text-decoration-none"></i> <a class="" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener">Discord</a>.
                 </p>
                 <p>
-                    <a href="https://github.com/stride3d/stride-website/blob/master/./posts/2025-03-25-distant-worlds-2-development-with-stride.md" target="_blank" rel="noreferrer">Edit</a> this page on
+                    <a href="https://github.com/stride3d/stride-website/blob/master/./posts/2025-04-07-distant-worlds-2-development-with-stride.md" target="_blank" rel="noreferrer">Edit</a> this page on
                     <i class="fa-brands fa-github text-decoration-none"></i>.
                 </p>
             </article>
