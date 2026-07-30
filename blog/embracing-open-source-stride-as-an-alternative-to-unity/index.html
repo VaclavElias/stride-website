@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="canonical" href="https://www.stride3d.net/blog/embracing-open-source-stride-as-an-alternative-to-unity/">
     <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
-    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.31">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.38">
     <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
     <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
     <meta name="twitter:creator" content="@stridedotnet">
     <meta name="twitter:title" content="Unity's Licensing Changes: Discovering Stride, a Community-Driven Open Source Engine">
     <meta name="twitter:description" content="Explore the key differences between Unity and Stride, a C#-based, open-source game engine powered by .NET 6 (soon .NET 8). Learn how Stride's flexibility and...">
-    <meta name="twitter:image" content="https://www.stride3d.net/images/blog/2023-09-14-embracing-open-source/stride-vs-unity-opening-image-2.webp"><script src="/scripts/theme-selector.js?site-version=2.0.0.31"></script></head>
+    <meta name="twitter:image" content="https://www.stride3d.net/images/blog/2023-09-14-embracing-open-source/stride-vs-unity-opening-image-2.webp"><script src="/scripts/theme-selector.js?site-version=2.0.0.38"></script></head>
 <body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
     <div class="container-xxl">
         <a class="navbar-brand" href="/">
@@ -76,6 +76,7 @@
     <div class="mb-3">
         <input class="form-control" id="search-input" name="query" type="text" value="" autofocus tabindex="0" aria-label="Search">
     </div>
+
     <button class="btn btn-stride" name="submit" type="submit" value="Search">Search</button>
 </form></div>
                 </li>
@@ -157,7 +158,7 @@
                 </div><div itemprop="articleBody">
                     <p>Explore the key differences between Unity and Stride, a C#-based, open-source game engine powered by .NET 6 (soon .NET 8). Learn how Stride's flexibility and native .NET support offer a unique development experience.</p>
 <p>Table of Contents:</p>
-<div class="table-of-contents"><ul><li><a href="#introduction-to-stride">Introduction to Stride </a></li><li><a href="#difference-between-unity-and-stride">Difference Between Unity and Stride </a></li><li><a href="#licensing">Licensing </a></li><li><a href="#what-games-were-made-using-stride%3F">What games were made using Stride? </a></li><li><a href="#operating-system-support">Operating System Support </a></li><li><a href="#ide-support">IDE Support </a></li><li><a href="#.net-hot-reload-support">.NET Hot Reload Support </a></li><li><a href="#multiplayer-support">Multiplayer Support </a></li><li><a href="#unity-assets">Unity Assets </a></li><li><a href="#screen-capture">Screen Capture </a></li><li><a href="#shaders-available">Shaders Available </a></li><li><a href="#build-automation">Build Automation </a></li><li><a href="#add-ons-and-extensions">Add-ons and Extensions </a></li><li><a href="#transformations">Transformations </a></li><li><a href="#rendering">Rendering </a></li><li><a href="#gamepads">Gamepads </a></li><li><a href="#other-q%26a">Other Q&amp;A </a><ul><li><a href="#what-is-the-equivalent-of-a-coroutine-in-stride%3F">What is the Equivalent of a Coroutine in Stride? </a></li><li><a href="#what-is-a-startupscript%3F">What is a StartupScript? </a></li><li><a href="#using-other-assemblies%2Fprojects-in-stride">Using Other Assemblies/Projects in Stride </a></li><li><a href="#is-there-an-asset-store-for-stride%3F">Is There an Asset Store for Stride? </a></li><li><a href="#null-checking-in-stride-vs-unity">Null Checking in Stride vs Unity </a></li></ul></li><li><a href="#where-to-start">Where to Start </a></li><li><a href="#how-to-find-answers">How to Find Answers </a></li><li><a href="#%F0%9F%A4%9D-join-us%3A-stride-bug-bounties-and-feature-funding-%F0%9F%9B%A0%EF%B8%8F">🤝 Join Us: Stride Bug Bounties and Feature Funding 🛠️ </a></li><li><a href="#flappy-bird---stride-engine-demo">Flappy Bird - Stride Engine Demo </a></li><li><a href="#closing-thoughts-%F0%9F%99%82">Closing Thoughts 🙂 </a></li></ul></div>
+<div class="table-of-contents"><ul><li><a href="#introduction-to-stride">Introduction to Stride</a></li><li><a href="#difference-between-unity-and-stride">Difference Between Unity and Stride</a></li><li><a href="#licensing">Licensing</a></li><li><a href="#what-games-were-made-using-stride%3F">What games were made using Stride?</a></li><li><a href="#operating-system-support">Operating System Support</a></li><li><a href="#ide-support">IDE Support</a></li><li><a href="#.net-hot-reload-support">.NET Hot Reload Support</a></li><li><a href="#multiplayer-support">Multiplayer Support</a></li><li><a href="#unity-assets">Unity Assets</a></li><li><a href="#screen-capture">Screen Capture</a></li><li><a href="#shaders-available">Shaders Available</a></li><li><a href="#build-automation">Build Automation</a></li><li><a href="#add-ons-and-extensions">Add-ons and Extensions</a></li><li><a href="#transformations">Transformations</a></li><li><a href="#rendering">Rendering</a></li><li><a href="#gamepads">Gamepads</a></li><li><a href="#other-q%26a">Other Q&amp;A</a><ul><li><a href="#what-is-the-equivalent-of-a-coroutine-in-stride%3F">What is the Equivalent of a Coroutine in Stride?</a></li><li><a href="#what-is-a-startupscript%3F">What is a StartupScript?</a></li><li><a href="#using-other-assemblies%2Fprojects-in-stride">Using Other Assemblies/Projects in Stride</a></li><li><a href="#is-there-an-asset-store-for-stride%3F">Is There an Asset Store for Stride?</a></li><li><a href="#null-checking-in-stride-vs-unity">Null Checking in Stride vs Unity</a></li></ul></li><li><a href="#where-to-start">Where to Start</a></li><li><a href="#how-to-find-answers">How to Find Answers</a></li><li><a href="#%F0%9F%A4%9D-join-us%3A-stride-bug-bounties-and-feature-funding-%F0%9F%9B%A0%EF%B8%8F">🤝 Join Us: Stride Bug Bounties and Feature Funding 🛠️</a></li><li><a href="#flappy-bird---stride-engine-demo">Flappy Bird - Stride Engine Demo</a></li><li><a href="#closing-thoughts-%F0%9F%99%82">Closing Thoughts 🙂</a></li></ul></div>
 <h2 id="introduction-to-stride" tabindex="-1">Introduction to Stride <a class="direct-link" href="#introduction-to-stride">🔗</a></h2>
 <p>Stride is not just another game engine; it's written entirely in C# and serves as a powerful platform in the .NET ecosystem. This unique focus on C# offers developers the native .NET tooling and functionalities they are already comfortable with. What sets Stride apart is its project structure; Stride projects are standard <code>csproj</code> files, allowing them to integrate effortlessly into your existing .NET solutions.</p>
 <h2 id="difference-between-unity-and-stride" tabindex="-1">Difference Between Unity and Stride <a class="direct-link" href="#difference-between-unity-and-stride">🔗</a></h2>
@@ -394,11 +395,11 @@ commandList<span class="token punctuation">.</span>RenderTarget<span class="toke
             </div>
             <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
                 <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
-                <p class="text-light">Website v.2.0.0.31</p>
+                <p class="text-light">Website v.2.0.0.38</p>
                 <p class="text-light">© .NET Foundation and Contributors</p>
             </div>
         </footer>
     </div>
-</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.31"></script>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.38"></script>
 </body>
 </html>

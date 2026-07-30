@@ -7,25 +7,25 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());gtag('config', 'G-Y9CVGC9YV1');
 </script><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recap September 2019 - Stride Game Engine</title>
-    <meta name="description" content="Welcome to the September blog post of Xenko. In this blog, we will have a quick recap on what's going on with Xenko development and its community. From now o...">
+    <title>Announcing Stride 4.3 - Stride Game Engine</title>
+    <meta name="description" content="Stride 4.3 brings .NET 10 and C# 14, Bepu Physics, Vulkan compute shaders, custom assets, cross-platform build strides, mesh buffer helpers, Rider/VSCode sup...">
     <meta name="generator" content="Eleventy v3.0.0">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="canonical" href="https://www.stride3d.net/blog/september-2019/">
+    <link rel="canonical" href="https://www.stride3d.net/blog/announcing-stride-4-3-in-dotnet-10/">
     <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
     <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.38">
     <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Stride Game Engine">
-    <meta property="og:title" content="Recap September 2019">
-    <meta property="og:description" content="Welcome to the September blog post of Xenko. In this blog, we will have a quick recap on what's going on with Xenko development and its community. From now o...">
-    <meta property="og:url" content="https://www.stride3d.net/blog/september-2019/">
+    <meta property="og:title" content="Announcing Stride 4.3">
+    <meta property="og:description" content="Stride 4.3 brings .NET 10 and C# 14, Bepu Physics, Vulkan compute shaders, custom assets, cross-platform build strides, mesh buffer helpers, Rider/VSCode sup...">
+    <meta property="og:url" content="https://www.stride3d.net/blog/announcing-stride-4-3-in-dotnet-10/">
     <meta property="og:image" content="https://www.stride3d.net/images/og/stride-game-engine-default-og.jpg"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@stridedotnet">
     <meta name="twitter:creator" content="@stridedotnet">
-    <meta name="twitter:title" content="Recap September 2019">
-    <meta name="twitter:description" content="Welcome to the September blog post of Xenko. In this blog, we will have a quick recap on what's going on with Xenko development and its community. From now o...">
+    <meta name="twitter:title" content="Announcing Stride 4.3">
+    <meta name="twitter:description" content="Stride 4.3 brings .NET 10 and C# 14, Bepu Physics, Vulkan compute shaders, custom assets, cross-platform build strides, mesh buffer helpers, Rider/VSCode sup...">
     <meta name="twitter:image" content="https://www.stride3d.net/images/og/stride-game-engine-default-og.jpg"><script src="/scripts/theme-selector.js?site-version=2.0.0.38"></script></head>
 <body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
     <div class="container-xxl">
@@ -148,39 +148,127 @@
     <div class="row postcontent">
         <div class="col-12">
             <article itemscope itemtype="http://schema.org/BlogPosting">
-                <h1 itemprop="name">Recap September 2019</h1>
+                <h1 itemprop="name">Announcing Stride 4.3</h1>
                 <div class="text-center mb-3 pt-2"><div><div class="mt-4 mb-2">
-                            <img class="rounded-circle me-1" width="58" height="58" alt="author" src="https://avatars.githubusercontent.com/Aggror?size=87">
-                        </div>Jorn Theunissen
+                            <img class="rounded-circle me-1" width="58" height="58" alt="author" src="https://avatars.githubusercontent.com/VaclavElias?size=87">
+                        </div>Vaclav Elias
                     </div><p style="border-top: 2px solid #979593;" class="x-hidden-focus mt-4 pt-1 small text-secondary date d-inline-block">
-                        <small><i class="fa-solid fa-calendar-days"></i> <time datetime="2019-09-23T00:00:00+0000" itemprop="datePublished"> September 23, 2019</time></small>
+                        <small><i class="fa-solid fa-calendar-days"></i> <time datetime="2025-11-14T00:00:00+0000" itemprop="datePublished"> November 14, 2025</time></small>
                     </p>
                 </div><div itemprop="articleBody">
-                    <p>Welcome to the September blog post of Xenko. In this blog, we will have a quick recap on what's going on with Xenko development and its community. From now on we will have a monthly recap blog to let the world know what we are up to.</p>
-<div class="table-of-contents"><ul><li><a href="#picking-up-speed">Picking Up Speed</a></li><li><a href="#new-project-overview">New Project Overview</a></li><li><a href="#what-is-being-worked-on">What is being worked on</a></li><li><a href="#possible-name-change">Possible Name Change</a></li></ul></div>
-<h2 id="picking-up-speed" tabindex="-1">Picking Up Speed <a class="direct-link" href="#picking-up-speed">🔗</a></h2>
-<p>Since the last developer meeting in July, it was made clear that Xenko really needs the help of the community to improve. Part of improving is making sure that the community can help out on various aspects of Xenko. This is not just the development of the Xenko engine itself, but also all the other processes that are involved around it. You can follow the ongoing forum discussion <a href="https://forums.stride3d.net/t/community-call-for-help/1997">here</a>.</p>
-<h2 id="new-project-overview" tabindex="-1">New Project Overview <a class="direct-link" href="#new-project-overview">🔗</a></h2>
-<p>As part of getting things done quicker, a new public project overview has been set up using Freedcamp. In this here we track of ongoing tasks, who is assigned to it and what possible milestones are. If you want to contribute to this project or just check out the current tasks, have a <a href="https://freedcamp.com/Xenko_YO2/XenkoManagementT_3sf/todos">look</a>.</p>
-<p><a href="https://freedcamp.com/Xenko_YO2/XenkoManagementT_3sf/todos" title="Freedcamp project" class="mb-3"><img alt="Freedcamp project" src="/images/blog/2019-09-23-september-2019/freedcamp.png" class="img-fluid" loading="lazy" data-src="/images/blog/2019-09-23-september-2019/freedcamp.png"></a></p>
-<h2 id="what-is-being-worked-on" tabindex="-1">What is being worked on <a class="direct-link" href="#what-is-being-worked-on">🔗</a></h2>
-<p>Here are some of the things that are being worked on:</p>
+                    <p>Stride 4.3 brings .NET 10 and C# 14, Bepu Physics, Vulkan compute shaders, custom assets, cross-platform build strides, mesh buffer helpers, Rider/VSCode support, and performance and stability fixes.</p>
+<p>Table of Contents:</p>
+<div class="table-of-contents"><ul><li><a href="#download-and-upgrade">Download and Upgrade</a></li><li><a href="#what's-new-in-this-release">What's new in this release</a></li><li><a href="#what-has-changed-since-stride-4.2">What has changed since Stride 4.2</a><ul><li><a href="#bepu-physics-integration">Bepu physics integration</a></li><li><a href="#vulkan-compute-shader-support">Vulkan compute shader support</a></li><li><a href="#user-defined-assets">User-defined Assets</a></li><li><a href="#ongoing-efforts-to-build-projects-from-linux-and-apple-desktops">Ongoing efforts to build projects from Linux and Apple desktops</a></li><li><a href="#efficient-api-to-manipulate-meshes">Efficient API to manipulate meshes</a></li><li><a href="#open-project-with-rider-and-vscode-from-the-gamestudio">Open project with Rider and VSCode from the GameStudio</a></li><li><a href="#interface-processor">Interface processor</a></li><li><a href="#and-more-minor-changes">And more minor changes</a></li><li><a href="#fixes">Fixes</a></li><li><a href="#also-good-to-know">Also good to know</a></li></ul></li><li><a href="#funding-and-resource-allocation">Funding and Resource Allocation</a><ul><li><a href="#call-for-skilled-developers">Call for Skilled Developers</a></li><li><a href="#join-us-on-this-journey">Join Us on This Journey</a></li></ul></li><li><a href="#links">Links</a></li><li><a href="#acknowledgements">Acknowledgements</a><ul><li><a href="#long-time-stride-supporters">Long-time Stride supporters</a></li><li><a href="#gold-striders">Gold Striders</a></li></ul></li></ul></div>
+<h2 id="download-and-upgrade" tabindex="-1">Download and Upgrade <a class="direct-link" href="#download-and-upgrade">🔗</a></h2>
+<p>You can <a href="https://www.stride3d.net/download/">download the Stride 4.3 Installer</a> today. Release notes are available <a href="https://doc.stride3d.net/latest/en/ReleaseNotes/ReleaseNotes.html">here</a>.</p>
+<p>Make sure you read the <a href="https://doc.stride3d.net/latest/en/manual/get-started/update-stride.html">guide to update Stride and projects properly</a>.</p>
+<h2 id="what's-new-in-this-release" tabindex="-1">What's new in this release <a class="direct-link" href="#what's-new-in-this-release">🔗</a></h2>
+<p>Stride 4.3 includes numerous enhancements and improvements. Here’s what to expect:</p>
 <ul>
-<li>New tutorials section for the <a href="https://doc.stride3d.net/latest/en/index.html">documentation</a> website. Starting with a section of C# basics with Xenko, we can start making it easier for people to get the hang of Xenko in no time. Here is a quick <a href="https://forums.stride3d.net/t/improving-the-api-documentation/1961/18">peek</a> at how it is going to look like.</li>
-<li>Phr00t fork merging: The <a href="https://github.com/phr00t/xenko">Phr00t fork</a> contains many features that the main Xenko engine could benefit from. From countless API improvements to bigger features like Vulkan improvements. Right now contributors are looking in which features and functionality to move to the main Xenko repository.</li>
+<li>
+<p><strong>.NET 10 Integration</strong>: Stride 4.3 is now fully aligned with .NET 10, harnessing its performance improvements and efficiency gains for game development. This means faster execution times, reduced memory footprint, and access to the latest C# features, making your development smoother and more efficient. <a href="https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-10/">Learn more</a></p>
+</li>
+<li>
+<p><strong>C# 14 Features</strong>: With C# 14, Stride users can write cleaner, more concise code thanks to new language features. These improvements reduce boilerplate and enhance readability. <a href="https://devblogs.microsoft.com/dotnet/introducing-csharp-14/">Introducing C# 14</a></p>
+</li>
 </ul>
-<h2 id="possible-name-change" tabindex="-1">Possible Name Change <a class="direct-link" href="#possible-name-change">🔗</a></h2>
-<p>For those of you who have missed it: Xenko is looking for a possible rename of the engine. If you want to know more about the why and why not, have a look at this <a href="https://forums.stride3d.net/t/xenko-help-us-find-a-new-name-logo-for-the-engine-if-we-have-to-rename/1980">forum topic</a>. Regardless of whether the name change will happen, we need to find a suitable candidate. In a few weeks, we will start a poll to narrow down the long list of suggested names. A more detailed blog on this will follow soon. In the meantime, if you have a great idea, feel free to make a suggestion in the topic above or in the Xenko discord channel “Name-change”.</p>
+<h2 id="what-has-changed-since-stride-4.2" tabindex="-1">What has changed since Stride 4.2 <a class="direct-link" href="#what-has-changed-since-stride-4.2">🔗</a></h2>
+<h3 id="bepu-physics-integration" tabindex="-1">Bepu physics integration <a class="direct-link" href="#bepu-physics-integration">🔗</a></h3>
+<p>Adding support for <a href="https://github.com/bepu/bepuphysics2">Bepu Physics</a>, a ridiculously fast physics engine written entirely in C#.</p>
+<p>Having both a game and physics engine in the same ecosystem reduces the cost of maintaining and improving it, the overhead that we may incur when communicating between the two APIs, and the barrier to entry for contributors.</p>
+<p>Bullet is still the default physics engine, and we welcome any contribution towards it, but our efforts will be focused on Bepu from now.</p>
+<p>The integration is effectively done, with Bepu's feature set now being slightly ahead of Bullet's. Have a look at <a href="https://doc.stride3d.net/latest/en/manual/physics/configuration.html">this page</a> if you want to migrate to Bepu.</p>
+<h3 id="vulkan-compute-shader-support" tabindex="-1">Vulkan compute shader support <a class="direct-link" href="#vulkan-compute-shader-support">🔗</a></h3>
+<p>The Vulkan graphics backend has been modified to support compute shaders, and the shader compiler has also been modified to support compute shader generation for GLSL.</p>
+<h3 id="user-defined-assets" tabindex="-1">User-defined Assets <a class="direct-link" href="#user-defined-assets">🔗</a></h3>
+<p>Introducing <a href="https://doc.stride3d.net/latest/en/manual/scripts/custom-assets.html">Custom Assets</a>, a way to define and store data which can be referenced across multiple components, scenes and through other assets.</p>
+<p>The asset compiler also gives you the ability to build more complex systems like custom file importers.</p>
+<h3 id="ongoing-efforts-to-build-projects-from-linux-and-apple-desktops" tabindex="-1">Ongoing efforts to build projects <em>from</em> Linux and Apple desktops <a class="direct-link" href="#ongoing-efforts-to-build-projects-from-linux-and-apple-desktops">🔗</a></h3>
+<p>Stride can build games on Windows targeting the different devices we support, but building directly on those platforms was not supported until now.</p>
+<p>We've introduced a couple of changes to improve on that front:</p>
+<ul>
+<li>Replacing our custom C++/CLI FBX importer with <a href="https://github.com/assimp/assimp">Assimp</a></li>
+<li>Fixing the asset compiler to run on all desktop OSes</li>
+<li>Many build-system refactors to move toward fully cross-platform development</li>
+<li>Building VHACD for Linux</li>
+<li>Adjust FreeImage and DirectXTex for all platforms</li>
+</ul>
+<p>Some work is still required on this front, but simpler projects can now be built on those platforms.</p>
+<h3 id="efficient-api-to-manipulate-meshes" tabindex="-1">Efficient API to manipulate meshes <a class="direct-link" href="#efficient-api-to-manipulate-meshes">🔗</a></h3>
+<p>Vertex buffers do not have a standardized layout, each mesh may have its own specific layout and data type it uses for its vertices. Some have blend weights, or tangents, while others only have positions - they may also use different data types, for example Half4 positions, 4byte color ...</p>
+<p>We added in two helpers in <a href="https://doc.stride3d.net/latest/en/api/Stride.Graphics.VertexBufferHelper.html">VertexBufferHelper</a> and <a href="https://doc.stride3d.net/latest/en/api/Stride.Graphics.IndexBufferHelper.html">IndexBufferHelper</a> to provide a standardized way to read and write to those buffers.</p>
+<h3 id="open-project-with-rider-and-vscode-from-the-gamestudio" tabindex="-1">Open project with Rider and VSCode from the GameStudio <a class="direct-link" href="#open-project-with-rider-and-vscode-from-the-gamestudio">🔗</a></h3>
+<p>While any IDE can open and build Stride projects, the editor button to open said project only had special handling for Visual Studio. <a href="https://github.com/Jklawreszuk">Jklawreszuk</a> added support for Rider and VSCode.</p>
+<h3 id="interface-processor" tabindex="-1">Interface processor <a class="direct-link" href="#interface-processor">🔗</a></h3>
+<p>Stride has a <a href="https://doc.stride3d.net/latest/en/manual/engine/entity-component-system/usage.html">component processors</a>, a user-defined class which can collect and process all components of a given type in the running game. It is also known as the <code>System</code> part of the <code>ECS</code> acronym.</p>
+<p>The new <a href="https://doc.stride3d.net/latest/en/manual/engine/entity-component-system/flexible-processing.html">flexible processing system</a> provides more type safety, and the ability to process components by their interfaces. You could, for example, implement a custom update callback any component could receive through this API.</p>
+<h3 id="and-more-minor-changes" tabindex="-1">And more minor changes <a class="direct-link" href="#and-more-minor-changes">🔗</a></h3>
+<ul>
+<li><a href="https://github.com/stride3d/stride/pull/2711">HDR Rendering Support for D3d/Windows</a></li>
+<li><a href="https://doc.stride3d.net/latest/en/manual/scripts/gizmos.html">User-defined gizmos</a></li>
+<li><a href="https://github.com/stride3d/stride/pull/2169">Haptic feedback integration for VR runtimes</a></li>
+<li><a href="https://github.com/stride3d/stride/pull/2141">API for OpenXR Passthrough</a></li>
+</ul>
+<h3 id="fixes" tabindex="-1">Fixes <a class="direct-link" href="#fixes">🔗</a></h3>
+<p>Although there have been <a href="https://github.com/stride3d/stride/pulls?page=2&amp;q=is%3Apr+merged%3A%3E2023-10-10">many fixes</a>, we'd like to point some of them out:</p>
+<ul>
+<li>Major performance improvements, particularly for graphics and UI</li>
+<li>Multiple fixes improving Vulkan, OpenGL, games under Linux and OpenXR stability</li>
+<li>And fixes for edge cases when reloading assemblies in the game studio</li>
+</ul>
+<h3 id="also-good-to-know" tabindex="-1">Also good to know <a class="direct-link" href="#also-good-to-know">🔗</a></h3>
+<p>We are already hard at work on a bunch of ongoing projects for version 4.4 and beyond:</p>
+<ul>
+<li>Continuing work to allow for building games <em>from</em> other platforms</li>
+<li>Converting our Windows-only GameStudio to cross-platform through Avalonia<br>
+We welcome anyone willing to contribute to this project over <a href="https://github.com/orgs/stride3d/projects/6">Here</a> - just have to make sure to add a comment to one of the unassigned issues you want to work on</li>
+<li>Improvements to shader compilation, reducing in-game hangs while building shader permutations. <a href="https://github.com/stride3d/SDSL">Here</a></li>
+<li>More work on D3d12 and Vulkan as we slowly transition away from D3d11</li>
+</ul>
+<h2 id="funding-and-resource-allocation" tabindex="-1">Funding and Resource Allocation <a class="direct-link" href="#funding-and-resource-allocation">🔗</a></h2>
+<h3 id="call-for-skilled-developers" tabindex="-1">Call for Skilled Developers <a class="direct-link" href="#call-for-skilled-developers">🔗</a></h3>
+<p>We are actively seeking skilled developers with experience in C#, the .NET ecosystem, mobile, XR, rendering, and game development. If you have these skills or know someone who does, we encourage you to get involved. There are <a href="https://opencollective.com/stride3d/projects">opportunities to contribute</a> to critical areas of Stride's development, supported by available funds.</p>
+<h3 id="join-us-on-this-journey" tabindex="-1">Join Us on This Journey <a class="direct-link" href="#join-us-on-this-journey">🔗</a></h3>
+<p>We’re always excited to welcome new contributors to the Stride family. Whether it’s through code contributions, spreading the word, or donations, every bit helps us grow stronger. If you’ve got skills in .NET, Android, and iOS development, there’s a special place for you here. <a href="https://opencollective.com/stride3d">Support us on OpenCollective</a>.</p>
+<h2 id="links" tabindex="-1">Links <a class="direct-link" href="#links">🔗</a></h2>
+<ul>
+<li>GitHub: <a href="https://github.com/stride3d/stride">https://github.com/stride3d/stride</a></li>
+<li>Website: <a href="https://stride3d.net/">https://stride3d.net/</a></li>
+<li>Documentation: <a href="https://doc.stride3d.net/latest/en/manual/">https://doc.stride3d.net/latest/en/manual/</a></li>
+<li>Twitter: <a href="https://twitter.com/stridedotnet">https://twitter.com/stridedotnet</a></li>
+<li>YouTube: <a href="https://www.youtube.com/@Stride3D">https://www.youtube.com/@Stride3D</a></li>
+<li>Stride Community Toolkit: <a href="https://stride3d.github.io/stride-community-toolkit/index.html">https://stride3d.github.io/stride-community-toolkit/index.html</a></li>
+</ul>
+<h2 id="acknowledgements" tabindex="-1">Acknowledgements <a class="direct-link" href="#acknowledgements">🔗</a></h2>
+<p>We extend our heartfelt gratitude for all the hard work and donations we have received. Your generous contributions significantly aid in the continuous development and enhancement of the Stride community and projects. Thank you for your support and belief in our collective efforts.</p>
+<p>In particular, we want to thank these donors:</p>
+<h3 id="long-time-stride-supporters" tabindex="-1">Long-time Stride supporters <a class="direct-link" href="#long-time-stride-supporters">🔗</a></h3>
+<ul>
+<li>
+<p><a href="https://visualprogramming.net/">VVVV</a>🥇</p>
+<p><a href="https://visualprogramming.net/"><img src="https://images.opencollective.com/vvvv/8ab0acd/logo/256.png?height=72" alt="vvvv. A visual live-programming environment that takes you from rapid prototyping to final production"></a></p>
+</li>
+</ul>
+<h3 id="gold-striders" tabindex="-1">Gold Striders <a class="direct-link" href="#gold-striders">🔗</a></h3>
+<ul>
+<li><a href="https://www.happenstancegames.com/">Happenstance Games</a>🏆</li>
+<li><a href="https://www.vaclavelias.com/">Vašo ( Vaclav )</a>🥇</li>
+<li><a href="http://www.lucidsilence.org/">Lucid Silence Games</a>🥇</li>
+<li><a href="https://opencollective.com/widowmakes">WidowMakes</a>🥇</li>
+<li><a href="https://github.com/bepu/bepuphysics2">Norbo</a>🥇</li>
+<li><a href="https://opencollective.com/first-hour">First Hour</a>🥇</li>
+</ul>
+<p>This article was co-authored by <a href="https://github.com/Eideren">Eideren</a>.</p>
 
                 </div>
                 <hr>
                 <p>
-<span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">Meeting</span></p>
+<span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">4.3</span><span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">Release</span></p>
                 <p>
                     Any comments? You can start 🗨 at <i class="fa-brands fa-github text-decoration-none"></i> <a href="https://github.com/stride3d/stride/discussions" target="_blank" rel="noreferrer">GitHub Discussions</a> or <i class="fa-brands fa-discord text-decoration-none"></i> <a class="" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener">Discord</a>.
                 </p>
                 <p>
-                    <a href="https://github.com/stride3d/stride-website/blob/master/./posts/2014-2021/2019-09-23-september-2019.md" target="_blank" rel="noreferrer">Edit</a> this page on
+                    <a href="https://github.com/stride3d/stride-website/blob/master/./posts/2025-11-14-announcing-stride-4-3-in-dotnet-10.md" target="_blank" rel="noreferrer">Edit</a> this page on
                     <i class="fa-brands fa-github text-decoration-none"></i>.
                 </p>
             </article>
@@ -191,7 +279,7 @@
             <div class="card px-3">
                 <div class="card-body p-4">
                     <h5>Previous Post</h5>
-                    <a class="prev stretched-link" href="/blog/community-meeting-2/">Community Meeting July 2019</a>
+                    <a class="prev stretched-link" href="/blog/distant-worlds-2-development-with-stride/">A Look Inside Distant Worlds 2: Developing with the Stride Engine</a>
                 </div>
             </div>
             
@@ -201,7 +289,7 @@
             <div class="card px-3">
                 <div class="card-body p-4">
                     <h5>Next Post</h5>
-                    <a class="next stretched-link" href="/blog/contributor-meeting-1/">Contributor Meeting October 2019</a>
+                    <a class="next stretched-link" href="/blog/investigating-spirv-for-the-shader-system-part-3/">Investigating SPIR-V for the shader system - Part 3</a>
                 </div>
             </div>
             

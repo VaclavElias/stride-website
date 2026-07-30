@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="canonical" href="https://www.stride3d.net/blog/announcing-stride-4-2-in-dotnet-8/">
     <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
-    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.31">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.38">
     <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
     <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
     <meta name="twitter:creator" content="@stridedotnet">
     <meta name="twitter:title" content="Announcing Stride 4.2">
     <meta name="twitter:description" content="Stride contributors are thrilled to announce the release of Stride 4.2, now fully compatible with .NET 8 and leveraging the latest enhancements in C# 12. Thi...">
-    <meta name="twitter:image" content="https://www.stride3d.net/images/og/stride-game-engine-default-og.jpg"><script src="/scripts/theme-selector.js?site-version=2.0.0.31"></script></head>
+    <meta name="twitter:image" content="https://www.stride3d.net/images/og/stride-game-engine-default-og.jpg"><script src="/scripts/theme-selector.js?site-version=2.0.0.38"></script></head>
 <body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
     <div class="container-xxl">
         <a class="navbar-brand" href="/">
@@ -76,6 +76,7 @@
     <div class="mb-3">
         <input class="form-control" id="search-input" name="query" type="text" value="" autofocus tabindex="0" aria-label="Search">
     </div>
+
     <button class="btn btn-stride" name="submit" type="submit" value="Search">Search</button>
 </form></div>
                 </li>
@@ -158,7 +159,7 @@
                     <p>Stride contributors are thrilled to announce the release of Stride 4.2, now fully compatible with .NET 8 and leveraging the latest enhancements in C# 12. This release brings significant improvements in performance, stability, and developer experience.</p>
 <p><a href="/images/blog/release-4.2/stride_4_2_fps.webp" title="Stride 4.2 performance enhancements with .NET 8" class="mb-3"><img alt="Stride 4.2 performance enhancements with .NET 8" src="/images/blog/release-4.2/stride_4_2_fps.webp" class="img-fluid" loading="lazy" data-src="/images/blog/release-4.2/stride_4_2_fps.webp"></a></p>
 <p>Table of Contents:</p>
-<div class="table-of-contents"><ul><li><a href="#download-and-upgrade">Download and Upgrade </a></li><li><a href="#unity-licensing-model-impact%3A-a-catalyst-for-change">Unity Licensing Model Impact: A Catalyst for Change </a><ul><li><a href="#stride's-rising-popularity">Stride's Rising Popularity </a></li><li><a href="#the-heartbeat-of-stride%3A-our-community">The Heartbeat of Stride: Our Community </a></li></ul></li><li><a href="#addressing-the-pace-of-updates-in-stride">Addressing the Pace of Updates in Stride </a><ul><li><a href="#the-people-behind-stride">The People Behind Stride </a></li><li><a href="#facing-the-realities%3A-funding-and-resources">Facing the Realities: Funding and Resources </a></li></ul></li><li><a href="#funding-and-resource-allocation">Funding and Resource Allocation </a><ul><li><a href="#challenges-in-distribution">Challenges in Distribution </a></li><li><a href="#call-for-skilled-developers">Call for Skilled Developers </a></li><li><a href="#join-us-on-this-journey">Join Us on This Journey </a></li><li><a href="#the-impact-of-your-support">The Impact of Your Support </a></li><li><a href="#looking-ahead">Looking Ahead </a></li></ul></li><li><a href="#what's-new-in-stride-4.2">What's New in Stride 4.2 </a></li><li><a href="#fixes">Fixes </a></li><li><a href="#exciting-development-in-stride-physics">Exciting Development in Stride Physics </a><ul><li><a href="#introducing-bepu-physics-in-stride">Introducing Bepu Physics in Stride </a></li><li><a href="#future-prospects-and-disclaimer">Future Prospects and Disclaimer </a></li></ul></li><li><a href="#also-good-to-know">Also good to know </a><ul><li><a href="#cross-platform-evolution%3A-the-stride-editor-and-avalonia">Cross-Platform Evolution: The Stride Editor and Avalonia </a></li></ul></li><li><a href="#links">Links </a></li><li><a href="#acknowledgements">Acknowledgements </a><ul><li><a href="#long-time-stride-supporters">Long time Stride supporters </a></li><li><a href="#platinum-striders">Platinum Striders </a></li><li><a href="#gold-striders">Gold Striders </a></li></ul></li></ul></div>
+<div class="table-of-contents"><ul><li><a href="#download-and-upgrade">Download and Upgrade</a></li><li><a href="#unity-licensing-model-impact%3A-a-catalyst-for-change">Unity Licensing Model Impact: A Catalyst for Change</a><ul><li><a href="#stride's-rising-popularity">Stride's Rising Popularity</a></li><li><a href="#the-heartbeat-of-stride%3A-our-community">The Heartbeat of Stride: Our Community</a></li></ul></li><li><a href="#addressing-the-pace-of-updates-in-stride">Addressing the Pace of Updates in Stride</a><ul><li><a href="#the-people-behind-stride">The People Behind Stride</a></li><li><a href="#facing-the-realities%3A-funding-and-resources">Facing the Realities: Funding and Resources</a></li></ul></li><li><a href="#funding-and-resource-allocation">Funding and Resource Allocation</a><ul><li><a href="#challenges-in-distribution">Challenges in Distribution</a></li><li><a href="#call-for-skilled-developers">Call for Skilled Developers</a></li><li><a href="#join-us-on-this-journey">Join Us on This Journey</a></li><li><a href="#the-impact-of-your-support">The Impact of Your Support</a></li><li><a href="#looking-ahead">Looking Ahead</a></li></ul></li><li><a href="#what's-new-in-stride-4.2">What's New in Stride 4.2</a></li><li><a href="#fixes">Fixes</a></li><li><a href="#exciting-development-in-stride-physics">Exciting Development in Stride Physics</a><ul><li><a href="#introducing-bepu-physics-in-stride">Introducing Bepu Physics in Stride</a></li><li><a href="#future-prospects-and-disclaimer">Future Prospects and Disclaimer</a></li></ul></li><li><a href="#also-good-to-know">Also good to know</a><ul><li><a href="#cross-platform-evolution%3A-the-stride-editor-and-avalonia">Cross-Platform Evolution: The Stride Editor and Avalonia</a></li></ul></li><li><a href="#links">Links</a></li><li><a href="#acknowledgements">Acknowledgements</a><ul><li><a href="#long-time-stride-supporters">Long time Stride supporters</a></li><li><a href="#platinum-striders">Platinum Striders</a></li><li><a href="#gold-striders">Gold Striders</a></li></ul></li></ul></div>
 <p>A massive thank you to the open-source Stride community for your dedicated contributions. This release saw over 75 contributions from more than 22 amazing contributors, each playing a crucial role in making Stride 4.2 a reality.</p>
 <h2 id="download-and-upgrade" tabindex="-1">Download and Upgrade <a class="direct-link" href="#download-and-upgrade">🔗</a></h2>
 <p>You can <a href="https://www.stride3d.net/download/">download the Stride 4.2 Installer</a> today. Release notes are available <a href="https://doc.stride3d.net/latest/en/ReleaseNotes/ReleaseNotes.html">here</a>.</p>
@@ -285,13 +286,13 @@
 <h3 id="platinum-striders" tabindex="-1">Platinum Striders <a class="direct-link" href="#platinum-striders">🔗</a></h3>
 <ul>
 <li>
-<p><a href="http://www.happenstancegames.com">Happenstance Games</a>🏆</p>
+<p><a href="https://www.happenstancegames.com/">Happenstance Games</a>🏆</p>
 <p><a href="http://www.happenstancegames.com/"><img width=64 src="https://www.stride3d.net/images/sponsors/HappenLogo.webp" alt="Happenstance games logo"></a></p>
 </li>
 </ul>
 <h3 id="gold-striders" tabindex="-1">Gold Striders <a class="direct-link" href="#gold-striders">🔗</a></h3>
 <ul>
-<li><a href="https://opencollective.com/vaclav">Vašo ( Vaclav )</a>🥇</li>
+<li><a href="https://www.vaclavelias.com/">Vašo ( Vaclav )</a>🥇</li>
 <li><a href="http://www.lucidsilence.org/">Lucid Silence Games</a>🥇</li>
 <li><a href="https://opencollective.com/skidvis">Skid Vis</a>🥇</li>
 </ul>
@@ -407,11 +408,11 @@
             </div>
             <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
                 <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
-                <p class="text-light">Website v.2.0.0.31</p>
+                <p class="text-light">Website v.2.0.0.38</p>
                 <p class="text-light">© .NET Foundation and Contributors</p>
             </div>
         </footer>
     </div>
-</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.31"></script>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.38"></script>
 </body>
 </html>

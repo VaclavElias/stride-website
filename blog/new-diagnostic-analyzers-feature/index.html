@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="canonical" href="https://www.stride3d.net/blog/new-diagnostic-analyzers-feature/">
     <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
-    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.31">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.38">
     <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
     <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
     <meta name="twitter:creator" content="@stridedotnet">
     <meta name="twitter:title" content="A closer look: Diagnostic Analyzers with Roslyn">
     <meta name="twitter:description" content="Let's take a closer look at the `DiagnosticAnalyzer` feature added in `Stride.Core.CompilerServices`. This feature offers real-time code analysis in your IDE...">
-    <meta name="twitter:image" content="https://www.stride3d.net/images/blog/2023-10/cs-roslyn-logo.webp"><script src="/scripts/theme-selector.js?site-version=2.0.0.31"></script></head>
+    <meta name="twitter:image" content="https://www.stride3d.net/images/blog/2023-10/cs-roslyn-logo.webp"><script src="/scripts/theme-selector.js?site-version=2.0.0.38"></script></head>
 <body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
     <div class="container-xxl">
         <a class="navbar-brand" href="/">
@@ -76,6 +76,7 @@
     <div class="mb-3">
         <input class="form-control" id="search-input" name="query" type="text" value="" autofocus tabindex="0" aria-label="Search">
     </div>
+
     <button class="btn btn-stride" name="submit" type="submit" value="Search">Search</button>
 </form></div>
                 </li>
@@ -157,7 +158,7 @@
                 </div><div itemprop="articleBody">
                     <p>Let's take a closer look at the <code>DiagnosticAnalyzer</code> feature added in <code>Stride.Core.CompilerServices</code>. This feature offers real-time code analysis in your IDE, enhancing your workflow.</p>
 <p>Table of Contents:</p>
-<div class="table-of-contents"><ul><li><a href="#what-is-a-diagnosticanalyzer%3F">What is a DiagnosticAnalyzer? </a></li><li><a href="#what-does-it-do%3F">What does it do? </a></li><li><a href="#example">Example </a></li><li><a href="#why-use-it%3F">Why use it? </a></li><li><a href="#current-state">Current State </a></li><li><a href="#for-engine-developers">For Engine Developers </a></li><li><a href="#summary">Summary </a></li></ul></div>
+<div class="table-of-contents"><ul><li><a href="#what-is-a-diagnosticanalyzer%3F">What is a DiagnosticAnalyzer?</a></li><li><a href="#what-does-it-do%3F">What does it do?</a></li><li><a href="#example">Example</a></li><li><a href="#why-use-it%3F">Why use it?</a></li><li><a href="#current-state">Current State</a></li><li><a href="#for-engine-developers">For Engine Developers</a></li><li><a href="#summary">Summary</a></li></ul></div>
 <p>Stride continues to evolve, adding new utilities and features every week. This blog post will cover the newly added <code>DiagnosticAnalyzer</code> feature in <code>Stride.Core.CompilerServices</code>.</p>
 <h2 id="what-is-a-diagnosticanalyzer%3F" tabindex="-1">What is a <code>DiagnosticAnalyzer</code>? <a class="direct-link" href="#what-is-a-diagnosticanalyzer%3F">🔗</a></h2>
 <p>A <code>DiagnosticAnalyzer</code> is a feature from Roslyn that scans your code while you are typing in your IDE. C# also utilizes this feature; every time you see a warning or red squiggly lines in your IDE, a <code>DiagnosticAnalyzer</code> gets triggered. Analyzers are offline tools used by the compiler to assist programmers. They are not used to collect telemetry on how Stride is being used.</p>
@@ -300,11 +301,11 @@
             </div>
             <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
                 <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
-                <p class="text-light">Website v.2.0.0.31</p>
+                <p class="text-light">Website v.2.0.0.38</p>
                 <p class="text-light">© .NET Foundation and Contributors</p>
             </div>
         </footer>
     </div>
-</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.31"></script>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.38"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="canonical" href="https://www.stride3d.net/blog/investigating-spirv-for-the-shader-system-part-2/">
     <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
-    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.31">
+    <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.38">
     <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
     <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
     <meta name="twitter:creator" content="@stridedotnet">
     <meta name="twitter:title" content="Investigating SPIR-V for the shader system - Part 2">
     <meta name="twitter:description" content="In this second part we're going to dive deeper in how the current SDSL compiler works and how we are improving on it for the SPIR-V compiler. This will be a ...">
-    <meta name="twitter:image" content="https://www.stride3d.net/images/spir.png"><script src="/scripts/theme-selector.js?site-version=2.0.0.31"></script></head>
+    <meta name="twitter:image" content="https://www.stride3d.net/images/spir.png"><script src="/scripts/theme-selector.js?site-version=2.0.0.38"></script></head>
 <body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
     <div class="container-xxl">
         <a class="navbar-brand" href="/">
@@ -76,6 +76,7 @@
     <div class="mb-3">
         <input class="form-control" id="search-input" name="query" type="text" value="" autofocus tabindex="0" aria-label="Search">
     </div>
+
     <button class="btn btn-stride" name="submit" type="submit" value="Search">Search</button>
 </form></div>
                 </li>
@@ -189,8 +190,14 @@
         margin-right: auto;
     }
 </style>
+<p>If you're interested in the other parts of this blog series :</p>
+<ul>
+<li><a href="/blog/investigating-spirv-for-the-shader-system/">Part 1</a> An introduction to the project</li>
+<li><a href="/blog/investigating-spirv-for-the-shader-system-part-3/">Part 3</a> we write a new parser for SDSL</li>
+<li><a href="/blog/investigating-spirv-for-the-shader-system-part-4/">Part 4</a> integration in the engine</li>
+</ul>
 <p>Table of Contents:</p>
-<div class="table-of-contents"><ul><li><a href="#preface">Preface </a></li><li><a href="#how-it-works-currently">How it works currently </a></li><li><a href="#the-idea-for-spir-v">The idea for SPIR-V </a></li><li><a href="#implementation">Implementation </a><ul><li><a href="#the-easy-way">The easy way </a></li><li><a href="#%22i-should-rewrite-it-from-scratch...%22">&quot;I should rewrite it from scratch...&quot; </a></li><li><a href="#buffers-and-instructions">Buffers and instructions </a></li><li><a href="#generation">Generation </a></li><li><a href="#extending-spir-v">Extending SPIR-V </a></li></ul></li><li><a href="#the-irony">The Irony </a></li><li><a href="#conclusions">Conclusions </a></li></ul></div>
+<div class="table-of-contents"><ul><li><a href="#preface">Preface</a></li><li><a href="#how-it-works-currently">How it works currently</a></li><li><a href="#the-idea-for-spir-v">The idea for SPIR-V</a></li><li><a href="#implementation">Implementation</a><ul><li><a href="#the-easy-way">The easy way</a></li><li><a href="#%22i-should-rewrite-it-from-scratch...%22">&quot;I should rewrite it from scratch...&quot;</a></li><li><a href="#buffers-and-instructions">Buffers and instructions</a></li><li><a href="#generation">Generation</a></li><li><a href="#extending-spir-v">Extending SPIR-V</a></li></ul></li><li><a href="#the-irony">The Irony</a></li><li><a href="#conclusions">Conclusions</a></li></ul></div>
 <p><a href="/blog/investigating-spirv-for-the-shader-system/">In the last blog post</a>, we briefly saw why SPIR-V was an interesting shader format for our new shader compiler. After a year of research on this subject I'm coming back with ideas and implementations!</p>
 <h2 id="preface" tabindex="-1">Preface <a class="direct-link" href="#preface">🔗</a></h2>
 <p>Rewriting the shader system is a complicated task in itself. As you may already know, Stride was initially a commercial product that was open-sourced not long ago, and some of the original devs left. This has led to a difficulty gathering information on the inner working of the engine.</p>
@@ -515,11 +522,11 @@ shader MixinC <span class="token operator">:</span> MixinA<span class="token pun
             </div>
             <div class="d-flex flex-column flex-sm-row justify-content-between pt-3 pb-4 text-center small">
                 <p class="text-light">Supported by the <a class="link-danger" href="https://dotnetfoundation.org/" target="_blank" rel="noopener">.NET Foundation</a></p>
-                <p class="text-light">Website v.2.0.0.31</p>
+                <p class="text-light">Website v.2.0.0.38</p>
                 <p class="text-light">© .NET Foundation and Contributors</p>
             </div>
         </footer>
     </div>
-</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.31"></script>
+</div><script src="/scripts/bootstrap.bundle.min.js?site-version=2.0.0.38"></script>
 </body>
 </html>
