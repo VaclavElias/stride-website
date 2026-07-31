@@ -7,25 +7,25 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());gtag('config', 'G-Y9CVGC9YV1');
 </script><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Search - Stride Game Engine</title>
-    <meta name="description" content="">
+    <title>Announcing Stride 4.4 - Stride Game Engine</title>
+    <meta name="description" content="Stride 4.4 brings a modernized shader pipeline, broader cross-platform builds and testing, a new CLI workflow, stronger Vulkan and Direct3D 12 support, Nativ...">
     <meta name="generator" content="Eleventy v3.0.0">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="canonical" href="https://www.stride3d.net/search/">
+    <link rel="canonical" href="https://www.stride3d.net/blog/announcing-stride-4-4/">
     <link rel="alternate" type="application/rss+xml" title="Stride Game Engine" href="/feed.xml">
     <link rel="stylesheet" href="/css/styles.css?site-version=2.0.0.38">
     <link rel="preload" as="font" href="/webfonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/webfonts/fa-brands-400.woff2" crossorigin="anonymous">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Stride Game Engine">
-    <meta property="og:title" content="Search">
-    <meta property="og:description" content="">
-    <meta property="og:url" content="https://www.stride3d.net/search/">
+    <meta property="og:title" content="Announcing Stride 4.4">
+    <meta property="og:description" content="Stride 4.4 brings a modernized shader pipeline, broader cross-platform builds and testing, a new CLI workflow, stronger Vulkan and Direct3D 12 support, Nativ...">
+    <meta property="og:url" content="https://www.stride3d.net/blog/announcing-stride-4-4/">
     <meta property="og:image" content="https://www.stride3d.net/images/og/stride-game-engine-default-og.jpg"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@stridedotnet">
     <meta name="twitter:creator" content="@stridedotnet">
-    <meta name="twitter:title" content="Search">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="Announcing Stride 4.4">
+    <meta name="twitter:description" content="Stride 4.4 brings a modernized shader pipeline, broader cross-platform builds and testing, a new CLI workflow, stronger Vulkan and Direct3D 12 support, Nativ...">
     <meta name="twitter:image" content="https://www.stride3d.net/images/og/stride-game-engine-default-og.jpg"><script src="/scripts/theme-selector.js?site-version=2.0.0.38"></script></head>
 <body class="bg-stride-website d-flex flex-column min-vh-100"><nav class="navbar navbar-expand-lg bg-light-stride-website fixed-top">
     <div class="container-xxl">
@@ -40,7 +40,7 @@
                     <a class="nav-link" aria-current="page" href="/features/">Features</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog/">Blog</a>
+                    <a class="nav-link active text-stride" href="/blog/">Blog</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Learn</a>
@@ -144,213 +144,91 @@
         </div>
     </div>
 </nav>
-
-<div style="background-image: url(/images/backgrounds/features_banner.webp); background-position: 50% 50%; background-size: cover" class="header-image">
-    <div class="cover text-center py-5">
-        <h1 class="text-light pt-4">Search</h1>
-        <p id="sub-title" class="text-light lead pb-3 px-2">Search result for <span id="search-result-term" class="fw-bold text-stride"></span></p>
-    </div>
-</div><div class="container-xxl my-5">
-    <div class="row">
+<div class="container">
+    <div class="row postcontent">
         <div class="col-12">
-            <div class="row">
-    <div class="col-lg-9 col-md-8 col-sm-12">
-        <div id="search-results">
-            <div class="fa-3x">
-                <i id="spinner" class="fa-solid fa-spinner text-stride fa-spin-pulse"></i>
-            </div>
-        </div>
-        <div id="search-pagination" class="my-3"></div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-12">
-        <div class="box-style">
-            <div class="devblogs-widget">
-                <div class="card mb-4">
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item active">
-            <h2 class="mb-0 fw-normal h4">Popular Posts</h2>
-        </li>
-        
-        <li class="list-group-item  list-group-item-action">
-            <a href="/blog/announcing-stride-4-4/">
-                Announcing Stride 4.4
-            </a>
-        </li>
-        <li class="list-group-item  list-group-item-action">
-            <a href="/blog/announcing-stride-4-3-in-dotnet-10/">
-                Announcing Stride 4.3
-            </a>
-        </li>
-        <li class="list-group-item  list-group-item-action">
-            <a href="/blog/distant-worlds-2-development-with-stride/">
-                A Look Inside Distant Worlds 2: Developing with the Stride Engine
-            </a>
-        </li>
-    </ul>
-</div>
-<div class="card mb-4 p-3">
-    
-<form action="/search/" method="get">
-    <div class="mb-3">
-        <input class="form-control" id="search-form-post" name="query" type="text" value="" autofocus tabindex="0" aria-label="Search">
-    </div>
-    <div id="source-filters" class="mb-3">
-        <div class="row g-2">
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="manual" id="sf-manual" checked>
-                    <label class="form-check-label" for="sf-manual">📚 Manual</label>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="tutorials" id="sf-tutorials" checked>
-                    <label class="form-check-label" for="sf-tutorials">🎓 Tutorial</label>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="api" id="sf-api" checked>
-                    <label class="form-check-label" for="sf-api">🔧 API</label>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="ReleaseNotes" id="sf-releasenotes" checked>
-                    <label class="form-check-label" for="sf-releasenotes">📝 Release Notes</label>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="contributors" id="sf-contributors" checked>
-                    <label class="form-check-label" for="sf-contributors">🌟 Contributors</label>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="community-resources" id="sf-community-resources" checked>
-                    <label class="form-check-label" for="sf-community-resources">🏋🏽 Community Resources</label>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="web" id="sf-web" checked>
-                    <label class="form-check-label" for="sf-web">🕸️ Website</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h1 itemprop="name">Announcing Stride 4.4</h1>
+                <div class="text-center mb-3 pt-2"><div><div class="mt-4 mb-2">
+                            <img class="rounded-circle me-1" width="58" height="58" alt="author" src="https://avatars.githubusercontent.com/VaclavElias?size=87">
+                        </div>Vaclav Elias
+                    </div><p style="border-top: 2px solid #979593;" class="x-hidden-focus mt-4 pt-1 small text-secondary date d-inline-block">
+                        <small><i class="fa-solid fa-calendar-days"></i> <time datetime="2026-11-14T00:00:00+0000" itemprop="datePublished"> November 14, 2026</time></small>
+                    </p>
+                </div><div itemprop="articleBody">
+                    <p>Stride 4.4 brings a modernized shader pipeline, broader cross-platform builds and testing, a new CLI workflow, stronger Vulkan and Direct3D 12 support, NativeAOT/trimming readiness, and engine stability fixes.</p>
+<p>Table of Contents:</p>
+<div class="table-of-contents"><ul><li><a href="#download-and-upgrade">Download and Upgrade</a></li><li><a href="#what's-new-in-this-release">What's new in this release</a></li><li><a href="#what-has-changed-since-stride-4.3">What has changed since Stride 4.3</a></li><li><a href="#funding-and-resource-allocation">Funding and Resource Allocation</a><ul><li><a href="#call-for-skilled-developers">Call for Skilled Developers</a></li><li><a href="#join-us-on-this-journey">Join Us on This Journey</a></li></ul></li><li><a href="#links">Links</a></li><li><a href="#acknowledgements">Acknowledgements</a><ul><li><a href="#long-time-stride-supporters">Long-time Stride supporters</a></li><li><a href="#gold-striders">Gold Striders</a></li></ul></li></ul></div>
+<h2 id="download-and-upgrade" tabindex="-1">Download and Upgrade <a class="direct-link" href="#download-and-upgrade">🔗</a></h2>
+<p>You can <a href="https://www.stride3d.net/download/">download the Stride 4.4 Installer</a> today. Release notes are available <a href="https://doc.stride3d.net/latest/en/ReleaseNotes/ReleaseNotes.html">here</a>.</p>
+<p>Make sure you read the <a href="https://doc.stride3d.net/latest/en/manual/get-started/update-stride.html">guide to update Stride and projects properly</a>.</p>
+<h2 id="what's-new-in-this-release" tabindex="-1">What's new in this release <a class="direct-link" href="#what's-new-in-this-release">🔗</a></h2>
+<h2 id="what-has-changed-since-stride-4.3" tabindex="-1">What has changed since Stride 4.3 <a class="direct-link" href="#what-has-changed-since-stride-4.3">🔗</a></h2>
+<h2 id="funding-and-resource-allocation" tabindex="-1">Funding and Resource Allocation <a class="direct-link" href="#funding-and-resource-allocation">🔗</a></h2>
+<h3 id="call-for-skilled-developers" tabindex="-1">Call for Skilled Developers <a class="direct-link" href="#call-for-skilled-developers">🔗</a></h3>
+<p>We are actively seeking skilled developers with experience in C#, the .NET ecosystem, mobile, XR, rendering, and game development. If you have these skills or know someone who does, we encourage you to get involved. There are <a href="https://opencollective.com/stride3d/projects">opportunities to contribute</a> to critical areas of Stride's development, supported by available funds.</p>
+<h3 id="join-us-on-this-journey" tabindex="-1">Join Us on This Journey <a class="direct-link" href="#join-us-on-this-journey">🔗</a></h3>
+<p>We’re always excited to welcome new contributors to the Stride family. Whether it’s through code contributions, spreading the word, or donations, every bit helps us grow stronger. If you’ve got skills in .NET, Android, and iOS development, there’s a special place for you here. <a href="https://opencollective.com/stride3d">Support us on OpenCollective</a>.</p>
+<h2 id="links" tabindex="-1">Links <a class="direct-link" href="#links">🔗</a></h2>
+<ul>
+<li>GitHub: <a href="https://github.com/stride3d/stride">https://github.com/stride3d/stride</a></li>
+<li>Website: <a href="https://stride3d.net/">https://stride3d.net/</a></li>
+<li>Documentation: <a href="https://doc.stride3d.net/latest/en/manual/">https://doc.stride3d.net/latest/en/manual/</a></li>
+<li>Twitter: <a href="https://twitter.com/stridedotnet">https://twitter.com/stridedotnet</a></li>
+<li>YouTube: <a href="https://www.youtube.com/@Stride3D">https://www.youtube.com/@Stride3D</a></li>
+<li>Stride Community Toolkit: <a href="https://stride3d.github.io/stride-community-toolkit/index.html">https://stride3d.github.io/stride-community-toolkit/index.html</a></li>
+</ul>
+<h2 id="acknowledgements" tabindex="-1">Acknowledgements <a class="direct-link" href="#acknowledgements">🔗</a></h2>
+<p>We extend our heartfelt gratitude for all the hard work and donations we have received. Your generous contributions significantly aid in the continuous development and enhancement of the Stride community and projects. Thank you for your support and belief in our collective efforts.</p>
+<p>In particular, we want to thank these donors:</p>
+<h3 id="long-time-stride-supporters" tabindex="-1">Long-time Stride supporters <a class="direct-link" href="#long-time-stride-supporters">🔗</a></h3>
+<ul>
+<li>
+<p><a href="https://visualprogramming.net/">VVVV</a>🥇</p>
+<p><a href="https://visualprogramming.net/"><img src="https://images.opencollective.com/vvvv/8ab0acd/logo/256.png?height=72" alt="vvvv. A visual live-programming environment that takes you from rapid prototyping to final production"></a></p>
+</li>
+</ul>
+<h3 id="gold-striders" tabindex="-1">Gold Striders <a class="direct-link" href="#gold-striders">🔗</a></h3>
+<ul>
+<li><a href="https://www.happenstancegames.com/">Happenstance Games</a>🏆</li>
+<li><a href="https://www.vaclavelias.com/">Vašo ( Vaclav )</a>🥇</li>
+<li><a href="http://www.lucidsilence.org/">Lucid Silence Games</a>🥇</li>
+<li><a href="https://opencollective.com/widowmakes">WidowMakes</a>🥇</li>
+<li><a href="https://github.com/bepu/bepuphysics2">Norbo</a>🥇</li>
+<li><a href="https://opencollective.com/first-hour">First Hour</a>🥇</li>
+</ul>
+<p>This article was co-authored by <a href="https://github.com/Eideren">Eideren</a>.</p>
 
-    <button class="btn btn-stride" name="submit" type="submit" value="Search">Search</button>
-</form>
-    <hr>
-    <h2 class="h4">Latest Posts</h2>
-    <ul class="ps-1 ms-3">
-        
-        
-        <li>
-            <a href="/blog/announcing-stride-4-4/">
-                Announcing Stride 4.4
-            </a>
-        </li>
-        
-        <li>
-            <a href="/blog/investigating-spirv-for-the-shader-system-part-4/">
-                Investigating SPIR-V for the shader system - Part 4
-            </a>
-        </li>
-        
-        <li>
-            <a href="/blog/investigating-spirv-for-the-shader-system-part-3/">
-                Investigating SPIR-V for the shader system - Part 3
-            </a>
-        </li>
-        
-        <li>
-            <a href="/blog/announcing-stride-4-3-in-dotnet-10/">
-                Announcing Stride 4.3
-            </a>
-        </li>
-        
-        <li>
-            <a href="/blog/distant-worlds-2-development-with-stride/">
-                A Look Inside Distant Worlds 2: Developing with the Stride Engine
-            </a>
-        </li>
-        
-    </ul>
-    <hr>
-    <h2 class="h4">Resources</h2>
-    <ul class="ps-1 ms-3">
-        <li>
-            <a title="Silk.NET" href="https://dotnet.github.io/Silk.NET/" target="_blank" rel="noopener">Silk.NET</a>
-        </li>
-        <li>
-            <a title="Blender" href="https://www.blender.org/" target="_blank" rel="noopener">Blender - Free and Open 3D Creation Software</a>
-        </li>
-        <li>
-            <a title="Microsoft C# Docs" href="https://devblogs.microsoft.com/dotnet/category/csharp/" target="_blank" rel="noopener">C# Blog</a>
-        </li>
-        <li>
-            <a title="Microsoft Docs" href="https://docs.microsoft.com/en-us/" target="_blank" rel="noopener" class="x-hidden-focus">Microsoft Docs</a>
-        </li>
-        <li>
-            <a title="Visual Studio Blog" href="https://devblogs.microsoft.com/visualstudio" target="_blank" rel="noopener">
-                Visual Studio Blog
-            </a>
-        </li>
-        <li>
-            <a title="Visual Studio Download" href="https://visualstudio.microsoft.com/downloads/" target="_blank" rel="noopener">
-                Download Visual Studio Community
-            </a>
-        </li>
-        <li>
-            <a title="Visual Studio Code Download" href="https://code.visualstudio.com/" target="_blank" rel="noopener">
-                Download Visual Studio Code
-            </a>
-        </li>
-    </ul>
-    <hr>
-    <h2 class="h4">FOSS Game Engines</h2>
-    <ul class="ps-1 ms-3">
-        <li><a title="Bevy" href="https://bevyengine.org/" target="_blank" rel="noopener">Bevy</a></li>
-        <li><a title="Godot" href="https://godotengine.org/" target="_blank" rel="noopener">Godot</a></li>
-        <li><a title="Open 3D Engine" href="https://o3de.org/" target="_blank" rel="noopener">Open 3D Engine</a></li>
-    </ul>
-    <hr>
-    <h2 class="h4">Other</h2>
-    <ul class="ps-1 ms-3">
-        <li>
-            <a title="Stride Post Archive" href="/archive/">Archive</a>
-        </li>
-        <li>
-            <a title="Stride Tags" href="/tags/">Tags</a>
-        </li>
-        <li>
-            <a href="/feed.xml"><i class="fa-solid fa-rss text-decoration-none"></i> Stride RSS Feed</a>
-        </li>
-    </ul>
-</div>
+                </div>
+                <hr>
+                <p>
+<span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">4.4</span><span class="badge text-bg-stride text-stride me-1" style="--bs-bg-opacity: .20;">Release</span></p>
+                <p>
+                    Any comments? You can start 🗨 at <i class="fa-brands fa-github text-decoration-none"></i> <a href="https://github.com/stride3d/stride/discussions" target="_blank" rel="noreferrer">GitHub Discussions</a> or <i class="fa-brands fa-discord text-decoration-none"></i> <a class="" href="https://discord.gg/f6aerfE" target="_blank" rel="noopener">Discord</a>.
+                </p>
+                <p>
+                    <a href="https://github.com/stride3d/stride-website/blob/master/./posts/2026-11-14-announcing-stride-4-4.md" target="_blank" rel="noreferrer">Edit</a> this page on
+                    <i class="fa-brands fa-github text-decoration-none"></i>.
+                </p>
+            </article>
+        </div>
+    </div>
+    <div class="row mb-4"><div class="col-md-6 mb-4">
+            
+            <div class="card px-3">
+                <div class="card-body p-4">
+                    <h5>Previous Post</h5>
+                    <a class="prev stretched-link" href="/blog/investigating-spirv-for-the-shader-system-part-4/">Investigating SPIR-V for the shader system - Part 4</a>
+                </div>
             </div>
+            
+        </div>
+        <div class="col-md-6 text-md-end">
+            
         </div>
     </div>
 </div>
 
-<script id="search-config" type="application/json">
-{
-  "docsSearch": true,
-  "docsSearchUrl": "https://doc.stride3d.net/latest/en/index.json",
-  "docsBaseUrl": "https://doc.stride3d.net/latest/en/",
-  "version": "2.0.0.38"
-}
-</script>
-
-<script src="/scripts/lunr.min.js"></script>
-<script src="/scripts/search.js?site-version=2.0.0.38"></script>
-        </div>
-    </div>
-</div>
 <div class="bg-footer mt-auto">
     <div class="container">
         <footer class="pt-5 px-2">

@@ -6,9 +6,57 @@
     <link>https://www.stride3d.net</link>
     <link>https://www.stride3d.net/feed.xml</link>
     <atom:link href="https://www.stride3d.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate>
-    <lastBuildDate>Fri, 29 May 2026 00:00:00 +0000</lastBuildDate>
+    <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
+    <lastBuildDate>Sat, 14 Nov 2026 00:00:00 +0000</lastBuildDate>
     <generator>Eleventy 3.0</generator>
+    <item>
+      <title>Announcing Stride 4.4</title>
+      <description>&lt;p&gt;Stride 4.4 brings a modernized shader pipeline, broader cross-platform builds and testing, a new CLI workflow, stronger Vulkan and Direct3D 12 support, NativeAOT/trimming readiness, and engine stability fixes.&lt;/p&gt;
+&lt;p&gt;Table of Contents:&lt;/p&gt;
+&lt;div class=&quot;table-of-contents&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#download-and-upgrade&quot;&gt;Download and Upgrade&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#what&#39;s-new-in-this-release&quot;&gt;What&#39;s new in this release&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#what-has-changed-since-stride-4.3&quot;&gt;What has changed since Stride 4.3&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#funding-and-resource-allocation&quot;&gt;Funding and Resource Allocation&lt;/a&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#call-for-skilled-developers&quot;&gt;Call for Skilled Developers&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#join-us-on-this-journey&quot;&gt;Join Us on This Journey&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#links&quot;&gt;Links&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#acknowledgements&quot;&gt;Acknowledgements&lt;/a&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#long-time-stride-supporters&quot;&gt;Long-time Stride supporters&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#gold-striders&quot;&gt;Gold Striders&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h2 id=&quot;download-and-upgrade&quot; tabindex=&quot;-1&quot;&gt;Download and Upgrade &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#download-and-upgrade&quot;&gt;🔗&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can &lt;a href=&quot;https://www.stride3d.net/download/&quot;&gt;download the Stride 4.4 Installer&lt;/a&gt; today. Release notes are available &lt;a href=&quot;https://doc.stride3d.net/latest/en/ReleaseNotes/ReleaseNotes.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Make sure you read the &lt;a href=&quot;https://doc.stride3d.net/latest/en/manual/get-started/update-stride.html&quot;&gt;guide to update Stride and projects properly&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;what&#39;s-new-in-this-release&quot; tabindex=&quot;-1&quot;&gt;What&#39;s new in this release &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#what&#39;s-new-in-this-release&quot;&gt;🔗&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;what-has-changed-since-stride-4.3&quot; tabindex=&quot;-1&quot;&gt;What has changed since Stride 4.3 &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#what-has-changed-since-stride-4.3&quot;&gt;🔗&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;funding-and-resource-allocation&quot; tabindex=&quot;-1&quot;&gt;Funding and Resource Allocation &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#funding-and-resource-allocation&quot;&gt;🔗&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;call-for-skilled-developers&quot; tabindex=&quot;-1&quot;&gt;Call for Skilled Developers &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#call-for-skilled-developers&quot;&gt;🔗&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;We are actively seeking skilled developers with experience in C#, the .NET ecosystem, mobile, XR, rendering, and game development. If you have these skills or know someone who does, we encourage you to get involved. There are &lt;a href=&quot;https://opencollective.com/stride3d/projects&quot;&gt;opportunities to contribute&lt;/a&gt; to critical areas of Stride&#39;s development, supported by available funds.&lt;/p&gt;
+&lt;h3 id=&quot;join-us-on-this-journey&quot; tabindex=&quot;-1&quot;&gt;Join Us on This Journey &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#join-us-on-this-journey&quot;&gt;🔗&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;We’re always excited to welcome new contributors to the Stride family. Whether it’s through code contributions, spreading the word, or donations, every bit helps us grow stronger. If you’ve got skills in .NET, Android, and iOS development, there’s a special place for you here. &lt;a href=&quot;https://opencollective.com/stride3d&quot;&gt;Support us on OpenCollective&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;links&quot; tabindex=&quot;-1&quot;&gt;Links &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#links&quot;&gt;🔗&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GitHub: &lt;a href=&quot;https://github.com/stride3d/stride&quot;&gt;https://github.com/stride3d/stride&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Website: &lt;a href=&quot;https://stride3d.net/&quot;&gt;https://stride3d.net/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Documentation: &lt;a href=&quot;https://doc.stride3d.net/latest/en/manual/&quot;&gt;https://doc.stride3d.net/latest/en/manual/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Twitter: &lt;a href=&quot;https://twitter.com/stridedotnet&quot;&gt;https://twitter.com/stridedotnet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;YouTube: &lt;a href=&quot;https://www.youtube.com/@Stride3D&quot;&gt;https://www.youtube.com/@Stride3D&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Stride Community Toolkit: &lt;a href=&quot;https://stride3d.github.io/stride-community-toolkit/index.html&quot;&gt;https://stride3d.github.io/stride-community-toolkit/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;acknowledgements&quot; tabindex=&quot;-1&quot;&gt;Acknowledgements &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#acknowledgements&quot;&gt;🔗&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We extend our heartfelt gratitude for all the hard work and donations we have received. Your generous contributions significantly aid in the continuous development and enhancement of the Stride community and projects. Thank you for your support and belief in our collective efforts.&lt;/p&gt;
+&lt;p&gt;In particular, we want to thank these donors:&lt;/p&gt;
+&lt;h3 id=&quot;long-time-stride-supporters&quot; tabindex=&quot;-1&quot;&gt;Long-time Stride supporters &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#long-time-stride-supporters&quot;&gt;🔗&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://visualprogramming.net/&quot;&gt;VVVV&lt;/a&gt;🥇&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://visualprogramming.net/&quot;&gt;&lt;img src=&quot;https://images.opencollective.com/vvvv/8ab0acd/logo/256.png?height=72&quot; alt=&quot;vvvv. A visual live-programming environment that takes you from rapid prototyping to final production&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;gold-striders&quot; tabindex=&quot;-1&quot;&gt;Gold Striders &lt;a class=&quot;direct-link&quot; href=&quot;https://www.stride3d.net/blog/announcing-stride-4-4/#gold-striders&quot;&gt;🔗&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.happenstancegames.com/&quot;&gt;Happenstance Games&lt;/a&gt;🏆&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.vaclavelias.com/&quot;&gt;Vašo ( Vaclav )&lt;/a&gt;🥇&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.lucidsilence.org/&quot;&gt;Lucid Silence Games&lt;/a&gt;🥇&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://opencollective.com/widowmakes&quot;&gt;WidowMakes&lt;/a&gt;🥇&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/bepu/bepuphysics2&quot;&gt;Norbo&lt;/a&gt;🥇&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://opencollective.com/first-hour&quot;&gt;First Hour&lt;/a&gt;🥇&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This article was co-authored by &lt;a href=&quot;https://github.com/Eideren&quot;&gt;Eideren&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
+      <link>https://www.stride3d.net/blog/announcing-stride-4-4/</link>
+      <guid isPermaLink="true">https://www.stride3d.net/blog/announcing-stride-4-4/</guid><enclosure url="https://www.stride3d.net/images/blog/default_thumb.png" type="image/png" length="0" /></item>
     <item>
       <title>Investigating SPIR-V for the shader system - Part 4</title>
       <description>&lt;p&gt;In this blog post, we have a big announcement to make. We&#39;ll also talk about the implementation of the mixin system as well as the integration of the new shader system in Stride, what it means and what we can expect for its future.&lt;/p&gt;
